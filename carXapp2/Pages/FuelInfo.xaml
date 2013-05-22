@@ -1,0 +1,95 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="carXapp2.FuelInfo"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+    xmlns:ads="clr-namespace:Microsoft.Advertising.Mobile.UI;assembly=Microsoft.Advertising.Mobile.UI"
+    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="768"
+    SupportedOrientations="Portrait"  Orientation="Portrait"
+    shell:SystemTray.IsVisible="True"
+    xmlns:amq="clr-namespace:AmCharts.Windows.QuickCharts;assembly=AmCharts.Windows.QuickCharts.WP"
+    xmlns:toolbox="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    toolbox:TiltEffect.IsTiltEnabled="True"
+    >
+    
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar Opacity="{StaticResource MenuOpacity}">
+			<shell:ApplicationBar.MenuItems>
+				<!--<shell:ApplicationBarMenuItem Text="reverse list" Click="Reverse_Click"/>-->
+			</shell:ApplicationBar.MenuItems>
+			<shell:ApplicationBarIconButton IconUri="/icons/appbar.new.rest.png" Text="add" Click="menuADD_Click"/>
+			<shell:ApplicationBarIconButton IconUri="/icons/appbar.edit.rest.png" Text="edit" Click="menuEdit_Click"/>
+			<shell:ApplicationBarIconButton IconUri="/icons/appbar.delete.rest.png" Text="delete" Click="menuDel_Click"/>
+		</shell:ApplicationBar>
+	</phone:PhoneApplicationPage.ApplicationBar>
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid.RowDefinitions>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--TitlePanel contains the name of the application and page title-->
+        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
+            <TextBlock x:Name="ApplicationTitle" Text="{StaticResource AppName}" Style="{StaticResource PhoneTextNormalStyle}">
+            	<TextBlock.Foreground>
+            		<SolidColorBrush Color="Orange"/>
+            	</TextBlock.Foreground>
+            </TextBlock>
+            <TextBlock x:Name="PageTitle" Text="fuel" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}" Foreground="{StaticResource PhoneAccentBrush}"/>
+        </StackPanel>
+        <!--Pivot Control-->
+
+        <Grid x:Name="ContentPanel" Grid.Row="1" >
+            <!--<toolbox:PerformanceProgressBar x:Name="customIndeterminateProgressBar" IsEnabled="True" IsIndeterminate="True" />-->
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="160"/>
+            </Grid.RowDefinitions>
+            <ListBox Margin="10,0,0,0" Name="listBox1" Grid.Row="0" Foreground="{StaticResource PhoneContrastForegroundBrush}" >
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid x:Name="listGrid" Margin="0,0,0,10" Background="{StaticResource PhoneContrastBackgroundBrush}" ShowGridLines="False" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition  Width="155"/>
+                                <ColumnDefinition  Width="130"/>
+                                <ColumnDefinition  Width="220"/>
+                                <!--<ColumnDefinition  Width="40"/>
+                        <ColumnDefinition  Width="80"/>-->
+                                <!--<ColumnDefinition  Width="120"/>-->
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Row="0" Grid.Column="0" Padding="10,0,0,0" Text="{Binding Path=Date}" FontSize="30"/>
+                            <TextBlock Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Padding="0,0,40,0" Text="{Binding MPG}" FontSize="36" HorizontalAlignment="Right"/>
+                            <TextBlock Grid.Row="1" Grid.Column="0" Padding="10,0,5,0" Text="{Binding Cost}" />
+                            <TextBlock Grid.Row="1" Grid.Column="1" Padding="0,0,5,0" Text="{Binding Fill}" HorizontalAlignment="Right"/>
+                            <TextBlock Grid.Row="1" Grid.Column="2" Padding="0,0,40,0" Text="{Binding MilesDriven}" HorizontalAlignment="Right" />
+
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <ads:AdControl Grid.Row="1" ApplicationId="74e68b88-1f24-4d5e-aacf-58fafab91a98" AdUnitId="94893" Height="80" Width="480" VerticalAlignment="Top" ErrorOccurred="AdControl_ErrorOccurred"/>
+        </Grid>
+    </Grid>
+    <!--Sample code showing usage of ApplicationBar-->
+    <!--<phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
+            <shell:ApplicationBarIconButton x:Name="appbar_button1" IconUri="/Images/appbar_button1.png" Text="Button 1"/>
+            <shell:ApplicationBarIconButton x:Name="appbar_button2" IconUri="/Images/appbar_button2.png" Text="Button 2"/>
+            <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem x:Name="menuItem1" Text="MenuItem 1"/>
+                <shell:ApplicationBarMenuItem x:Name="menuItem2" Text="MenuItem 2"/>
+            </shell:ApplicationBar.MenuItems>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>-->
+    
+</phone:PhoneApplicationPage>

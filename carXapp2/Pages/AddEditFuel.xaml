@@ -1,0 +1,80 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="carXapp2.AddEditFuel"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ads="clr-namespace:Microsoft.Advertising.Mobile.UI;assembly=Microsoft.Advertising.Mobile.UI"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"
+    shell:SystemTray.IsVisible="True"
+    xmlns:toolbox="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit">
+	<phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar Opacity="{StaticResource MenuOpacity}">
+			<shell:ApplicationBarIconButton IconUri="/icons/appbar.save.rest.png" Text="save" Click="Menu_save"/>
+		</shell:ApplicationBar>
+	</phone:PhoneApplicationPage.ApplicationBar>
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--TitlePanel contains the name of the application and page title-->
+        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
+            <TextBlock x:Name="ApplicationTitle" Text="{StaticResource AppName}" Style="{StaticResource PhoneTextNormalStyle}" Foreground="Orange"/>
+            <TextBlock x:Name="PageTitle" Text="add/edit" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}" Foreground="{StaticResource PhoneAccentBrush}"/>
+        </StackPanel>
+
+        <!--ContentPanel - place additional content here-->
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+            <Grid x:Name="grid1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150" />
+                    <ColumnDefinition Width="300" />
+                    
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="74" />
+                    <RowDefinition Height="106" />
+                    <RowDefinition Height="211*" />
+                </Grid.RowDefinitions>
+
+                <!--<TextBlock Text="{Binding Miles,Source=SingleFuelRecord}" />-->
+                <TextBlock Padding="10" Grid.Column="0" Grid.Row="0" Text="Date:"/>
+                <TextBlock Padding="10" Grid.Column="0" Grid.Row="1" Text="Odometer:"/>
+                <TextBlock Padding="10" Grid.Column="0" Grid.Row="2" Text="Fill:" />
+                <TextBlock Padding="10" Grid.Column="0" Grid.Row="3" Text="Total Cost:"/>
+                <toolbox:DatePicker Grid.Column="1" Grid.Row="0" x:Name="datePick" Value="{Binding Date,Mode=TwoWay}"/>
+                <TextBox Grid.Column="1" Grid.Row="1" InputScope="DateYear"  Name="txtMiles" Text="{Binding Odometer,Mode=TwoWay}" MaxLength="6" />
+                <TextBox Grid.Column="1" Grid.Row="2" InputScope="DateYear" Name="txtFill" Text="{Binding Fill,Mode=TwoWay}" MaxLength="6" />
+                <TextBox Grid.Column="1" Grid.Row="3" InputScope="DateYear" Name="txtCost" Text="{Binding Path=Cost, Mode=TwoWay}" MaxLength="6" />
+                <ads:AdControl Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" ApplicationId="74e68b88-1f24-4d5e-aacf-58fafab91a98" AdUnitId="94893" Width="480" Height="80" ErrorOccurred="AdControl_ErrorOccurred"/>
+            </Grid>
+            
+        </Grid>
+    </Grid>
+ 
+    <!--Sample code showing usage of ApplicationBar-->
+    <!--<phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
+            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button1.png" Text="Button 1"/>
+            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button2.png" Text="Button 2"/>
+            <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem Text="MenuItem 1"/>
+                <shell:ApplicationBarMenuItem Text="MenuItem 2"/>
+            </shell:ApplicationBar.MenuItems>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>-->
+
+</phone:PhoneApplicationPage>
