@@ -144,24 +144,24 @@
                                             <RowDefinition />
                                         </Grid.RowDefinitions>
                                         <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="Auto" />
-                                            <ColumnDefinition Width="100" />
-                                            <ColumnDefinition Width="Auto" />
-                                            <ColumnDefinition Width="Auto" />
-                                            <ColumnDefinition Width="Auto" />
-                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="72" />
+                                            <ColumnDefinition Width="72" />
+                                            <ColumnDefinition Width="32" />
+                                            <ColumnDefinition Width="72" />
+                                            <ColumnDefinition Width="72" />
+                                            <ColumnDefinition Width="72" />
                                             <ColumnDefinition Width="*" />
                                         </Grid.ColumnDefinitions>
-                                        <TextBlock x:Name="tDate" Grid.Row="0" Grid.Column="0" Text="{Binding Date}" FontSize="30" Foreground="{StaticResource ListBoxTextColor}"/>
-                                        <TextBlock x:Name="tMPG" Grid.Row="0" Grid.Column="1"  Text="{Binding MPG}" FontSize="30" Foreground="{StaticResource ListBoxTextColor}" HorizontalAlignment="Right" Margin="0 0 5 0" />
-                                        <TextBlock Text="MPG"  Grid.Row="0" Grid.Column="2" FontSize="30" Grid.ColumnSpan="2"/>
-                                        <TextBlock Text="Miles Driven"  Grid.Row="1" Grid.Column="0" FontSize="20"/>
-                                        <TextBlock x:Name="tMiles" Grid.Row="1" Grid.Column="1" Text="{Binding MilesDriven}" FontSize="20" Foreground="{StaticResource ListBoxTextColor}"/>
-                                        <TextBlock Text="$."  Grid.Row="1" Grid.Column="2" FontSize="20" HorizontalAlignment="Right"/>
-                                        <TextBlock x:Name="tCost" Grid.Row="1" Grid.Column="3" Padding="5,0,0,0" Text="{Binding Cost}" FontSize="20" Foreground="{StaticResource ListBoxTextColor}" />
-                                        <TextBlock Text="Gals."  Grid.Row="1" Grid.Column="4" FontSize="20"/>
-                                        <TextBlock x:Name="tfill" Grid.Row="1" Grid.Column="5" Padding="5,0,0,0" Text="{Binding Fill}" FontSize="20" Foreground="{StaticResource ListBoxTextColor}" />
-                                        <Button Grid.RowSpan="2" Grid.Column="6" Grid.Row="0" HorizontalAlignment="Right" Margin="0 0 15 0" Width="72" Height="72" Style="{StaticResource RoundEditButton}" />
+                                        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" FontSize="30" Foreground="{StaticResource ListBoxTextColor}" HorizontalAlignment="Left" x:Name="tDate"   Text="{Binding Date}" />
+                                        <TextBlock Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="3" FontSize="30" Foreground="{StaticResource ListBoxTextColor}" HorizontalAlignment="Right" x:Name="tMPG"   Text="{Binding MPG}" />
+                                        <TextBlock Grid.Row="0" Grid.Column="5" Grid.ColumnSpan="1" FontSize="30" Foreground="{StaticResource ListBoxTextColor}" HorizontalAlignment="Right" Text="MPG"     />
+                                        <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1" FontSize="20" Foreground="{StaticResource ListBoxTextColor}" HorizontalAlignment="Left" Text="Drive:"    />
+                                        <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="1" FontSize="20" Foreground="{StaticResource ListBoxTextColor}" HorizontalAlignment="Left" x:Name="tMiles"  Text="{Binding MilesDriven}"  />
+                                        <TextBlock Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="1" FontSize="20" Foreground="{StaticResource ListBoxTextColor}" HorizontalAlignment="Right" Text="$." />
+                                        <TextBlock Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="1" FontSize="20" Foreground="{StaticResource ListBoxTextColor}" HorizontalAlignment="Left" x:Name="tCost"  Padding="5,0,0,0" Text="{Binding Cost}"   />
+                                        <TextBlock Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="1" FontSize="20" Foreground="{StaticResource ListBoxTextColor}" HorizontalAlignment="Right" Text="Gals."   />
+                                        <TextBlock Grid.Row="1" Grid.Column="5" Grid.ColumnSpan="1" FontSize="20" Foreground="{StaticResource ListBoxTextColor}" HorizontalAlignment="Left" x:Name="tfill"  Padding="5,0,0,0" Text="{Binding Fill}"   />
+                                        <Button    Grid.Row="0" Grid.Column="6" Grid.ColumnSpan="1" Grid.RowSpan="2" HorizontalAlignment="Right" Margin="0 0 15 0" Width="72" Height="72" Style="{StaticResource RoundEditButton}" Tag="{Binding FuelID}" Click="EditFuelBtn_Click"/>
                                     </Grid>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>

@@ -44,5 +44,12 @@ namespace carXapp2.Pages
             FuelsModel fm = new FuelsModel(this.carID);
             listBoxFuel.ItemsSource = fm.GetRecords();
         }
+
+        private void EditFuelBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var btn = sender as Button;
+            int FuelID = int.Parse(btn.Tag.ToString());
+            NavigationService.Navigate(new Uri("/Pages/AddEditFuel.xaml?cid=" + this.carID + "&fid=" + FuelID, UriKind.Relative));
+        }
     }
 }

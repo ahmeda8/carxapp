@@ -88,7 +88,9 @@ namespace carXapp2
 
         private void listEditBtn_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Uri("/Pages/addEditCar.xaml?id=1", UriKind.Relative));
+            var btn = sender as Button;
+            int carID = int.Parse(btn.Tag.ToString());
+            NavigationService.Navigate(new Uri("/Pages/addEditCar.xaml?id="+carID, UriKind.Relative));
         }
 
         
