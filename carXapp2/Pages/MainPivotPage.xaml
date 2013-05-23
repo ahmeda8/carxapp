@@ -123,7 +123,7 @@
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
                         <Image Source="/carXapp2;component/icons/fuel.png" Grid.Row="0" Grid.Column="0" />
-                        <TextBlock Text="25.52" Grid.Row="0" Grid.Column="1" Foreground="{StaticResource SpecialTextColor}" FontSize="34" HorizontalAlignment="Right"/>
+                        <TextBlock x:Name="fuelOverallMpg" Grid.Row="0" Grid.Column="1" Foreground="{StaticResource SpecialTextColor}" FontSize="34" HorizontalAlignment="Right"/>
                         <TextBlock Text="MPG" Grid.Row="0" Grid.Column="2" Foreground="{StaticResource SpecialTextColor}" FontSize="34" Margin="10 0 0 0"/>
                     </Grid>
                     <Grid Grid.Row="1">

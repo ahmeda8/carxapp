@@ -11,10 +11,17 @@ namespace carXapp2.Models
     class FuelsModel
     {
         private int carID;
+        private int totalMiles;
+        private float totalFuel;
+        private float totalCost;
+
 
         public FuelsModel(int carID)
         {
             this.carID = carID;
+            totalFuel = 0;
+            totalFuel = 0f;
+            totalCost = 0f;
         }
 
         public ObservableCollection<FuelListItem> GetRecords()
@@ -36,7 +43,7 @@ namespace carXapp2.Models
                 try
                 {
                     item.MilesDriven = recordList[i].Miles - recordList[i - 1].Miles;
-                    item.MPG = recordList[i].Filled / item.MilesDriven;
+                    item.MPG = (float)Math.Round(recordList[i].Filled / item.MilesDriven,2);
                 }
                 catch (Exception e)
                 {
@@ -44,9 +51,17 @@ namespace carXapp2.Models
                     item.MPG = 0f;
                 }
 
+                this.totalCost += item.Cost;
+                this.totalFuel += item.Fill;
+                this.totalMiles += item.MilesDriven;
                 collection.Add(item);
             }
-            return collection;
+            return collection ;
+        }
+
+        public float OverallFuelConsumption()
+        {
+            return (float)totalMiles / totalFuel;
         }
     }
 }
