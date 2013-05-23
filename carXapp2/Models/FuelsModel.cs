@@ -28,7 +28,7 @@ namespace carXapp2.Models
         {
             var records = from fuelInfo f in App.ViewModel.Database.fuelInfo
                           where f.CarID == this.carID
-                          orderby f.Date ascending
+                          orderby f.Date,f.FuelID descending
                           select f;
             ObservableCollection<FuelListItem> collection = new ObservableCollection<FuelListItem>();
             FuelListItem item;
@@ -42,7 +42,7 @@ namespace carXapp2.Models
                 item.FuelID = recordList[i].FuelID;
                 try
                 {
-                    item.MilesDriven = recordList[i].Miles - recordList[i - 1].Miles;
+                    item.MilesDriven = recordList[i].Miles - recordList[i + 1].Miles;
                     item.MPG = (float)Math.Round((double)(item.MilesDriven/recordList[i].Filled),2);
                 }
                 catch (Exception e)
