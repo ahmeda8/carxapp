@@ -31,11 +31,24 @@
                 <ScrollViewer>
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
                         <RowDefinition Height="auto" />
                         <RowDefinition Height="auto" />
                     </Grid.RowDefinitions>
                     <Grid Grid.Row="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition Height="50"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Image Source="/carXapp2;component/icons/car.png" Grid.Row="0" Grid.Column="0"  Grid.ColumnSpan="2"  Width="60"/>
+                        <TextBlock Text="2012 Mercedez Benz E350" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Foreground="{StaticResource SpecialTextColor}" FontSize="28"/>
+                    </Grid>
+                        <Grid Grid.Row="1">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="50"/>
                             <RowDefinition Height="50"/>
@@ -49,7 +62,7 @@
                         <TextBlock Text="Fuel Cost" Grid.Column="0" Grid.Row="1" Foreground="{StaticResource SpecialTextColor}" FontSize="28"/>
                         <TextBlock Text="Maint Cost" Grid.Column="0" Grid.Row="2" Foreground="{StaticResource SpecialTextColor}" FontSize="28"/>
                     </Grid>
-                    <Grid Grid.Row="1">
+                    <Grid Grid.Row="2">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="50"/>
                             <RowDefinition />
@@ -67,7 +80,7 @@
                         <TextBlock Text="Miles / Day" Grid.Column="0" Grid.Row="3" Foreground="{StaticResource SpecialTextColor}" FontSize="28"/>
                         <TextBlock Text="Miles / Month" Grid.Column="0" Grid.Row="4" Foreground="{StaticResource SpecialTextColor}" FontSize="28"/>
                     </Grid>
-                    <Grid Grid.Row="2">
+                    <Grid Grid.Row="3">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="50"/>
                             <RowDefinition />
@@ -144,5 +157,13 @@
             </controls:PivotItem>
         </controls:Pivot>
     </Grid>
-    
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True" Opacity="{StaticResource MenuOpacity}" Mode="Minimized">
+            <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem Text="+ fuel record" Click="menuAddFuel_click"/>
+                <shell:ApplicationBarMenuItem Text="+ maintenance record" Click="menuAddMaint_Click"/>
+            </shell:ApplicationBar.MenuItems>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
+
 </phone:PhoneApplicationPage>

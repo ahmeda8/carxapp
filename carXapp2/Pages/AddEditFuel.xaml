@@ -30,8 +30,8 @@
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
             <TextBlock x:Name="ApplicationTitle" Text="{StaticResource AppName}" Style="{StaticResource PhoneTextNormalStyle}" Foreground="Orange"/>
-            <TextBlock x:Name="PageTitle" Text="edit fuel record" Margin="110 0 0 0" HorizontalAlignment="Left" Foreground="{StaticResource PageNameColor}" FontSize="48"/>
-            <Image Height="50" Source="car.png" Width="100" Margin="0 -50 0 0" HorizontalAlignment="Left"/>
+            <TextBlock x:Name="PageTitle" Text="fuel" Margin="60 0 0 0" HorizontalAlignment="Left" Foreground="{StaticResource PageNameColor}" FontSize="48"/>
+            <Image Height="50" Source="/carXapp2;component/icons/fuel.png" Width="50" Margin="0 -50 0 0" HorizontalAlignment="Left"/>
             <Border BorderThickness="0,0,0,1"  Background="{StaticResource BorderColor}" BorderBrush="{StaticResource BorderColor}"></Border>
         </StackPanel>
 
@@ -47,9 +47,8 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
-                    <RowDefinition Height="74" />
-                    <RowDefinition Height="106" />
-                    <RowDefinition Height="211*" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
 
                 <!--<TextBlock Text="{Binding Miles,Source=SingleFuelRecord}" />-->
@@ -61,7 +60,7 @@
                 <TextBox Grid.Column="1" Grid.Row="1" InputScope="DateYear"  Name="txtMiles" Text="{Binding Odometer,Mode=TwoWay}" MaxLength="6" />
                 <TextBox Grid.Column="1" Grid.Row="2" InputScope="DateYear" Name="txtFill" Text="{Binding Fill,Mode=TwoWay}" MaxLength="6" />
                 <TextBox Grid.Column="1" Grid.Row="3" InputScope="DateYear" Name="txtCost" Text="{Binding Path=Cost, Mode=TwoWay}" MaxLength="6" />
-                <ads:AdControl Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" ApplicationId="74e68b88-1f24-4d5e-aacf-58fafab91a98" AdUnitId="94893" Width="480" Height="80" ErrorOccurred="AdControl_ErrorOccurred"/>
+                <ads:AdControl Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" ApplicationId="74e68b88-1f24-4d5e-aacf-58fafab91a98" AdUnitId="94893" Width="480" Height="80" ErrorOccurred="AdControl_ErrorOccurred" VerticalAlignment="Bottom" Margin="0 0 0 80"/>
             </Grid>
             
         </Grid>

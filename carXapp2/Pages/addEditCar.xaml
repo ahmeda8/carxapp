@@ -24,8 +24,8 @@
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
             <TextBlock x:Name="ApplicationTitle" Text="{StaticResource AppName}" Style="{StaticResource PhoneTextNormalStyle}" Foreground="Orange"/>
-            <TextBlock x:Name="PageTitle" Text="edit car info" Margin="60 0 0 0" HorizontalAlignment="Left" Foreground="{StaticResource PageNameColor}" FontSize="48"/>
-            <Image Height="50" Source="/carXapp2;component/icons/fuel.png" Width="100" Margin="0 -50 0 0" HorizontalAlignment="Left"/>
+            <TextBlock x:Name="PageTitle" Text="car info" Margin="110 0 0 0" HorizontalAlignment="Left" Foreground="{StaticResource PageNameColor}" FontSize="48"/>
+            <Image Height="50" Source="/carXapp2;component/icons/car.png" Width="100" Margin="0 -50 0 0" HorizontalAlignment="Left"/>
             <Border BorderThickness="0,0,0,1"  Background="{StaticResource BorderColor}" BorderBrush="{StaticResource BorderColor}"></Border>
         </StackPanel>
 
