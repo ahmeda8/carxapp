@@ -43,7 +43,7 @@ namespace carXapp2.Models
                 try
                 {
                     item.MilesDriven = recordList[i].Miles - recordList[i - 1].Miles;
-                    item.MPG = (float)Math.Round(recordList[i].Filled / item.MilesDriven,2);
+                    item.MPG = (float)Math.Round((double)(item.MilesDriven/recordList[i].Filled),2);
                 }
                 catch (Exception e)
                 {
