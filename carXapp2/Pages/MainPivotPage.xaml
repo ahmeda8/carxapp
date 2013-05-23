@@ -135,7 +135,7 @@
                         </Grid.ColumnDefinitions>
                         <ListBox Grid.Row="0" Grid.Column="0"
                             x:Name="listBoxFuel"
-                            Margin="10,5,0,0">
+                            Margin="10,5,0,0" >
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
                                     <Grid Background="{StaticResource ListBoxBandColor}" Margin="0,0,0,10" Width="470" ShowGridLines="False" >
@@ -161,9 +161,7 @@
                                         <TextBlock x:Name="tCost" Grid.Row="1" Grid.Column="3" Padding="5,0,0,0" Text="{Binding Cost}" FontSize="20" Foreground="{StaticResource ListBoxTextColor}" />
                                         <TextBlock Text="Gals."  Grid.Row="1" Grid.Column="4" FontSize="20"/>
                                         <TextBlock x:Name="tfill" Grid.Row="1" Grid.Column="5" Padding="5,0,0,0" Text="{Binding Fill}" FontSize="20" Foreground="{StaticResource ListBoxTextColor}" />
-                                        <Button Grid.RowSpan="2" Grid.Column="6" Grid.Row="0" HorizontalAlignment="Right" Width="80" Margin="0 0 15 0">
-                                            <Image Source="/carXapp2;component/icons/appbar.edit.rest.png" />
-                                        </Button>
+                                        <Button Grid.RowSpan="2" Grid.Column="6" Grid.Row="0" HorizontalAlignment="Right" Margin="0 0 15 0" Width="72" Height="72" Style="{StaticResource RoundEditButton}" />
                                     </Grid>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
