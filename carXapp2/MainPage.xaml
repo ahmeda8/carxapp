@@ -67,13 +67,14 @@
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
                             <TextBlock x:Name="tMk" Grid.Row="0" Grid.Column="1" Padding="5,0,0,0" Text="{Binding Make}" FontSize="30" Foreground="{StaticResource ListBoxTextColor}"/>
                             <TextBlock x:Name="tMo" Grid.Row="0" Grid.Column="2" Padding="5,0,0,0" Text="{Binding Model}" FontSize="30" Foreground="{StaticResource ListBoxTextColor}" />                            
                             <TextBlock x:Name="tYr" Grid.Row="0" Grid.Column="0" Padding="5,0,0,0" Text="{Binding Year}" FontSize="30" Foreground="{StaticResource ListBoxTextColor}" />
                             <TextBlock x:Name="tLic" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Padding="5,0,0,0 " Text="{Binding Lic}" FontSize="20" Foreground="{StaticResource ListBoxTextColor}"/>
-                            
+                            <Button Style="{StaticResource RoundEditButton}" HorizontalAlignment="Right" Margin="0 0 15 0" Grid.Row="0" Grid.RowSpan="2" Grid.Column="3" Height="72" Width="72" Click="listEditBtn_Click" />
                         </Grid>
                     </DataTemplate>
                 </ListBox.ItemTemplate>

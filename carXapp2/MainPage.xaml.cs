@@ -86,6 +86,11 @@ namespace carXapp2
             ErrorLogging.Log(this.GetType().ToString(), e.Error.Message, string.Empty, string.Empty);
         }
 
+        private void listEditBtn_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/Pages/addEditCar.xaml?id=1", UriKind.Relative));
+        }
+
         
     }
 }
