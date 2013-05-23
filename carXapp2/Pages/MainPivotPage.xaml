@@ -46,7 +46,7 @@
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
                         <Image Source="/carXapp2;component/icons/car.png" Grid.Row="0" Grid.Column="0"  Grid.ColumnSpan="2"  Width="60"/>
-                        <TextBlock Text="2012 Mercedez Benz E350" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Foreground="{StaticResource SpecialTextColor}" FontSize="28"/>
+                        <TextBlock x:Name="tCarName" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Foreground="{StaticResource SpecialTextColor}" FontSize="28"/>
                     </Grid>
                         <Grid Grid.Row="1">
                         <Grid.RowDefinitions>

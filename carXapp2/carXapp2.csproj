@@ -78,6 +78,7 @@
     <Compile Include="classes\Reminders.cs" />
     <Compile Include="classes\Settings.cs" />
     <Compile Include="classes\WebMethods.cs" />
+    <Compile Include="Models\CarsModel.cs" />
     <Compile Include="Models\FuelsModel.cs" />
     <Compile Include="Pages\CarStatsInfo.xaml.cs">
       <DependentUpon>CarStatsInfo.xaml</DependentUpon>

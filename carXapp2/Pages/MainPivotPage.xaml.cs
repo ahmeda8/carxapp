@@ -44,6 +44,10 @@ namespace carXapp2.Pages
             FuelsModel fm = new FuelsModel(this.carID);
             listBoxFuel.ItemsSource = fm.GetRecords();
             fuelOverallMpg.Text = fm.OverallFuelConsumption().ToString("F2");
+
+            CarsModel cm = new CarsModel(this.carID);
+            carInfo car = cm.GetCar();
+            tCarName.Text = car.CarYear + " " + car.CarMake + " " + car.CarModel;
         }
 
         private void EditFuelBtn_Click(object sender, RoutedEventArgs e)
