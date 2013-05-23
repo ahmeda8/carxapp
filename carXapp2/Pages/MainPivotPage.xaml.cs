@@ -31,5 +31,13 @@ namespace carXapp2.Pages
         {
             NavigationService.Navigate(new Uri("/Pages/AddEditFuel.xaml?cid=" + carID, UriKind.Relative));
         }
+
+        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            string carIDStr;
+            NavigationContext.QueryString.TryGetValue("id", out carIDStr);
+            this.carID = int.Parse(carIDStr);
+        }
     }
 }

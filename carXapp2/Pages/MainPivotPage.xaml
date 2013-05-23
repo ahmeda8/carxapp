@@ -113,7 +113,7 @@
                         <RowDefinition Height="50"/>
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <Grid>
+                    <Grid Grid.Row="0">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="50"/>                            
                         </Grid.RowDefinitions>
@@ -125,6 +125,39 @@
                         <Image Source="/carXapp2;component/icons/fuel.png" Grid.Row="0" Grid.Column="0" />
                         <TextBlock Text="25.52" Grid.Row="0" Grid.Column="1" Foreground="{StaticResource SpecialTextColor}" FontSize="34" HorizontalAlignment="Right"/>
                         <TextBlock Text="MPG" Grid.Row="0" Grid.Column="2" Foreground="{StaticResource SpecialTextColor}" FontSize="34" Margin="10 0 0 0"/>
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <ListBox Grid.Row="0" Grid.Column="0"
+                            x:Name="listBoxFuel"
+                            ItemsSource="{Binding FuelList}"
+                            Margin="10,0,0,0">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Background="{StaticResource ListBoxBandColor}" Margin="0,0,0,10" Width="470">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition />
+                                            <RowDefinition />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock x:Name="tDate" Grid.Row="0" Grid.Column="1" Padding="5,0,0,0" Text="{Binding Make}" FontSize="30" Foreground="{StaticResource ListBoxTextColor}"/>
+                                        <TextBlock x:Name="tFill" Grid.Row="0" Grid.Column="2" Padding="5,0,0,0" Text="{Binding Model}" FontSize="30" Foreground="{StaticResource ListBoxTextColor}" />
+                                        <TextBlock x:Name="tCost" Grid.Row="0" Grid.Column="0" Padding="5,0,0,0" Text="{Binding Year}" FontSize="30" Foreground="{StaticResource ListBoxTextColor}" />
+                                        <TextBlock x:Name="tMiles" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Padding="5,0,0,0 " Text="{Binding Lic}" FontSize="20" Foreground="{StaticResource ListBoxTextColor}"/>
+
+                                    </Grid>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
                     </Grid>
                 </Grid>
             </controls:PivotItem>
