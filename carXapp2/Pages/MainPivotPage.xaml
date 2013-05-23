@@ -138,21 +138,32 @@
                             Margin="10,5,0,0">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
-                                    <Grid Background="{StaticResource ListBoxBandColor}" Margin="0,0,0,10" Width="470">
+                                    <Grid Background="{StaticResource ListBoxBandColor}" Margin="0,0,0,10" Width="470" ShowGridLines="False" >
                                         <Grid.RowDefinitions>
                                             <RowDefinition />
                                             <RowDefinition />
                                         </Grid.RowDefinitions>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="Auto" />
-                                            <ColumnDefinition Width="Auto"/>
-                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="100" />
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
                                         </Grid.ColumnDefinitions>
-                                        <TextBlock x:Name="tDate" Grid.Row="0" Grid.Column="0" Padding="5,0,0,0" Text="{Binding Date}" FontSize="30" Foreground="{StaticResource ListBoxTextColor}"/>
-                                        <TextBlock x:Name="tFill" Grid.Row="0" Grid.Column="1" Padding="5,0,0,0" Text="{Binding Fill}" FontSize="30" Foreground="{StaticResource ListBoxTextColor}" />
-                                        <TextBlock x:Name="tCost" Grid.Row="0" Grid.Column="2" Padding="5,0,0,0" Text="{Binding MPG}" FontSize="30" Foreground="{StaticResource ListBoxTextColor}" />
-                                        <TextBlock x:Name="tMiles" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Padding="5,0,0,0 " Text="{Binding MilesDriven}" FontSize="20" Foreground="{StaticResource ListBoxTextColor}"/>
-                                       
+                                        <TextBlock x:Name="tDate" Grid.Row="0" Grid.Column="0" Text="{Binding Date}" FontSize="30" Foreground="{StaticResource ListBoxTextColor}"/>
+                                        <TextBlock x:Name="tMPG" Grid.Row="0" Grid.Column="1"  Text="{Binding MPG}" FontSize="30" Foreground="{StaticResource ListBoxTextColor}" HorizontalAlignment="Right" Margin="0 0 5 0" />
+                                        <TextBlock Text="MPG"  Grid.Row="0" Grid.Column="2" FontSize="30" Grid.ColumnSpan="2"/>
+                                        <TextBlock Text="Miles Driven"  Grid.Row="1" Grid.Column="0" FontSize="20"/>
+                                        <TextBlock x:Name="tMiles" Grid.Row="1" Grid.Column="1" Text="{Binding MilesDriven}" FontSize="20" Foreground="{StaticResource ListBoxTextColor}"/>
+                                        <TextBlock Text="$."  Grid.Row="1" Grid.Column="2" FontSize="20" HorizontalAlignment="Right"/>
+                                        <TextBlock x:Name="tCost" Grid.Row="1" Grid.Column="3" Padding="5,0,0,0" Text="{Binding Cost}" FontSize="20" Foreground="{StaticResource ListBoxTextColor}" />
+                                        <TextBlock Text="Gals."  Grid.Row="1" Grid.Column="4" FontSize="20"/>
+                                        <TextBlock x:Name="tfill" Grid.Row="1" Grid.Column="5" Padding="5,0,0,0" Text="{Binding Fill}" FontSize="20" Foreground="{StaticResource ListBoxTextColor}" />
+                                        <Button Grid.RowSpan="2" Grid.Column="6" Grid.Row="0" HorizontalAlignment="Right" Width="80" Margin="0 0 15 0">
+                                            <Image Source="/carXapp2;component/icons/appbar.edit.rest.png" />
+                                        </Button>
                                     </Grid>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
