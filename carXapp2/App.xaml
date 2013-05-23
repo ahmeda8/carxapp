@@ -10,6 +10,14 @@
     <Application.Resources>
         <clr:String x:Key="AppName">Car Expense Tracker</clr:String>
         <clr:Double x:Key="MenuOpacity">0.70</clr:Double>
+        <SolidColorBrush x:Key="UniversalBackground">#FF373838</SolidColorBrush>
+        <SolidColorBrush x:Key="PageNameColor">#00930A</SolidColorBrush>
+        <SolidColorBrush x:Key="BorderColor">#0090CC</SolidColorBrush>
+        <SolidColorBrush x:Key="AppNameColor">orange</SolidColorBrush>
+        <SolidColorBrush x:Key="SpecialTextColor">#0090CC</SolidColorBrush>
+        <SolidColorBrush x:Key="ListBoxBandColor">#AEAEAE</SolidColorBrush>
+        <SolidColorBrush x:Key="ListBoxTextColor">#1A1A1A</SolidColorBrush>       
+        
     </Application.Resources>
 
     <Application.ApplicationLifetimeObjects>

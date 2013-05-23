@@ -66,7 +66,7 @@ namespace carXapp2
             if (listBox1.SelectedIndex != -1)
             {
                 string id = CurrentCarList[listBox1.SelectedIndex].ID.ToString();
-                NavigationService.Navigate(new Uri("/Pages/FuncMain.xaml?id="+id+"&index="+listBox1.SelectedIndex, UriKind.Relative));
+                NavigationService.Navigate(new Uri("/Pages/MainPivotPage.xaml?id="+id+"&index="+listBox1.SelectedIndex, UriKind.Relative));
             }
         }
 

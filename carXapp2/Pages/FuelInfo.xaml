@@ -28,7 +28,7 @@
 		</shell:ApplicationBar>
 	</phone:PhoneApplicationPage.ApplicationBar>
     <!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid x:Name="LayoutRoot" Background="Transparent">
+    <Grid x:Name="LayoutRoot" Background="{StaticResource UniversalBackground}">
         <Grid.RowDefinitions>
         <RowDefinition Height="Auto"/>
         <RowDefinition Height="*"/>
@@ -41,7 +41,7 @@
             		<SolidColorBrush Color="Orange"/>
             	</TextBlock.Foreground>
             </TextBlock>
-            <TextBlock x:Name="PageTitle" Text="fuel" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}" Foreground="{StaticResource PhoneAccentBrush}"/>
+            <TextBlock x:Name="PageTitle" Text="fuel" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}" Foreground="{StaticResource PageNameColor}"/>
         </StackPanel>
         <!--Pivot Control-->
 

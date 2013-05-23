@@ -17,7 +17,7 @@
     shell:SystemTray.IsVisible="True">
    
     <!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid x:Name="LayoutRoot" Background="Transparent">
+    <Grid x:Name="LayoutRoot" Background="{StaticResource UniversalBackground}">
         <!--Pivot Control-->
         <controls:Pivot Name="pivot1">
         	<controls:Pivot.Background>
@@ -30,7 +30,7 @@
             <!--Pivot item one-->
             <controls:PivotItem>
                 <controls:PivotItem.Header>
-                    <TextBlock Text="info" Foreground="{StaticResource PhoneAccentBrush}"/>
+                    <TextBlock Text="info" Foreground="{StaticResource PageNameColor}"/>
 				
                 </controls:PivotItem.Header>
                 <Grid x:Name="grid1" ShowGridLines="True" Width="450" Height="Auto" VerticalAlignment="Top">

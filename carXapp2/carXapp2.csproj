@@ -88,6 +88,9 @@
     <Compile Include="Pages\FuncMain.xaml.cs">
       <DependentUpon>FuncMain.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\MainPivotPage.xaml.cs">
+      <DependentUpon>MainPivotPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\MaintInfo.xaml.cs">
       <DependentUpon>MaintInfo.xaml</DependentUpon>
     </Compile>
@@ -130,6 +133,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\FuncMain.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\MainPivotPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -185,12 +192,15 @@
     <Content Include="icons\appbar.save.rest.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Resource Include="icons\fuel.png" />
+    <Resource Include="icons\screwdriver.png" />
+    <Resource Include="icons\money.png" />
     <Content Include="SplashScreenImage.jpg" />
     <Content Include="Toolkit.Content\ApplicationBar.Cancel.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Check.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="car.png" />
+    <Resource Include="icons\car.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />
