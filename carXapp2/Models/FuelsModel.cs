@@ -25,9 +25,26 @@ namespace carXapp2.Models
                           select f;
             ObservableCollection<FuelListItem> collection = new ObservableCollection<FuelListItem>();
             FuelListItem item;
-            foreach (fuelInfo f in records)
+            List<fuelInfo> recordList = records.ToList<fuelInfo>();
+            for (int i = 0; i < recordList.Count; i++)
             {
                 item = new FuelListItem();
+                item.Cost = recordList[i].Cost;
+                item.Date = recordList[i].Date.ToShortDateString();
+                item.Fill = recordList[i].Filled;
+                item.FuelID = recordList[i].FuelID;
+                try
+                {
+                    item.MilesDriven = recordList[i].Miles - recordList[i - 1].Miles;
+                    item.MPG = recordList[i].Filled / item.MilesDriven;
+                }
+                catch (Exception e)
+                {
+                    item.MilesDriven = recordList[i].Miles;
+                    item.MPG = 0f;
+                }
+
+                collection.Add(item);
             }
             return collection;
         }

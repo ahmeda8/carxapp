@@ -33,8 +33,8 @@ namespace carXapp2
             }
         }
 
-        private string _fill;
-        public string Fill
+        private float _fill;
+        public float Fill
         {
             get
             {
@@ -47,8 +47,8 @@ namespace carXapp2
             }
         }
 
-        private string _cost;
-        public string Cost
+        private float _cost;
+        public float Cost
         {
             get
             {
@@ -61,8 +61,8 @@ namespace carXapp2
             }
         }
 
-        private string _milesDriven;
-        public string MilesDriven
+        private int _milesDriven;
+        public int MilesDriven
         {
             get
             {
@@ -75,8 +75,8 @@ namespace carXapp2
             }
         }
 
-        private string _mpg;
-        public string MPG
+        private float _mpg;
+        public float MPG
         {
             get
             {

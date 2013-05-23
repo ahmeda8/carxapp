@@ -54,6 +54,7 @@ namespace carXapp2
            FuelListItem F;
            for (int i = 0; i < temp.Count(); i++)
            {
+               /*
                F = new FuelListItem();
                F.FuelID = temp[i].FuelID;
                F.Cost = currency+" "+temp[i].Cost.ToString();
@@ -71,7 +72,9 @@ namespace carXapp2
                 }
                
                CurrentFuelList.Insert(0, F);
+                **/
            }
+               
            listBox1.ItemsSource = CurrentFuelList;
         }
 

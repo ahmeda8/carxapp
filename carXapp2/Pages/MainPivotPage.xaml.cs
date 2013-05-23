@@ -10,6 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
+using carXapp2.Models;
 
 namespace carXapp2.Pages
 {
@@ -20,6 +21,7 @@ namespace carXapp2.Pages
         public MainPivotPage()
         {
             InitializeComponent();
+            
         }
 
         private void menuAddMaint_Click(object sender, EventArgs e)
@@ -38,6 +40,9 @@ namespace carXapp2.Pages
             string carIDStr;
             NavigationContext.QueryString.TryGetValue("id", out carIDStr);
             this.carID = int.Parse(carIDStr);
+
+            FuelsModel fm = new FuelsModel(this.carID);
+            listBoxFuel.ItemsSource = fm.GetRecords();
         }
     }
 }
