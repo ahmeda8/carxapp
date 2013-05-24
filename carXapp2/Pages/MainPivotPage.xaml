@@ -181,7 +181,7 @@
                         <RowDefinition Height="50"/>
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <Grid>
+                    <Grid Grid.Row="0">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="50"/>
                         </Grid.RowDefinitions>
@@ -193,6 +193,39 @@
                         <Image Source="/carXapp2;component/icons/screwdriver.png" Grid.Row="0" Grid.Column="0" />
                         <TextBlock Text="$" Grid.Row="0" Grid.Column="1" Foreground="{StaticResource SpecialTextColor}" FontSize="34" HorizontalAlignment="Right"/>
                         <TextBlock Text="25.52" Grid.Row="0" Grid.Column="2" Foreground="{StaticResource SpecialTextColor}" FontSize="34" Margin="10 0 0 0"/>
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <ListBox Grid.Row="0" Grid.Column="0"
+                            x:Name="listBoxMaint"
+                            Margin="10,5,0,0" >
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Background="{StaticResource ListBoxBandColor}" Margin="0,0,0,10" Width="470" ShowGridLines="False" >
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition />
+                                            <RowDefinition />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="150" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="80" />
+                                            <ColumnDefinition Width="80" />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="1" FontSize="30" Foreground="{StaticResource ListBoxTextColor}" HorizontalAlignment="Left" Text="{Binding Date}" />
+                                        <TextBlock Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" FontSize="30" Foreground="{StaticResource ListBoxTextColor}" HorizontalAlignment="Right" Text="{Binding Partname}" />
+                                        <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="1" FontSize="20" Foreground="{StaticResource ListBoxTextColor}" HorizontalAlignment="Right" Text="$."    />
+                                        <TextBlock Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="1" FontSize="20" Foreground="{StaticResource ListBoxTextColor}" HorizontalAlignment="Left" Text="{Binding Cost}"  />
+                                        <Button    Grid.Row="0" Grid.Column="6" Grid.ColumnSpan="1" Grid.RowSpan="2" HorizontalAlignment="Right" Margin="0 0 15 0" Width="72" Height="72" Style="{StaticResource RoundEditButton}" Tag="{Binding MaintID}" Click="EditMaintBtn_Click"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
                     </Grid>
                 </Grid>
             </controls:PivotItem>

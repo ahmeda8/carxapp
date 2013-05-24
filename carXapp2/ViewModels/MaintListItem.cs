@@ -74,8 +74,8 @@ namespace carXapp2
             }
         }
 
-        private string _cost;
-        public string Cost
+        private float _cost;
+        public float Cost
         {
             get
             {

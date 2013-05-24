@@ -38,7 +38,7 @@ namespace carXapp2
             {
                 ml = new MaintListItem
                 {
-                    Cost = currency+" "+(mi.PartCost+mi.LaborCharges).ToString(),
+                    //Cost = currency+" "+(mi.PartCost+mi.LaborCharges).ToString(),
                     Date = mi.Date.ToShortDateString(),
                     MaintID = mi.MaintID,
                     Mainttype = mi.MaintType,

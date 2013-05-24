@@ -45,6 +45,9 @@ namespace carXapp2.Pages
             listBoxFuel.ItemsSource = fm.GetRecords();
             fuelOverallMpg.Text = fm.OverallFuelConsumption().ToString("F2");
 
+            MaintsModel mm = new MaintsModel(this.carID);
+            listBoxMaint.ItemsSource = mm.GetRecords();
+
             CarsModel cm = new CarsModel(this.carID);
             carInfo car = cm.GetCar();
             tCarName.Text = car.CarYear + " " + car.CarMake + " " + car.CarModel;
@@ -55,6 +58,13 @@ namespace carXapp2.Pages
             var btn = sender as Button;
             int FuelID = int.Parse(btn.Tag.ToString());
             NavigationService.Navigate(new Uri("/Pages/AddEditFuel.xaml?cid=" + this.carID + "&fid=" + FuelID, UriKind.Relative));
+        }
+
+        private void EditMaintBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var btn = sender as Button;
+            int maintID = int.Parse(btn.Tag.ToString());
+            NavigationService.Navigate(new Uri("/Pages/AddEditMaint.xaml?carID=" + this.carID + "&maintID=" + maintID, UriKind.Relative));
         }
     }
 }
