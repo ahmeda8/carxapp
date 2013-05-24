@@ -97,11 +97,7 @@
                             <ColumnDefinition/>
                             <ColumnDefinition/>                        
                         </Grid.ColumnDefinitions>
-                        <Image Source="/carXapp2;component/icons/screwdriver.png" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" />
-                        <TextBlock Text="Labor cost / Day" Grid.Column="0" Grid.Row="1" Foreground="{StaticResource SpecialTextColor}" FontSize="28"/>
-                        <TextBlock Text="Parts cost / Day" Grid.Column="0" Grid.Row="2" Foreground="{StaticResource SpecialTextColor}" FontSize="28"/>
-                        <TextBlock Text="Labor cost / Month" Grid.Column="0" Grid.Row="3" Foreground="{StaticResource SpecialTextColor}" FontSize="28"/>
-                        <TextBlock Text="Labor cost / Month" Grid.Column="0" Grid.Row="4" Foreground="{StaticResource SpecialTextColor}" FontSize="28"/>                        
+                            <Image Source="/carXapp2;component/icons/screwdriver.png" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" />
                     </Grid>
                 </Grid>
                 </ScrollViewer>

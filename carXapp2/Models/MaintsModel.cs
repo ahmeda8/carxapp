@@ -11,14 +11,16 @@ namespace carXapp2.Models
     public class MaintsModel
     {
         private int carID;
-        private float TotalPartsCost;
-        private float TotalLaborCost;
+        public float TotalPartsCost { get; set; }
+        public float TotalLaborCost { get; set; }
+        public TimeSpan TotalTimeSpan { get; set; }
 
         public MaintsModel(int carID)
         {
             this.carID = carID;
             TotalLaborCost = 0f;
             TotalPartsCost = 0f;
+            TotalTimeSpan = new TimeSpan();
         }
 
         public ObservableCollection<MaintListItem> GetRecords()
@@ -44,6 +46,7 @@ namespace carXapp2.Models
                 collection.Add(item);
             }
 
+            TotalTimeSpan = tempList.First().Date - tempList.Last().Date;
             return collection;
         }
 
