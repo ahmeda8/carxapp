@@ -28,7 +28,8 @@ namespace carXapp2.Models
         {
             var records = from fuelInfo f in App.ViewModel.Database.fuelInfo
                           where f.CarID == this.carID
-                          orderby f.Date,f.FuelID descending
+                          orderby f.Date descending
+                          
                           select f;
             ObservableCollection<FuelListItem> collection = new ObservableCollection<FuelListItem>();
             FuelListItem item;

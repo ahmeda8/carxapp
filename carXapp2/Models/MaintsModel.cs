@@ -25,7 +25,7 @@ namespace carXapp2.Models
         {
             var query = from maintInfo m in App.ViewModel.Database.maintInfo
                         where m.CarID == this.carID
-                        orderby m.Date, m.MaintID descending
+                        orderby m.Date descending
                         select m;
             MaintListItem item;
             List<maintInfo> tempList = query.ToList<maintInfo>();
