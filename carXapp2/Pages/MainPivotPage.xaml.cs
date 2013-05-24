@@ -47,6 +47,7 @@ namespace carXapp2.Pages
 
             MaintsModel mm = new MaintsModel(this.carID);
             listBoxMaint.ItemsSource = mm.GetRecords();
+            tTotalCostMaint.Text = mm.GetTotalCost().ToString();
 
             CarsModel cm = new CarsModel(this.carID);
             carInfo car = cm.GetCar();

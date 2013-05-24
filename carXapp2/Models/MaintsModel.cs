@@ -47,5 +47,10 @@ namespace carXapp2.Models
             return collection;
         }
 
+        public float GetTotalCost()
+        {
+            return this.TotalLaborCost + this.TotalPartsCost;
+        }
+
     }
 }
