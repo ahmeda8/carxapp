@@ -58,9 +58,11 @@
                             <ColumnDefinition/>
                             <ColumnDefinition/>                            
                         </Grid.ColumnDefinitions>
-                        <Image Source="/carXapp2;component/icons/money.png" Grid.Row="0" Grid.Column="0"  Grid.ColumnSpan="2"/>
-                        <TextBlock Text="Fuel Cost" Grid.Column="0" Grid.Row="1" Foreground="{StaticResource SpecialTextColor}" FontSize="28"/>
-                        <TextBlock Text="Maint Cost" Grid.Column="0" Grid.Row="2" Foreground="{StaticResource SpecialTextColor}" FontSize="28"/>
+                            <Image Source="/carXapp2;component/icons/money.png" Grid.Row="0" Grid.Column="0"  Grid.ColumnSpan="2"/>
+                            <TextBlock Grid.Column="0" Grid.Row="1" Foreground="{StaticResource SpecialTextColor}" FontSize="28" Text="Fuel Cost"  />
+                            <TextBlock Grid.Column="1" Grid.Row="1" Foreground="{StaticResource SpecialTextColor2}" FontSize="28" HorizontalAlignment="Left" x:Name="tFuelCS"  />
+                            <TextBlock Grid.Column="0" Grid.Row="2" Foreground="{StaticResource SpecialTextColor}" FontSize="28" Text="Maint Cost"  />
+                            <TextBlock Grid.Column="1" Grid.Row="2" Foreground="{StaticResource SpecialTextColor2}" FontSize="28" HorizontalAlignment="Left" x:Name="tMaintCS" />
                     </Grid>
                     <Grid Grid.Row="2">
                         <Grid.RowDefinitions>
@@ -74,12 +76,16 @@
                             <ColumnDefinition/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <Image Source="/carXapp2;component/icons/fuel.png" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"/>
-                        <TextBlock Text="Fuel Cost / Day" Grid.Column="0" Grid.Row="1" Foreground="{StaticResource SpecialTextColor}" FontSize="28"/>
-                        <TextBlock Text="Fuel Cost / Month" Grid.Column="0" Grid.Row="2" Foreground="{StaticResource SpecialTextColor}" FontSize="28"/>
-                        <TextBlock Text="Miles / Day" Grid.Column="0" Grid.Row="3" Foreground="{StaticResource SpecialTextColor}" FontSize="28"/>
-                        <TextBlock Text="Miles / Month" Grid.Column="0" Grid.Row="4" Foreground="{StaticResource SpecialTextColor}" FontSize="28"/>
-                    </Grid>
+                            <Image Source="/carXapp2;component/icons/fuel.png" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"/>
+                            <TextBlock Grid.Column="0" Grid.Row="1" Foreground="{StaticResource SpecialTextColor}" FontSize="28" Text="Fuel Cost / Day"/>
+                            <TextBlock Grid.Column="1" Grid.Row="1" Foreground="{StaticResource SpecialTextColor2}" FontSize="28" x:Name="tFCPD"/>
+                            <TextBlock Grid.Column="0" Grid.Row="2" Foreground="{StaticResource SpecialTextColor}" FontSize="28" Text="Fuel Cost / Month" />
+                            <TextBlock Grid.Column="1" Grid.Row="2" Foreground="{StaticResource SpecialTextColor2}" FontSize="28" x:Name="tFCPM"/>
+                            <TextBlock Grid.Column="0" Grid.Row="3" Foreground="{StaticResource SpecialTextColor}" FontSize="28" Text="Miles / Day" />
+                            <TextBlock Grid.Column="1" Grid.Row="3" Foreground="{StaticResource SpecialTextColor2}" FontSize="28" x:Name="tMilesPD"/>
+                            <TextBlock Grid.Column="0" Grid.Row="4" Foreground="{StaticResource SpecialTextColor}" FontSize="28" Text="Miles / Month" />
+                            <TextBlock Grid.Column="1" Grid.Row="4" Foreground="{StaticResource SpecialTextColor2}" FontSize="28" x:Name="tMilesPM"/>
+                        </Grid>
                     <Grid Grid.Row="3">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="50"/>

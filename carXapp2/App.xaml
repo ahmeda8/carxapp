@@ -15,6 +15,7 @@
         <SolidColorBrush x:Key="BorderColor">#0090CC</SolidColorBrush>
         <SolidColorBrush x:Key="AppNameColor">orange</SolidColorBrush>
         <SolidColorBrush x:Key="SpecialTextColor">#0090CC</SolidColorBrush>
+        <SolidColorBrush x:Key="SpecialTextColor2">#8D99A5</SolidColorBrush>
         <SolidColorBrush x:Key="ListBoxBandColor">#AEAEAE</SolidColorBrush>
         <SolidColorBrush x:Key="ListBoxTextColor">#1A1A1A</SolidColorBrush>
         <Style x:Key="RoundEditButton" TargetType="Button">

@@ -44,10 +44,16 @@ namespace carXapp2.Pages
             FuelsModel fm = new FuelsModel(this.carID);
             listBoxFuel.ItemsSource = fm.GetRecords();
             fuelOverallMpg.Text = fm.OverallFuelConsumption().ToString("F2");
+            tFuelCS.Text = fm.totalCost.ToString("F2");
+            tFCPD.Text = (fm.totalCost / fm.TotalTimeSpan.Days).ToString();
+            tFCPM.Text = (fm.totalCost / fm.TotalTimeSpan.Days * 30).ToString();
+            tMilesPD.Text = (fm.totalMiles / fm.TotalTimeSpan.Days).ToString();
+            tMilesPM.Text = (fm.totalMiles / fm.TotalTimeSpan.Days *30).ToString();
 
             MaintsModel mm = new MaintsModel(this.carID);
             listBoxMaint.ItemsSource = mm.GetRecords();
             tTotalCostMaint.Text = mm.GetTotalCost().ToString();
+            tMaintCS.Text = mm.GetTotalCost().ToString();
 
             CarsModel cm = new CarsModel(this.carID);
             carInfo car = cm.GetCar();

@@ -11,17 +11,19 @@ namespace carXapp2.Models
     class FuelsModel
     {
         private int carID;
-        private int totalMiles;
-        private float totalFuel;
-        private float totalCost;
+        public int totalMiles {get;set;}
+        public float totalFuel { get; set; }
+        public float totalCost { get; set; }
+        public TimeSpan TotalTimeSpan { get; set; }
 
 
         public FuelsModel(int carID)
         {
             this.carID = carID;
-            totalFuel = 0;
+            totalMiles = 0;
             totalFuel = 0f;
             totalCost = 0f;
+            TotalTimeSpan = new TimeSpan();
         }
 
         public ObservableCollection<FuelListItem> GetRecords()
@@ -48,7 +50,7 @@ namespace carXapp2.Models
                 }
                 catch (Exception e)
                 {
-                    item.MilesDriven = recordList[i].Miles;
+                    item.MilesDriven = 0;//recordList[i].Miles;
                     item.MPG = 0f;
                 }
 
@@ -57,6 +59,8 @@ namespace carXapp2.Models
                 this.totalMiles += item.MilesDriven;
                 collection.Add(item);
             }
+
+            TotalTimeSpan = recordList.First().Date - recordList.Last().Date;
             return collection ;
         }
 
