@@ -18,6 +18,7 @@
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar Opacity="{StaticResource MenuOpacity}">
             <shell:ApplicationBarIconButton IconUri="/icons/appbar.save.rest.png" Text="save" Click="menuSave_click"/>
+            <shell:ApplicationBarIconButton IconUri="/icons/appbar.delete.rest.png" Text="delete" Click="menuDel_click"/>
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
 
@@ -68,7 +69,7 @@
                 <TextBox Grid.Column="1" Grid.Row="4" x:Name="txtPartCost"   Text="{Binding PartCost, Mode=TwoWay}" InputScope="DateYear"  MaxLength="6" />
                 <TextBox Grid.Column="1" Grid.Row="5" x:Name="txtLaborCharges" Text="{Binding LaborCharges, Mode=TwoWay}" InputScope="DateYear"  MaxLength="6" />
                 <!--<TextBox Grid.Column="1" Grid.Row="6" x:Name="txtTotalCost" Text="{Binding TotalCost, Mode=TwoWay}" InputScope="DateYear"  MaxLength="6" />-->
-                <ads:AdControl Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" ApplicationId="74e68b88-1f24-4d5e-aacf-58fafab91a98" AdUnitId="94893" Width="480" Height="80" ErrorOccurred="AdControl_ErrorOccurred"/>
+                <!-- <ads:AdControl Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" ApplicationId="74e68b88-1f24-4d5e-aacf-58fafab91a98" AdUnitId="94893" Width="480" Height="80" ErrorOccurred="AdControl_ErrorOccurred"/> -->
             </Grid>
         </Grid>
     </Grid>

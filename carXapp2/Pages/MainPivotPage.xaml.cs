@@ -45,10 +45,10 @@ namespace carXapp2.Pages
             listBoxFuel.ItemsSource = fm.GetRecords();
             fuelOverallMpg.Text = fm.OverallFuelConsumption().ToString("F2");
             tFuelCS.Text = fm.totalCost.ToString("F2");
-            tFCPD.Text = (fm.totalCost / fm.TotalTimeSpan.Days).ToString();
-            tFCPM.Text = (fm.totalCost / fm.TotalTimeSpan.Days * 30).ToString();
-            tMilesPD.Text = (fm.totalMiles / fm.TotalTimeSpan.Days).ToString();
-            tMilesPM.Text = (fm.totalMiles / fm.TotalTimeSpan.Days *30).ToString();
+            tFCPD.Text = (fm.totalCost / fm.GetTotalTimeSpan().Days).ToString();
+            tFCPM.Text = (fm.totalCost / fm.GetTotalTimeSpan().Days * 30).ToString();
+            tMilesPD.Text = (fm.totalMiles / fm.GetTotalTimeSpan().Days).ToString();
+            tMilesPM.Text = (fm.totalMiles / fm.GetTotalTimeSpan().Days * 30).ToString();
 
             MaintsModel mm = new MaintsModel(this.carID);
             listBoxMaint.ItemsSource = mm.GetRecords();

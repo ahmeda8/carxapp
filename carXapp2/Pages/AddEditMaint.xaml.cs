@@ -119,5 +119,24 @@ namespace carXapp2
         {
             ErrorLogging.Log(this.GetType().ToString(), e.Error.Message, string.Empty, string.Empty);
         }
+
+        private void menuDel_click(object sender, EventArgs e)
+        {
+            if (maintID != null)
+            {
+                MessageBoxButton cancel = MessageBoxButton.OKCancel;
+                MessageBoxResult result = MessageBox.Show("delete this maintenance record?", "Confirm", cancel);
+                if (result == MessageBoxResult.OK)
+                {
+                    var query = from maintInfo m in App.ViewModel.Database.maintInfo
+                                where m.MaintID == int.Parse(maintID)
+                                select m;
+                    App.ViewModel.Database.maintInfo.DeleteAllOnSubmit(query);
+                    App.ViewModel.Database.SubmitChanges();
+                }
+            }
+            if (NavigationService.CanGoBack)
+                NavigationService.GoBack();
+        }
     }
 }

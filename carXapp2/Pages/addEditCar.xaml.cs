@@ -8,7 +8,7 @@ namespace carXapp2
 {
     public partial class AddEditCar : PhoneApplicationPage
     {
-        private string carID;
+        private int carID;
         private carInfo CurrentCar;
 
         public AddEditCar()
@@ -19,7 +19,7 @@ namespace carXapp2
 
         private void saveClick(object sender, EventArgs e)
         {
-            if (carID == null)
+            if (carID == 0)
             {
                 addCar();
             }
@@ -46,27 +46,35 @@ namespace carXapp2
         {
             if (txtMake.Text.Length > 0)
             {
+                /*
                 var carsInDb = from carInfo cInfo in App.ViewModel.Database.carInfo
                                where cInfo.CarID == int.Parse(carID)
                                select cInfo;
                 App.ViewModel.Database.carInfo.DeleteOnSubmit(carsInDb.FirstOrDefault());
-                App.ViewModel.Database.carInfo.InsertOnSubmit(CurrentCar);
+                App.ViewModel.Database.carInfo//InsertOnSubmit(CurrentCar);
+                 */
                 App.ViewModel.Database.SubmitChanges();
             }
         }
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
-            NavigationContext.QueryString.TryGetValue("id", out carID);
-            var carsInDb = from carInfo cInfo in App.ViewModel.Database.carInfo
-                           where cInfo.CarID == int.Parse(carID)
-                           select cInfo;
-            if (carID != null && CurrentCar == null)
-                CurrentCar = carsInDb.FirstOrDefault();
-            else if(CurrentCar == null)
+            string carIDStr;
+            NavigationContext.QueryString.TryGetValue("id", out carIDStr);
+            int.TryParse(carIDStr, out this.carID);
+
+            if (this.carID != 0)
+            {
+                var carsInDb = from carInfo cInfo in App.ViewModel.Database.carInfo
+                               where cInfo.CarID == carID
+                               select cInfo;
+                CurrentCar = carsInDb.First();
+            }
+            else 
                 CurrentCar = new carInfo {CarRegExpiry = DateTime.Now, CarInsExpiry = DateTime.Now };
+
             this.DataContext = CurrentCar;
-            ErrorLogging.Analytics(this.GetType().ToString(), "AddCar", e.NavigationMode.ToString(), string.Empty);
+            //ErrorLogging.Analytics(this.GetType().ToString(), "AddCar", e.NavigationMode.ToString(), string.Empty);
             base.OnNavigatedTo(e);
         }
 
@@ -78,33 +86,31 @@ namespace carXapp2
 
         private void DeleteClick(object sender, EventArgs e)
         {
-            if (carID == null)
-            {
-                MessageBox.Show("Car not saved, cannot delete");
-            }
-            else
+            
+            if(carID != 0)
             {
                 MessageBoxButton cancel = MessageBoxButton.OKCancel;
-                MessageBoxResult result = MessageBox.Show("Are you sure to delete the entire car record", "Confirm",cancel);
+                MessageBoxResult result = MessageBox.Show("delete this car?", "Confirm",cancel);
                 if (result == MessageBoxResult.OK)
                 {
                     var carInDb = from carInfo cInfo in App.ViewModel.Database.carInfo
-                                   where cInfo.CarID == int.Parse(carID)
+                                   where cInfo.CarID == carID
                                    select cInfo;
                     var carfuelInDb = from fuelInfo fInfo in App.ViewModel.Database.fuelInfo
-                                   where fInfo.CarID == int.Parse(carID)
+                                   where fInfo.CarID == carID
                                    select fInfo;
                     var carmaintInDb = from maintInfo mInfo in App.ViewModel.Database.maintInfo
-                                      where mInfo.CarID == int.Parse(carID)
+                                      where mInfo.CarID == carID
                                       select mInfo;
-                    App.ViewModel.Database.carInfo.DeleteOnSubmit(carInDb.FirstOrDefault());
+                    App.ViewModel.Database.carInfo.DeleteAllOnSubmit(carInDb);
                     App.ViewModel.Database.fuelInfo.DeleteAllOnSubmit(carfuelInDb);
                     App.ViewModel.Database.maintInfo.DeleteAllOnSubmit(carmaintInDb);
                     App.ViewModel.Database.SubmitChanges();
-                    NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
-                
                 }
             }
+
+            if (NavigationService.CanGoBack)
+                NavigationService.GoBack();
         }
     }
 }

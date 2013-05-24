@@ -55,7 +55,7 @@
                 <ListBoxItem Content="maintenance" FontSize="50" FontStretch="Expanded" FontStyle="Normal" FontWeight="Bold" Background="{StaticResource PhoneContrastBackgroundBrush}" Margin="10,0,0,10" Padding="10,0,0,0" Foreground="{StaticResource PhoneAccentBrush}"/>
                 <!--<ListBoxItem Content="Reminders" FontSize="50" FontStretch="Expanded" FontStyle="Normal" FontWeight="Bold" Background="{StaticResource PhoneAccentBrush}" Margin="10,0,0,10" Padding="10,0,0,0"/>-->
             </ListBox>
-            <ads:AdControl Grid.Row="1" Grid.Column="0" ApplicationId="74e68b88-1f24-4d5e-aacf-58fafab91a98" AdUnitId="94893" /> 
+            <!-- <ads:AdControl Grid.Row="1" Grid.Column="0" ApplicationId="74e68b88-1f24-4d5e-aacf-58fafab91a98" AdUnitId="94893" />  -->
         </Grid>
     </Grid>
  

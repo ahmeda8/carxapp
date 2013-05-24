@@ -79,7 +79,7 @@
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
-            <ads:AdControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" ApplicationId="74e68b88-1f24-4d5e-aacf-58fafab91a98" AdUnitId="94893" VerticalAlignment="Top" Height="80" Width="480" ErrorOccurred="AdControl_ErrorOccurred"/> 
+            <!-- <ads:AdControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" ApplicationId="74e68b88-1f24-4d5e-aacf-58fafab91a98" AdUnitId="94893" VerticalAlignment="Top" Height="80" Width="480" ErrorOccurred="AdControl_ErrorOccurred"/> -->
         </Grid>
     </Grid>
  

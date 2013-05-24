@@ -20,7 +20,7 @@ namespace carXapp2.Models
             this.carID = carID;
             TotalLaborCost = 0f;
             TotalPartsCost = 0f;
-            TotalTimeSpan = new TimeSpan();
+            TotalTimeSpan = new TimeSpan(1,0,0,0);
         }
 
         public ObservableCollection<MaintListItem> GetRecords()
@@ -45,8 +45,8 @@ namespace carXapp2.Models
                 item.Mainttype = t.MaintType;
                 collection.Add(item);
             }
-
-            TotalTimeSpan = tempList.First().Date - tempList.Last().Date;
+            if(tempList.Count > 0)
+                TotalTimeSpan = tempList.First().Date - tempList.Last().Date;
             return collection;
         }
 

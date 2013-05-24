@@ -138,6 +138,25 @@ namespace carXapp2
             ErrorLogging.Log(this.GetType().ToString(), e.Error.Message, string.Empty, string.Empty);
         }
 
+        private void Menu_delete(object sender, EventArgs e)
+        {
+            if (fuelID != null)
+            {
+                MessageBoxButton cancel = MessageBoxButton.OKCancel;
+                MessageBoxResult result = MessageBox.Show("delete this fuel record?", "Confirm",cancel);
+                if (result == MessageBoxResult.OK)
+                {
+                    var query = from fuelInfo f in App.ViewModel.Database.fuelInfo
+                                where f.FuelID == int.Parse(fuelID)
+                                select f;
+                    App.ViewModel.Database.fuelInfo.DeleteAllOnSubmit(query);
+                    App.ViewModel.Database.SubmitChanges();
+                }
+            }
+            if (NavigationService.CanGoBack)
+                NavigationService.GoBack();
+        }
+
 
     }
 }

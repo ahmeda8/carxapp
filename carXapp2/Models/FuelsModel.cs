@@ -14,7 +14,7 @@ namespace carXapp2.Models
         public int totalMiles {get;set;}
         public float totalFuel { get; set; }
         public float totalCost { get; set; }
-        public TimeSpan TotalTimeSpan { get; set; }
+        private TimeSpan TotalTimeSpan;
 
 
         public FuelsModel(int carID)
@@ -23,7 +23,7 @@ namespace carXapp2.Models
             totalMiles = 0;
             totalFuel = 0f;
             totalCost = 0f;
-            TotalTimeSpan = new TimeSpan();
+            TotalTimeSpan = new TimeSpan(1,0,0,0);
         }
 
         public ObservableCollection<FuelListItem> GetRecords()
@@ -59,14 +59,22 @@ namespace carXapp2.Models
                 this.totalMiles += item.MilesDriven;
                 collection.Add(item);
             }
-
-            TotalTimeSpan = recordList.First().Date - recordList.Last().Date;
+            if(recordList.Count > 0)
+                TotalTimeSpan = recordList.First().Date - recordList.Last().Date;
             return collection ;
         }
 
         public float OverallFuelConsumption()
         {
             return (float)totalMiles / totalFuel;
+        }
+
+        public TimeSpan GetTotalTimeSpan()
+        {
+            if (this.TotalTimeSpan.Days > 0)
+                return this.TotalTimeSpan;
+            else
+                return new TimeSpan(1, 0, 0, 0);
         }
     }
 }
