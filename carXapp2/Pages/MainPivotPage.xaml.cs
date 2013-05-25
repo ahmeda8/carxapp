@@ -46,6 +46,7 @@ namespace carXapp2.Pages
             fuelOverallMpg.Text = fm.OverallFuelConsumption().ToString("F2");
             tFuelCS.Text = fm.totalCost.ToString("F2");
             tFCPD.Text = (fm.totalCost / fm.GetTotalTimeSpan().Days).ToString();
+            tAvgFuelCS.Text = (fm.totalCost/fm.totalFuel).ToString("F2");
             tFCPM.Text = (fm.totalCost / fm.GetTotalTimeSpan().Days * 30).ToString();
             tMilesPD.Text = (fm.totalMiles / fm.GetTotalTimeSpan().Days).ToString();
             tMilesPM.Text = (fm.totalMiles / fm.GetTotalTimeSpan().Days * 30).ToString();

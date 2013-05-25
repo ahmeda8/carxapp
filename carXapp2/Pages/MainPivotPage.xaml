@@ -53,16 +53,19 @@
                             <RowDefinition Height="50"/>
                             <RowDefinition Height="50"/>
                             <RowDefinition Height="50"/>
+                            <RowDefinition Height="50"/>
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
                             <ColumnDefinition/>                            
                         </Grid.ColumnDefinitions>
                             <Image Source="/carXapp2;component/icons/money.png" Grid.Row="0" Grid.Column="0"  Grid.ColumnSpan="2"/>
-                            <TextBlock Grid.Column="0" Grid.Row="1" Foreground="{StaticResource SpecialTextColor}" FontSize="28" Text="Fuel Cost"  />
+                            <TextBlock Grid.Column="0" Grid.Row="1" Foreground="{StaticResource SpecialTextColor}" FontSize="28" Text="Spent on Fuel"  />
                             <TextBlock Grid.Column="1" Grid.Row="1" Foreground="{StaticResource SpecialTextColor2}" FontSize="28" HorizontalAlignment="Left" x:Name="tFuelCS"  />
-                            <TextBlock Grid.Column="0" Grid.Row="2" Foreground="{StaticResource SpecialTextColor}" FontSize="28" Text="Maint Cost"  />
-                            <TextBlock Grid.Column="1" Grid.Row="2" Foreground="{StaticResource SpecialTextColor2}" FontSize="28" HorizontalAlignment="Left" x:Name="tMaintCS" />
+                            <TextBlock Grid.Column="0" Grid.Row="2" Foreground="{StaticResource SpecialTextColor}" FontSize="28" Text="Average fuel price"  />
+                            <TextBlock Grid.Column="1" Grid.Row="2" Foreground="{StaticResource SpecialTextColor2}" FontSize="28" HorizontalAlignment="Left" x:Name="tAvgFuelCS"  />
+                            <TextBlock Grid.Column="0" Grid.Row="3" Foreground="{StaticResource SpecialTextColor}" FontSize="28" Text="Spent on Maint"  />
+                            <TextBlock Grid.Column="1" Grid.Row="3" Foreground="{StaticResource SpecialTextColor2}" FontSize="28" HorizontalAlignment="Left" x:Name="tMaintCS" />
                     </Grid>
                     <Grid Grid.Row="2">
                         <Grid.RowDefinitions>
