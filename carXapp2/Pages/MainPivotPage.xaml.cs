@@ -44,21 +44,31 @@ namespace carXapp2.Pages
             FuelsModel fm = new FuelsModel(this.carID);
             listBoxFuel.ItemsSource = fm.GetRecords();
             fuelOverallMpg.Text = fm.OverallFuelConsumption().ToString("F2");
+            /*
             tFuelCS.Text = fm.totalCost.ToString("F2");
             tFCPD.Text = (fm.totalCost / fm.GetTotalTimeSpan().Days).ToString();
             tAvgFuelCS.Text = (fm.totalCost/fm.totalFuel).ToString("F2");
             tFCPM.Text = (fm.totalCost / fm.GetTotalTimeSpan().Days * 30).ToString();
             tMilesPD.Text = (fm.totalMiles / fm.GetTotalTimeSpan().Days).ToString();
             tMilesPM.Text = (fm.totalMiles / fm.GetTotalTimeSpan().Days * 30).ToString();
+            */
+            //tFuelCS.Text = fm.totalCost.ToString("F2");
+            stMpg.Text = fm.OverallFuelConsumption().ToString("F2");
+            stCostpd.Text = "$ "+(fm.totalCost / fm.GetTotalTimeSpan().Days).ToString()+"/day";
+            stCostpm.Text = "$ "+(fm.totalCost / fm.GetTotalTimeSpan().Days * 30).ToString()+"/month";
+            stMilepd.Text = (fm.totalMiles / fm.GetTotalTimeSpan().Days).ToString()+ " miles/day";
+            stMilepm.Text = (fm.totalMiles / fm.GetTotalTimeSpan().Days * 30).ToString()+" miles/month";
 
             MaintsModel mm = new MaintsModel(this.carID);
             listBoxMaint.ItemsSource = mm.GetRecords();
             tTotalCostMaint.Text = mm.GetTotalCost().ToString();
-            tMaintCS.Text = mm.GetTotalCost().ToString();
+            tMaintCS.Text = "$ "+mm.GetTotalCost().ToString("F2");
+            tMaintParts.Text = "Parts- $ " + mm.TotalPartsCost.ToString("F2");
+            tMaintLabor.Text = "Labor- $ " + mm.TotalLaborCost.ToString("F2");
 
             CarsModel cm = new CarsModel(this.carID);
             carInfo car = cm.GetCar();
-            tCarName.Text = car.CarYear + " " + car.CarMake + " " + car.CarModel;
+            tCarname.Text =  car.CarModel;
         }
 
         private void EditFuelBtn_Click(object sender, RoutedEventArgs e)

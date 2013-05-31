@@ -25,40 +25,53 @@
             <controls:PivotItem>
                 <controls:PivotItem.Header>
                     <Border BorderBrush="{StaticResource BorderColor}" BorderThickness="0 0 0 2">
-                    <TextBlock Text="summary" Foreground="{StaticResource PageNameColor}"/>
+                        <TextBlock Text="summary" Foreground="{StaticResource PageNameColor}" x:Name="tCarname"/>
                     </Border>
                 </controls:PivotItem.Header>
                 <ScrollViewer>
-                <Grid>
-                    <Grid.RowDefinitions>
+                    <Grid ShowGridLines="True">
+                        <Grid.RowDefinitions>
                             <RowDefinition Height="auto"/>
                             <RowDefinition Height="auto"/>
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
-                    </Grid.RowDefinitions>
-                    <Grid Grid.Row="0">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="50"/>
-                            <RowDefinition Height="50"/>
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
                         </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
-                        <Image Source="/carXapp2;component/icons/car.png" Grid.Row="0" Grid.Column="0"  Grid.ColumnSpan="2"  Width="60"/>
-                        <TextBlock x:Name="tCarName" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Foreground="{StaticResource SpecialTextColor}" FontSize="28"/>
-                    </Grid>
-                        <Grid Grid.Row="1">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="50"/>
-                            <RowDefinition Height="50"/>
-                            <RowDefinition Height="50"/>
-                            <RowDefinition Height="50"/>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>                            
-                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Row="0" ShowGridLines="True">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="200"/>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <!--<Image Source="/carXapp2;component/icons/car.png" Grid.Row="0" Grid.Column="0"  Grid.ColumnSpan="2"  Width="60"/>-->
+                            <!--<TextBlock x:Name="tCarName" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Foreground="{StaticResource SpecialTextColor}" FontSize="28"/>-->
+                            <TextBlock x:Name="stMpg"    Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="2" FontSize="100" Margin="0 0 10 0" VerticalAlignment="Center" FontFamily="Segoe WP Light"/>
+                            <TextBlock Text="mpg"        Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="1" Grid.RowSpan="1" FontSize="40" Margin="0 0 10 0" VerticalAlignment="Bottom" HorizontalAlignment="Right" FontFamily="Segoe WP Light" />
+                            <Image Source="/carXapp2;component/icons/fuel.png" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="1" Grid.RowSpan="4" VerticalAlignment="Center" Height="100"/>
+                            <TextBlock x:Name="stCostpd" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="1" Grid.RowSpan="1" FontFamily="Segoe WP Light" />
+                            <TextBlock x:Name="stCostpm" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="1" Grid.RowSpan="1" FontFamily="Segoe WP Light"/>
+                            <TextBlock x:Name="stMilepd" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="1" Grid.RowSpan="1" FontFamily="Segoe WP Light" />
+                            <TextBlock x:Name="stMilepm" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="1" Grid.RowSpan="1" FontFamily="Segoe WP Light"/>
+                        </Grid>
+                        <!--<Grid Grid.Row="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="50"/>
+                                <RowDefinition Height="50"/>
+                                <RowDefinition Height="50"/>
+                                <RowDefinition Height="50"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
                             <Image Source="/carXapp2;component/icons/money.png" Grid.Row="0" Grid.Column="0"  Grid.ColumnSpan="2"/>
                             <TextBlock Grid.Column="0" Grid.Row="1" Foreground="{StaticResource SpecialTextColor}" FontSize="28" Text="Spent on Fuel"  />
                             <TextBlock Grid.Column="1" Grid.Row="1" Foreground="{StaticResource SpecialTextColor2}" FontSize="28" HorizontalAlignment="Left" x:Name="tFuelCS"  />
@@ -66,19 +79,19 @@
                             <TextBlock Grid.Column="1" Grid.Row="2" Foreground="{StaticResource SpecialTextColor2}" FontSize="28" HorizontalAlignment="Left" x:Name="tAvgFuelCS"  />
                             <TextBlock Grid.Column="0" Grid.Row="3" Foreground="{StaticResource SpecialTextColor}" FontSize="28" Text="Spent on Maint"  />
                             <TextBlock Grid.Column="1" Grid.Row="3" Foreground="{StaticResource SpecialTextColor2}" FontSize="28" HorizontalAlignment="Left" x:Name="tMaintCS" />
-                    </Grid>
-                    <Grid Grid.Row="2">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="50"/>
-                            <RowDefinition />
-                            <RowDefinition />
-                            <RowDefinition />
-                            <RowDefinition />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
+                        </Grid>-->
+                        <!--<Grid Grid.Row="2">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="50"/>
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
                             <Image Source="/carXapp2;component/icons/fuel.png" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"/>
                             <TextBlock Grid.Column="0" Grid.Row="1" Foreground="{StaticResource SpecialTextColor}" FontSize="28" Text="Fuel Cost / Day"/>
                             <TextBlock Grid.Column="1" Grid.Row="1" Foreground="{StaticResource SpecialTextColor2}" FontSize="28" x:Name="tFCPD"/>
@@ -88,21 +101,23 @@
                             <TextBlock Grid.Column="1" Grid.Row="3" Foreground="{StaticResource SpecialTextColor2}" FontSize="28" x:Name="tMilesPD"/>
                             <TextBlock Grid.Column="0" Grid.Row="4" Foreground="{StaticResource SpecialTextColor}" FontSize="28" Text="Miles / Month" />
                             <TextBlock Grid.Column="1" Grid.Row="4" Foreground="{StaticResource SpecialTextColor2}" FontSize="28" x:Name="tMilesPM"/>
+                        </Grid>-->
+                        <Grid Grid.Row="1" ShowGridLines="True" Margin="0 30 0 0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="200"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Image Source="/carXapp2;component/icons/screwdriver.png" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="1" Grid.RowSpan="2" Height="100" HorizontalAlignment="Center" />
+                            <TextBlock Grid.Column="1" Grid.Row="0" x:Name="tMaintParts" Text="25.45" FontFamily="Segoe WP Light" />
+                            <TextBlock Grid.Column="1" Grid.Row="1" x:Name="tMaintLabor"  Text="454.55" FontFamily="Segoe WP Light"/>
+                            <TextBlock Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" FontSize="80" x:Name="tMaintCS" FontFamily="Segoe WP Light"/>
                         </Grid>
-                    <Grid Grid.Row="3">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="50"/>
-                            <RowDefinition />
-                            <RowDefinition />
-                            <RowDefinition />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>                        
-                        </Grid.ColumnDefinitions>
-                            <Image Source="/carXapp2;component/icons/screwdriver.png" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" />
                     </Grid>
-                </Grid>
                 </ScrollViewer>
             </controls:PivotItem>
 
@@ -110,9 +125,9 @@
             <controls:PivotItem >
                 <controls:PivotItem.Header>
                     <Border BorderBrush="{StaticResource BorderColor}" BorderThickness="0 0 0 2">
-                        <TextBlock Text="fuel" Foreground="{StaticResource PageNameColor}"/>                        
-                    </Border>                    
-                </controls:PivotItem.Header>                
+                        <TextBlock Text="fuel" Foreground="{StaticResource PageNameColor}"/>
+                    </Border>
+                </controls:PivotItem.Header>
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="50"/>
@@ -120,7 +135,7 @@
                     </Grid.RowDefinitions>
                     <Grid Grid.Row="0">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="50"/>                            
+                            <RowDefinition Height="50"/>
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>

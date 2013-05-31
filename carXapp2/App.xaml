@@ -4,7 +4,9 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
-    xmlns:clr="clr-namespace:System;assembly=mscorlib">
+    xmlns:clr="clr-namespace:System;assembly=mscorlib"
+    xmlns:media="clr-namespace:System.Windows;assembly=Microsoft.Phone.Controls.Toolkit"
+    >
 
     <!--Application Resources-->
     <Application.Resources>
@@ -18,6 +20,7 @@
         <SolidColorBrush x:Key="SpecialTextColor2">#8D99A5</SolidColorBrush>
         <SolidColorBrush x:Key="ListBoxBandColor">#AEAEAE</SolidColorBrush>
         <SolidColorBrush x:Key="ListBoxTextColor">#1A1A1A</SolidColorBrush>
+        
         <Style x:Key="RoundEditButton" TargetType="Button">
         	<Setter Property="Background" Value="Transparent"/>
         	<Setter Property="BorderBrush" Value="{StaticResource PhoneForegroundBrush}"/>
