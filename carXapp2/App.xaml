@@ -10,7 +10,7 @@
 
     <!--Application Resources-->
     <Application.Resources>
-        <clr:String x:Key="AppName">drive dash</clr:String>
+        <clr:String x:Key="AppName">driveDASH</clr:String>
         <clr:Double x:Key="MenuOpacity">0.70</clr:Double>
         <SolidColorBrush x:Key="UniversalBackground">#FF373838</SolidColorBrush>
         <SolidColorBrush x:Key="PageNameColor">#1f2b45</SolidColorBrush>

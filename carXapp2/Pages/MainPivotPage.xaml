@@ -62,7 +62,7 @@
                             <TextBlock x:Name="stMilepd" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="1" Grid.RowSpan="1" FontFamily="Segoe WP Light" Foreground="{StaticResource SpecialTextColor}"/>
                             <TextBlock x:Name="stMilepm" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="1" Grid.RowSpan="1" FontFamily="Segoe WP Light" Foreground="{StaticResource SpecialTextColor}"/>
                             <TextBlock Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="3" FontSize="80" x:Name="tFuelC" Text="$ 1436.00" FontFamily="Segoe WP Light" Foreground="{StaticResource SpecialTextColor}"/>
-                            <TextBlock Text="for fuel" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="1" FontSize="40" Margin="0 0 10 0" VerticalAlignment="Bottom" HorizontalAlignment="Right" FontFamily="Segoe WP Light" Foreground="{StaticResource SpecialTextColor2}" />
+                            <TextBlock Text="fuel" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="1" FontSize="40" Margin="0 0 10 0" VerticalAlignment="Bottom" HorizontalAlignment="Right" FontFamily="Segoe WP Light" Foreground="{StaticResource SpecialTextColor2}" />
                         </Grid>
                         <!--<Grid Grid.Row="1">
                             <Grid.RowDefinitions>
@@ -119,7 +119,7 @@
                             <TextBlock Grid.Column="1" Grid.Row="0" x:Name="tMaintParts" Text="25.45" FontFamily="Segoe WP Light" Foreground="{StaticResource SpecialTextColor}"/>
                             <TextBlock Grid.Column="1" Grid.Row="1" x:Name="tMaintLabor"  Text="454.55" FontFamily="Segoe WP Light" Foreground="{StaticResource SpecialTextColor}"/>
                             <TextBlock Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" FontSize="80" x:Name="tMaintCS" FontFamily="Segoe WP Light" Foreground="{StaticResource SpecialTextColor}"/>
-                            <TextBlock Text="for maint" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="1" FontSize="40" Margin="0 0 10 0" VerticalAlignment="Bottom" HorizontalAlignment="Right" FontFamily="Segoe WP Light" Foreground="{StaticResource SpecialTextColor2}" />
+                            <TextBlock Text="maint" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="1" FontSize="40" Margin="0 0 10 0" VerticalAlignment="Bottom" HorizontalAlignment="Right" FontFamily="Segoe WP Light" Foreground="{StaticResource SpecialTextColor2}" />
                         </Grid>
                     </Grid>
                 </ScrollViewer>
