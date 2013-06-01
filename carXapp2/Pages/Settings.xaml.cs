@@ -25,7 +25,7 @@ namespace carXapp2
 
             txtDistance.Text = distance;
             txtVolume.Text = volume;
-            txtAverage.Text = average;
+            //txtAverage.Text = average;
             txtCurrency.Text = currency;
             checkBox1.IsChecked = avgmethod;
             ErrorLogging.Analytics(this.GetType().ToString(), "Settings", "Loaded", string.Empty);
@@ -33,12 +33,12 @@ namespace carXapp2
 
         private void Save_Click(object sender, EventArgs e)
         {
-            if (txtAverage.Text.Length > 0 && txtDistance.Text.Length > 0 && txtCurrency.Text.Length > 0 && txtVolume.Text.Length > 0)
+            if (txtDistance.Text.Length > 0 && txtCurrency.Text.Length > 0 && txtVolume.Text.Length > 0)
             {
                 IsolatedStorageSettings.ApplicationSettings["distance"] = txtDistance.Text;
                 IsolatedStorageSettings.ApplicationSettings["volume"] = txtVolume.Text;
                 IsolatedStorageSettings.ApplicationSettings["currency"] = txtCurrency.Text;
-                IsolatedStorageSettings.ApplicationSettings["average"] = txtAverage.Text;
+                //IsolatedStorageSettings.ApplicationSettings["average"] = txtAverage.Text;
                 IsolatedStorageSettings.ApplicationSettings["avgmethod"] = checkBox1.IsChecked;
                 IsolatedStorageSettings.ApplicationSettings.Save();
                 MessageBox.Show("Settings saved");

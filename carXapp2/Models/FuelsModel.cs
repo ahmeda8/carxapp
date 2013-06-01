@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.ComponentModel;
 using System.Collections.ObjectModel;
+using System.IO.IsolatedStorage;
 using carXapp2;
 
 namespace carXapp2.Models
@@ -28,6 +29,12 @@ namespace carXapp2.Models
 
         public ObservableCollection<FuelListItem> GetRecords()
         {
+            string distance, volume, average, currency;
+            IsolatedStorageSettings.ApplicationSettings.TryGetValue("distance", out distance);
+            IsolatedStorageSettings.ApplicationSettings.TryGetValue("volume", out volume);
+            IsolatedStorageSettings.ApplicationSettings.TryGetValue("average", out average);
+            IsolatedStorageSettings.ApplicationSettings.TryGetValue("currency", out currency);
+            
             var records = from fuelInfo f in App.ViewModel.Database.fuelInfo
                           where f.CarID == this.carID
                           orderby f.Date descending
@@ -39,6 +46,10 @@ namespace carXapp2.Models
             for (int i = 0; i < recordList.Count; i++)
             {
                 item = new FuelListItem();
+                item.MpgUnit = distance + "/" + volume;
+                item.CurrencyUnit = currency;
+                item.DistanceUnit = distance;
+                item.VolumeUnit = volume;
                 item.Cost = recordList[i].Cost;
                 item.Date = recordList[i].Date.ToShortDateString();
                 item.Fill = recordList[i].Filled;
@@ -46,12 +57,12 @@ namespace carXapp2.Models
                 try
                 {
                     item.MilesDriven = recordList[i].Miles - recordList[i + 1].Miles;
-                    item.MPG = (float)Math.Round((double)(item.MilesDriven/recordList[i].Filled),2);
+                    item.MPG = Math.Round((double)(item.MilesDriven/recordList[i].Filled),2).ToString("F2");
                 }
                 catch (Exception e)
                 {
                     item.MilesDriven = 0;//recordList[i].Miles;
-                    item.MPG = 0f;
+                    item.MPG = "0";
                 }
 
                 this.totalCost += item.Cost;

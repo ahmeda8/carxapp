@@ -4,6 +4,7 @@ using System.Windows;
 using System.Linq;
 using System.Collections.ObjectModel;
 using System.Collections.Generic;
+using System.IO.IsolatedStorage;
 using carXapp2;
 
 namespace carXapp2.Models
@@ -25,6 +26,9 @@ namespace carXapp2.Models
 
         public ObservableCollection<MaintListItem> GetRecords()
         {
+            string currency;
+            IsolatedStorageSettings.ApplicationSettings.TryGetValue("currency", out currency);
+
             var query = from maintInfo m in App.ViewModel.Database.maintInfo
                         where m.CarID == this.carID
                         orderby m.Date descending
@@ -43,6 +47,7 @@ namespace carXapp2.Models
                 item.Partname = t.PartName;
                 item.Partnumber = t.PartNumber;
                 item.Mainttype = t.MaintType;
+                item.CurrencyUnit = currency;
                 collection.Add(item);
             }
             if(tempList.Count > 0)

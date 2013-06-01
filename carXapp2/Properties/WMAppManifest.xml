@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Deployment xmlns="http://schemas.microsoft.com/windowsphone/2009/deployment" AppPlatformVersion="7.1">
-  <App xmlns="" ProductID="{e60d8e23-cb25-4017-81cd-32ccdab3019a}" Title="Car Expense Tracker" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="carXapp2 author" Description="Sample description" Publisher="carXapp2">
+  <App xmlns="" ProductID="{e60d8e23-cb25-4017-81cd-32ccdab3019a}" Title="drive dash" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="carXapp2 author" Description="Sample description" Publisher="carXapp2">
     <IconPath IsRelative="true" IsResource="false">ApplicationIcon.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_IDENTITY_DEVICE" />
@@ -8,9 +8,9 @@
       <Capability Name="ID_CAP_LOCATION" />
       <Capability Name="ID_CAP_NETWORKING" />
       <Capability Name="ID_CAP_APPOINTMENTS" />
-      <Capability Name="ID_CAP_MEDIALIB"/>
-      <Capability Name="ID_CAP_WEBBROWSERCOMPONENT"/>
-      <Capability Name="ID_CAP_PHONEDIALER"/>
+      <Capability Name="ID_CAP_MEDIALIB" />
+      <Capability Name="ID_CAP_WEBBROWSERCOMPONENT" />
+      <Capability Name="ID_CAP_PHONEDIALER" />
     </Capabilities>
     <Tasks>
       <DefaultTask Name="_default" NavigationPage="MainPage.xaml" />
@@ -20,7 +20,7 @@
         <TemplateType5>
           <BackgroundImageURI IsRelative="true" IsResource="false">Background.png</BackgroundImageURI>
           <Count>0</Count>
-          <Title>Car Expense Tracker</Title>
+          <Title>drive dash</Title>
         </TemplateType5>
       </PrimaryToken>
     </Tokens>

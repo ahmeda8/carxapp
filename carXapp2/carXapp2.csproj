@@ -200,9 +200,13 @@
     <Resource Include="icons\fuel.png" />
     <Resource Include="icons\screwdriver.png" />
     <Resource Include="icons\money.png" />
+    <Resource Include="icons\t-white-grain.jpg" />
+    <Resource Include="icons\t-black-grain.jpg" />
     <Content Include="SplashScreenImage.jpg" />
     <Content Include="Toolkit.Content\ApplicationBar.Cancel.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Check.png" />
+    <Resource Include="icons\t-aqua-grain.jpg" />
+    <Resource Include="icons\t-blue-grain.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="icons\car.png" />

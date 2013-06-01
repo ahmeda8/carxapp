@@ -1,16 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
+using System.IO.IsolatedStorage;
 using carXapp2.Models;
+using System.Windows.Controls;
 
 namespace carXapp2.Pages
 {
@@ -41,9 +36,20 @@ namespace carXapp2.Pages
             NavigationContext.QueryString.TryGetValue("id", out carIDStr);
             this.carID = int.Parse(carIDStr);
 
+            //load settings for units
+            string distance, volume, average, currency;
+            bool avgmethod;
+            IsolatedStorageSettings.ApplicationSettings.TryGetValue("distance", out distance);
+            IsolatedStorageSettings.ApplicationSettings.TryGetValue("volume", out volume);
+            IsolatedStorageSettings.ApplicationSettings.TryGetValue("average", out average);
+            IsolatedStorageSettings.ApplicationSettings.TryGetValue("currency", out currency);
+            IsolatedStorageSettings.ApplicationSettings.TryGetValue("avgmethod", out avgmethod);
+
+            stMpgUnits.Text = distance + "/" + volume;
+
             FuelsModel fm = new FuelsModel(this.carID);
             listBoxFuel.ItemsSource = fm.GetRecords();
-            fuelOverallMpg.Text = fm.OverallFuelConsumption().ToString("F2");
+            fuelOverallMpg.Text = fm.OverallFuelConsumption().ToString("F2") + " "+distance + "/" + volume;
             /*
             tFuelCS.Text = fm.totalCost.ToString("F2");
             tFCPD.Text = (fm.totalCost / fm.GetTotalTimeSpan().Days).ToString();
@@ -54,17 +60,18 @@ namespace carXapp2.Pages
             */
             //tFuelCS.Text = fm.totalCost.ToString("F2");
             stMpg.Text = fm.OverallFuelConsumption().ToString("F2");
-            stCostpd.Text = "$ "+(fm.totalCost / fm.GetTotalTimeSpan().Days).ToString()+"/day";
-            stCostpm.Text = "$ "+(fm.totalCost / fm.GetTotalTimeSpan().Days * 30).ToString()+"/month";
-            stMilepd.Text = (fm.totalMiles / fm.GetTotalTimeSpan().Days).ToString()+ " miles/day";
-            stMilepm.Text = (fm.totalMiles / fm.GetTotalTimeSpan().Days * 30).ToString()+" miles/month";
+            stCostpd.Text = currency+(fm.totalCost / fm.GetTotalTimeSpan().Days).ToString()+" /day";
+            stCostpm.Text = currency+(fm.totalCost / fm.GetTotalTimeSpan().Days * 30).ToString()+" /month";
+            stMilepd.Text = (fm.totalMiles / fm.GetTotalTimeSpan().Days).ToString()+ " "+distance+"/day";
+            stMilepm.Text = (fm.totalMiles / fm.GetTotalTimeSpan().Days * 30).ToString() + " " + distance + "/month";
+            tFuelC.Text = currency+(fm.totalCost).ToString("F2");
 
             MaintsModel mm = new MaintsModel(this.carID);
             listBoxMaint.ItemsSource = mm.GetRecords();
-            tTotalCostMaint.Text = mm.GetTotalCost().ToString();
-            tMaintCS.Text = "$ "+mm.GetTotalCost().ToString("F2");
-            tMaintParts.Text = "Parts- $ " + mm.TotalPartsCost.ToString("F2");
-            tMaintLabor.Text = "Labor- $ " + mm.TotalLaborCost.ToString("F2");
+            tTotalCostMaint.Text = currency+" "+mm.GetTotalCost().ToString();
+            tMaintCS.Text = currency+mm.GetTotalCost().ToString("F2");
+            tMaintParts.Text = "Parts: "+currency+" " + mm.TotalPartsCost.ToString("F2");
+            tMaintLabor.Text = "Labor: "+currency+" " + mm.TotalLaborCost.ToString("F2");
 
             CarsModel cm = new CarsModel(this.carID);
             carInfo car = cm.GetCar();

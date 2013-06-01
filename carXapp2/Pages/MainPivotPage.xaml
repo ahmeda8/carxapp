@@ -15,9 +15,9 @@
     shell:SystemTray.IsVisible="True">
 
     <!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid x:Name="LayoutRoot" Background="{StaticResource UniversalBackground}">
+    <Grid x:Name="LayoutRoot" Background="Transparent" >
         <!--Pivot Control-->
-        <controls:Pivot >
+        <controls:Pivot  Background="{StaticResource UniversalImgBackground}">
             <controls:Pivot.Title>
                 <TextBlock Text="{StaticResource AppName}" Foreground="{StaticResource AppNameColor}"/>
             </controls:Pivot.Title>
@@ -29,15 +29,16 @@
                     </Border>
                 </controls:PivotItem.Header>
                 <ScrollViewer>
-                    <Grid ShowGridLines="True">
+                	<Grid ShowGridLines="False">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="auto"/>
                             <RowDefinition Height="auto"/>
                             <RowDefinition Height="auto" />
                             <RowDefinition Height="auto" />
                         </Grid.RowDefinitions>
-                        <Grid Grid.Row="0" ShowGridLines="True">
+                        <Grid Grid.Row="0" ShowGridLines="False">
                             <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
                                 <RowDefinition Height="auto"/>
                                 <RowDefinition Height="auto"/>
                                 <RowDefinition Height="auto"/>
@@ -53,13 +54,15 @@
                             </Grid.ColumnDefinitions>
                             <!--<Image Source="/carXapp2;component/icons/car.png" Grid.Row="0" Grid.Column="0"  Grid.ColumnSpan="2"  Width="60"/>-->
                             <!--<TextBlock x:Name="tCarName" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Foreground="{StaticResource SpecialTextColor}" FontSize="28"/>-->
-                            <TextBlock x:Name="stMpg"    Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="2" FontSize="100" Margin="0 0 10 0" VerticalAlignment="Center" FontFamily="Segoe WP Light"/>
-                            <TextBlock Text="mpg"        Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="1" Grid.RowSpan="1" FontSize="40" Margin="0 0 10 0" VerticalAlignment="Bottom" HorizontalAlignment="Right" FontFamily="Segoe WP Light" />
+                            <TextBlock x:Name="stMpg"    Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="2" FontSize="120" Margin="0 0 10 0" VerticalAlignment="Center" FontFamily="Segoe WP Light" Foreground="{StaticResource SpecialTextColor}" />
+                            <TextBlock x:Name="stMpgUnits" Text="mpg"        Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="1" FontSize="40" Margin="0 0 10 0" VerticalAlignment="Bottom" HorizontalAlignment="Right" FontFamily="Segoe WP Light" Foreground="{StaticResource SpecialTextColor2}" />
                             <Image Source="/carXapp2;component/icons/fuel.png" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="1" Grid.RowSpan="4" VerticalAlignment="Center" Height="100"/>
-                            <TextBlock x:Name="stCostpd" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="1" Grid.RowSpan="1" FontFamily="Segoe WP Light" />
-                            <TextBlock x:Name="stCostpm" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="1" Grid.RowSpan="1" FontFamily="Segoe WP Light"/>
-                            <TextBlock x:Name="stMilepd" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="1" Grid.RowSpan="1" FontFamily="Segoe WP Light" />
-                            <TextBlock x:Name="stMilepm" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="1" Grid.RowSpan="1" FontFamily="Segoe WP Light"/>
+                            <TextBlock x:Name="stCostpd" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="1" Grid.RowSpan="1" FontFamily="Segoe WP Light" Foreground="{StaticResource SpecialTextColor}"/>
+                            <TextBlock x:Name="stCostpm" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="1" Grid.RowSpan="1" FontFamily="Segoe WP Light" Foreground="{StaticResource SpecialTextColor}"/>
+                            <TextBlock x:Name="stMilepd" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="1" Grid.RowSpan="1" FontFamily="Segoe WP Light" Foreground="{StaticResource SpecialTextColor}"/>
+                            <TextBlock x:Name="stMilepm" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="1" Grid.RowSpan="1" FontFamily="Segoe WP Light" Foreground="{StaticResource SpecialTextColor}"/>
+                            <TextBlock Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="3" FontSize="80" x:Name="tFuelC" Text="$ 1436.00" FontFamily="Segoe WP Light" Foreground="{StaticResource SpecialTextColor}"/>
+                            <TextBlock Text="for fuel" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="1" FontSize="40" Margin="0 0 10 0" VerticalAlignment="Bottom" HorizontalAlignment="Right" FontFamily="Segoe WP Light" Foreground="{StaticResource SpecialTextColor2}" />
                         </Grid>
                         <!--<Grid Grid.Row="1">
                             <Grid.RowDefinitions>
@@ -102,7 +105,7 @@
                             <TextBlock Grid.Column="0" Grid.Row="4" Foreground="{StaticResource SpecialTextColor}" FontSize="28" Text="Miles / Month" />
                             <TextBlock Grid.Column="1" Grid.Row="4" Foreground="{StaticResource SpecialTextColor2}" FontSize="28" x:Name="tMilesPM"/>
                         </Grid>-->
-                        <Grid Grid.Row="1" ShowGridLines="True" Margin="0 30 0 0">
+                        <Grid Grid.Row="1" ShowGridLines="False" Margin="0 30 0 0">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="auto"/>
                                 <RowDefinition Height="auto"/>
@@ -113,9 +116,10 @@
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
                             <Image Source="/carXapp2;component/icons/screwdriver.png" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="1" Grid.RowSpan="2" Height="100" HorizontalAlignment="Center" />
-                            <TextBlock Grid.Column="1" Grid.Row="0" x:Name="tMaintParts" Text="25.45" FontFamily="Segoe WP Light" />
-                            <TextBlock Grid.Column="1" Grid.Row="1" x:Name="tMaintLabor"  Text="454.55" FontFamily="Segoe WP Light"/>
-                            <TextBlock Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" FontSize="80" x:Name="tMaintCS" FontFamily="Segoe WP Light"/>
+                            <TextBlock Grid.Column="1" Grid.Row="0" x:Name="tMaintParts" Text="25.45" FontFamily="Segoe WP Light" Foreground="{StaticResource SpecialTextColor}"/>
+                            <TextBlock Grid.Column="1" Grid.Row="1" x:Name="tMaintLabor"  Text="454.55" FontFamily="Segoe WP Light" Foreground="{StaticResource SpecialTextColor}"/>
+                            <TextBlock Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" FontSize="80" x:Name="tMaintCS" FontFamily="Segoe WP Light" Foreground="{StaticResource SpecialTextColor}"/>
+                            <TextBlock Text="for maint" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="1" FontSize="40" Margin="0 0 10 0" VerticalAlignment="Bottom" HorizontalAlignment="Right" FontFamily="Segoe WP Light" Foreground="{StaticResource SpecialTextColor2}" />
                         </Grid>
                     </Grid>
                 </ScrollViewer>
@@ -143,8 +147,8 @@
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
                         <Image Source="/carXapp2;component/icons/fuel.png" Grid.Row="0" Grid.Column="0" />
-                        <TextBlock x:Name="fuelOverallMpg" Grid.Row="0" Grid.Column="1" Foreground="{StaticResource SpecialTextColor}" FontSize="34" HorizontalAlignment="Right"/>
-                        <TextBlock Text="MPG" Grid.Row="0" Grid.Column="2" Foreground="{StaticResource SpecialTextColor}" FontSize="34" Margin="10 0 0 0"/>
+                        <TextBlock x:Name="fuelOverallMpg" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Foreground="{StaticResource SpecialTextColor}" FontSize="34" HorizontalAlignment="Left"/>
+                        <!--<TextBlock Text="MPG" Grid.Row="0" Grid.Column="2" Foreground="{StaticResource SpecialTextColor}" FontSize="34" Margin="10 0 0 0"/>-->
                     </Grid>
                     <Grid Grid.Row="1">
                         <Grid.RowDefinitions>
@@ -173,13 +177,13 @@
                                             <ColumnDefinition Width="*" />
                                         </Grid.ColumnDefinitions>
                                         <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" FontSize="30" Foreground="{StaticResource ListBoxTextColor}" HorizontalAlignment="Left" x:Name="tDate"   Text="{Binding Date}" />
-                                        <TextBlock Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="3" FontSize="30" Foreground="{StaticResource ListBoxTextColor}" HorizontalAlignment="Right" x:Name="tMPG"   Text="{Binding MPG}" />
-                                        <TextBlock Grid.Row="0" Grid.Column="5" Grid.ColumnSpan="1" FontSize="30" Foreground="{StaticResource ListBoxTextColor}" HorizontalAlignment="Right" Text="MPG"     />
-                                        <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1" FontSize="20" Foreground="{StaticResource ListBoxTextColor}" HorizontalAlignment="Left" Text="Drive:"    />
+                                        <TextBlock Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="4" FontSize="30" Foreground="{StaticResource ListBoxTextColor}" HorizontalAlignment="Right" x:Name="tMPG"   Text="{Binding MPG}" Margin="0 0 10 0" />
+                                        <!--<TextBlock Grid.Row="0" Grid.Column="4" Grid.ColumnSpan="2" FontSize="30" Foreground="{StaticResource ListBoxTextColor}" HorizontalAlignment="Right" Text="{Binding MpgUnit}"/>-->
+                                        <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1" FontSize="20" Foreground="{StaticResource ListBoxTextColor}" HorizontalAlignment="Left" Text="Driven:"    />
                                         <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="1" FontSize="20" Foreground="{StaticResource ListBoxTextColor}" HorizontalAlignment="Left" x:Name="tMiles"  Text="{Binding MilesDriven}"  />
-                                        <TextBlock Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="1" FontSize="20" Foreground="{StaticResource ListBoxTextColor}" HorizontalAlignment="Right" Text="$." />
+                                        <TextBlock Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="1" FontSize="20" Foreground="{StaticResource ListBoxTextColor}" HorizontalAlignment="Right" Text="{Binding CurrencyUnit}" />
                                         <TextBlock Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="1" FontSize="20" Foreground="{StaticResource ListBoxTextColor}" HorizontalAlignment="Left" x:Name="tCost"  Padding="5,0,0,0" Text="{Binding Cost}"   />
-                                        <TextBlock Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="1" FontSize="20" Foreground="{StaticResource ListBoxTextColor}" HorizontalAlignment="Right" Text="Gals."   />
+                                        <TextBlock Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="1" FontSize="20" Foreground="{StaticResource ListBoxTextColor}" HorizontalAlignment="Right" Text="{Binding VolumeUnit}"   />
                                         <TextBlock Grid.Row="1" Grid.Column="5" Grid.ColumnSpan="1" FontSize="20" Foreground="{StaticResource ListBoxTextColor}" HorizontalAlignment="Left" x:Name="tfill"  Padding="5,0,0,0" Text="{Binding Fill}"   />
                                         <Button    Grid.Row="0" Grid.Column="6" Grid.ColumnSpan="1" Grid.RowSpan="2" HorizontalAlignment="Right" Margin="0 0 15 0" Width="72" Height="72" Style="{StaticResource RoundEditButton}" Tag="{Binding FuelID}" Click="EditFuelBtn_Click"/>
                                     </Grid>
@@ -211,8 +215,8 @@
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
                         <Image Source="/carXapp2;component/icons/screwdriver.png" Grid.Row="0" Grid.Column="0" />
-                        <TextBlock Text="$" Grid.Row="0" Grid.Column="1" Foreground="{StaticResource SpecialTextColor}" FontSize="34" HorizontalAlignment="Right"/>
-                        <TextBlock x:Name="tTotalCostMaint" Grid.Row="0" Grid.Column="2" Foreground="{StaticResource SpecialTextColor}" FontSize="34" Margin="10 0 0 0"/>
+                        <!--<TextBlock Text="$" Grid.Row="0" Grid.Column="1" Foreground="{StaticResource SpecialTextColor}" FontSize="34" HorizontalAlignment="Right"/>-->
+                        <TextBlock x:Name="tTotalCostMaint" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Foreground="{StaticResource SpecialTextColor}" FontSize="34" Margin="10 0 0 0"/>
                     </Grid>
                     <Grid Grid.Row="1">
                         <Grid.RowDefinitions>
@@ -239,7 +243,7 @@
                                         </Grid.ColumnDefinitions>
                                         <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="1" FontSize="30" Foreground="{StaticResource ListBoxTextColor}" HorizontalAlignment="Left" Text="{Binding Date}" />
                                         <TextBlock Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" FontSize="30" Foreground="{StaticResource ListBoxTextColor}" HorizontalAlignment="Right" Text="{Binding Partname}" />
-                                        <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="1" FontSize="20" Foreground="{StaticResource ListBoxTextColor}" HorizontalAlignment="Right" Text="$."    />
+                                        <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="1" FontSize="20" Foreground="{StaticResource ListBoxTextColor}" HorizontalAlignment="Right" Text="{Binding CurrencyUnit}"    />
                                         <TextBlock Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="1" FontSize="20" Foreground="{StaticResource ListBoxTextColor}" HorizontalAlignment="Left" Text="{Binding Cost}"  />
                                         <Button    Grid.Row="0" Grid.Column="6" Grid.ColumnSpan="1" Grid.RowSpan="2" HorizontalAlignment="Right" Margin="0 0 15 0" Width="72" Height="72" Style="{StaticResource RoundEditButton}" Tag="{Binding MaintID}" Click="EditMaintBtn_Click"/>
                                     </Grid>

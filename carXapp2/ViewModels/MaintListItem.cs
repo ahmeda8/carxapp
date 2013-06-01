@@ -87,5 +87,20 @@ namespace carXapp2
                 NotifyPropertyChanged("Cost");
             }
         }
+
+        private string _currencyUnit;
+        public string CurrencyUnit
+        {
+            get
+            {
+
+                return _currencyUnit;
+            }
+            set
+            {
+                _currencyUnit = value;
+                NotifyPropertyChanged("CurrencyUnit");
+            }
+        }
     }
 }

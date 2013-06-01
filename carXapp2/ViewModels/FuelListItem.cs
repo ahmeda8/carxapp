@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO.IsolatedStorage;
 
 
 namespace carXapp2
@@ -30,6 +31,66 @@ namespace carXapp2
             {
                 _date = value;
                 NotifyPropertyChanged("Date");
+            }
+        }
+
+        private string _mpgUnit;
+        public string MpgUnit
+        {
+            get
+            {
+
+                return _mpgUnit;
+            }
+            set
+            {
+                _mpgUnit = value;
+                NotifyPropertyChanged("MpgUnit");
+            }
+        }
+
+        private string _currencyUnit;
+        public string CurrencyUnit
+        {
+            get
+            {
+
+                return _currencyUnit;
+            }
+            set
+            {
+                _currencyUnit = value;
+                NotifyPropertyChanged("CurrencyUnit");
+            }
+        }
+
+        private string _distanceUnit;
+        public string DistanceUnit
+        {
+            get
+            {
+
+                return _distanceUnit;
+            }
+            set
+            {
+                _distanceUnit = value;
+                NotifyPropertyChanged("DistanceUnit");
+            }
+        }
+
+        private string _volumeUnit;
+        public string VolumeUnit
+        {
+            get
+            {
+
+                return _volumeUnit;
+            }
+            set
+            {
+                _volumeUnit = value;
+                NotifyPropertyChanged("VolumeUnit");
             }
         }
 
@@ -75,12 +136,12 @@ namespace carXapp2
             }
         }
 
-        private float _mpg;
-        public float MPG
+        private string _mpg;
+        public string MPG
         {
             get
             {
-                return _mpg;
+                return _mpg+" "+MpgUnit;
             }
             set
             {
