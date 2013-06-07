@@ -26,7 +26,7 @@
     <ValidateXaml>true</ValidateXaml>
     <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
     <Utf8Output>true</Utf8Output>
-    <ExpressionBlendVersion>5.0.40218.0</ExpressionBlendVersion>
+    <ExpressionBlendVersion>4.0.30816.0</ExpressionBlendVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -52,6 +52,9 @@
   <ItemGroup>
     <Reference Include="AmCharts.Windows.QuickCharts.WP">
       <HintPath>Shared Library\AmCharts.Windows.QuickCharts.WP.dll</HintPath>
+    </Reference>
+    <Reference Include="Facebook">
+      <HintPath>..\packages\Facebook.5.4.1.0\lib\sl3-wp\Facebook.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Advertising.Mobile.UI, Version=5.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -84,8 +87,14 @@
     <Compile Include="Models\CarsModel.cs" />
     <Compile Include="Models\FuelsModel.cs" />
     <Compile Include="Models\MaintsModel.cs" />
+    <Compile Include="Pages\backup.xaml.cs">
+      <DependentUpon>backup.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\CarStatsInfo.xaml.cs">
       <DependentUpon>CarStatsInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\FacebookLoginPage.xaml.cs">
+      <DependentUpon>FacebookLoginPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\FuelInfo.xaml.cs">
       <DependentUpon>FuelInfo.xaml</DependentUpon>
@@ -129,9 +138,16 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
+    <Page Include="Pages\backup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\CarStatsInfo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\FacebookLoginPage.xaml">
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Pages\FuelInfo.xaml">
       <SubType>Designer</SubType>
@@ -175,6 +191,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <None Include="packages.config" />
     <None Include="Properties\AppManifest.xml" />
     <None Include="Properties\WMAppManifest.xml" />
   </ItemGroup>
@@ -197,19 +214,19 @@
     <Content Include="icons\appbar.save.rest.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Resource Include="icons\fuel.png" />
-    <Resource Include="icons\screwdriver.png" />
+    <Resource Include="icons\FB-f-Logo__blue_29.png" />
+    <Resource Include="icons\FB-f-Logo__white_29.png" />
     <Resource Include="icons\money.png" />
     <Resource Include="icons\t-white-grain.jpg" />
     <Resource Include="icons\t-black-grain.jpg" />
+    <Resource Include="icons\car.png" />
+    <Resource Include="icons\fuel.png" />
+    <Resource Include="icons\screwdriver.png" />
     <Content Include="SplashScreenImage.jpg" />
     <Content Include="Toolkit.Content\ApplicationBar.Cancel.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Check.png" />
     <Resource Include="icons\t-aqua-grain.jpg" />
     <Resource Include="icons\t-blue-grain.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="icons\car.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Fonts\" />

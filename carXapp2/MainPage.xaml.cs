@@ -93,6 +93,11 @@ namespace carXapp2
             NavigationService.Navigate(new Uri("/Pages/addEditCar.xaml?id="+carID, UriKind.Relative));
         }
 
+        private void BackupClick(object sender, EventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/Pages/backup.xaml", UriKind.RelativeOrAbsolute));
+        }
+
         
     }
 }

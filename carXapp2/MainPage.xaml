@@ -23,6 +23,7 @@
         		<shell:ApplicationBarMenuItem Text="about" Click="about_click"/>
         	</shell:ApplicationBar.MenuItems>
         	<shell:ApplicationBarIconButton IconUri="/icons/appbar.new.rest.png" Text="add" Click="addClick"/>
+            <shell:ApplicationBarIconButton IconUri="/icons/appbar.save.rest.png" Text="backup" Click="BackupClick"/>
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
 
