@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO.IsolatedStorage;
-using ServiceStack.Text;
 using System.Net;
 using System.IO;
+using SimpleJson;
 
 namespace carXapp2
 {
@@ -23,18 +23,18 @@ namespace carXapp2
             HttpWebResponse wrsp =(HttpWebResponse)wr.EndGetResponse(res) ;
             StreamReader strm = new StreamReader(wrsp.GetResponseStream());
             string response = strm.ReadToEnd();
-            JsonArrayObjects jobj = JsonArrayObjects.Parse(response);
+            JsonObject jobj = (JsonObject)SimpleJson.DeserializeObject(response,typeof(JsonObject));
             if (jobj != null)
             {
-                JsonObject jo = jobj[0];
-                JsonArrayObjects rows = jo["rows"];
-                IsolatedStorageSettings.ApplicationSettings["userid"] = rows[0]["id"];
+                JsonArray jarr = (JsonArray)jobj["rows"];
+                jobj = (JsonObject)jarr[0];
+                IsolatedStorageSettings.ApplicationSettings["userid"] = jobj["id"];
             }
         }
 
         public void AddUser(string fbid, string email, string firstName, string lastName)
         {
-            string created = DateTime.Now.ToShortestXsdDateTimeString();
+            string created = DateTime.Now.ToShortDateString();
             string lastLogin = created;
             JsonObject user = new JsonObject();
             user.Add("fbid", fbid);
@@ -44,7 +44,7 @@ namespace carXapp2
             user.Add("firstname", firstName);
             user.Add("lastname", lastName);
             string req_url = HEROKU_BASEURL + "/user";
-            string msg = "user=" + user.ToJson();
+            string msg = "user=" + SimpleJson.SerializeObject(user);
             base.POST(req_url, msg);
         }
 
