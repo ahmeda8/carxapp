@@ -10,6 +10,7 @@ using Microsoft.Phone.Shell;
 using System.IO.IsolatedStorage;
 using System.Windows.Media.Imaging;
 using Facebook;
+using carXapp2;
 
 namespace carXapp2.Pages
 {
@@ -17,10 +18,12 @@ namespace carXapp2.Pages
     {
         private string id;
         private string accessToken;
+        private Filepicker_io fioInstance;
 
         public backup()
         {
             InitializeComponent();
+            fioInstance = Filepicker_io.GetInstance();
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -90,6 +93,7 @@ namespace carXapp2.Pages
 
         private void btnBackup_click(object sender, RoutedEventArgs e)
         {
+            fioInstance.Upload();
 
         }
 

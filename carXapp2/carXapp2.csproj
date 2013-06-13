@@ -85,7 +85,9 @@
     <Compile Include="classes\Settings.cs" />
     <Compile Include="classes\WebMethods.cs" />
     <Compile Include="Models\CarsModel.cs" />
+    <Compile Include="Models\Filepicker_io.cs" />
     <Compile Include="Models\FuelsModel.cs" />
+    <Compile Include="Models\Heroku.cs" />
     <Compile Include="Models\MaintsModel.cs" />
     <Compile Include="Pages\backup.xaml.cs">
       <DependentUpon>backup.xaml</DependentUpon>
