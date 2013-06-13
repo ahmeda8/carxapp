@@ -66,6 +66,9 @@
       <HintPath>Shared Library\Microsoft.Phone.Controls.Toolkit.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Phone.Interop" />
+    <Reference Include="ServiceStack.Text.WP">
+      <HintPath>..\packages\ServiceStack.Text.3.9.49\lib\sl4-windowsphone71\ServiceStack.Text.WP.dll</HintPath>
+    </Reference>
     <Reference Include="system.data.linq" />
     <Reference Include="System.Windows" />
     <Reference Include="system" />

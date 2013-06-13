@@ -19,17 +19,19 @@ namespace carXapp2.Pages
         private string id;
         private string accessToken;
         private Filepicker_io fioInstance;
+        private Heroku heroku;
 
         public backup()
         {
             InitializeComponent();
             fioInstance = Filepicker_io.GetInstance();
+            heroku = new Heroku();
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            IsolatedStorageSettings.ApplicationSettings.TryGetValue("fbID", out id);
+            IsolatedStorageSettings.ApplicationSettings.TryGetValue("fbid", out id);
             IsolatedStorageSettings.ApplicationSettings.TryGetValue("fbAccessToken",out accessToken);
 
             if (id != null)
@@ -66,7 +68,10 @@ namespace carXapp2.Pages
                 Dispatcher.BeginInvoke(() =>
                 {
                     tFbName.Text = "Logged in as: " + (string)result["name"];
-                    
+                    //IsolatedStorageSettings.ApplicationSettings["email"] = (string)result["email"];
+                    IsolatedStorageSettings.ApplicationSettings["firstname"] = (string)result["first_name"];
+                    IsolatedStorageSettings.ApplicationSettings["lastname"] = (string)result["last_name"];
+                    heroku.AddUser((string)result["id"], "sss@ss.com", (string)result["first_name"], (string)result["last_name"]);
                 });
             };
 
@@ -77,7 +82,7 @@ namespace carXapp2.Pages
         {
             if (id != null)
             {
-                IsolatedStorageSettings.ApplicationSettings.Remove("fbID");
+                IsolatedStorageSettings.ApplicationSettings.Remove("fbid");
                 IsolatedStorageSettings.ApplicationSettings.Remove("fbAccessToken");
                 IsolatedStorageSettings.ApplicationSettings.Save();
                 fbBtn.Content = "Facebook Login";

@@ -93,7 +93,7 @@ namespace facebook_windows_phone_sample.Pages
 
                 var result = (IDictionary<string, object>)e.GetResultData();
                 var id = (string)result["id"];
-                IsolatedStorageSettings.ApplicationSettings["fbID"] = id;
+                IsolatedStorageSettings.ApplicationSettings["fbid"] = id;
                 IsolatedStorageSettings.ApplicationSettings.Save();
                 
                 Dispatcher.BeginInvoke(() =>
