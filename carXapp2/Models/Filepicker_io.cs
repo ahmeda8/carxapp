@@ -6,6 +6,8 @@ using carXapp2;
 using System.IO.IsolatedStorage;
 using Microsoft.Phone.BackgroundTransfer;
 using System.Diagnostics;
+using SimpleJson;
+using System.IO;
 
 namespace carXapp2
 {
@@ -13,7 +15,7 @@ namespace carXapp2
     {
         private static Filepicker_io instance = null;
         private BackgroundTransferRequest BTR;
-        private const string FILEPICKER_BASEURL = "https://www.filepicker.io";
+        private const string FILEPICKER_BASEURL = "http://www.filepicker.io";
         private const string FILEPICKER_APIKEY = "AQ4LQWd28TyS1wZtDX9Rjz";
         private const string TRANSFER_FOLDER = "/shared/transfers";
         private bool Uploading = false;
@@ -29,11 +31,11 @@ namespace carXapp2
 
         public Filepicker_io()
         {
-            string upload_uri = FILEPICKER_BASEURL + "/api/store/S3?key=" + FILEPICKER_APIKEY;
-            BTR = new BackgroundTransferRequest(new Uri(upload_uri));
-            BTR.TransferStatusChanged += BTR_TransferStatusChanged;
-            BTR.TransferProgressChanged += BTR_TransferProgressChanged;
-            BTR.Method = "POST";
+            //string upload_uri = FILEPICKER_BASEURL + "/api/store/S3?key=" + FILEPICKER_APIKEY;
+            //BTR = new BackgroundTransferRequest(new Uri(upload_uri));
+            //BTR.TransferStatusChanged += BTR_TransferStatusChanged;
+            //BTR.TransferProgressChanged += BTR_TransferProgressChanged;
+            //BTR.Method = "POST";
         }
 
 
@@ -45,15 +47,36 @@ namespace carXapp2
 
         void BTR_TransferStatusChanged(object sender, BackgroundTransferEventArgs e)
         {
-            if (e.Request.TransferStatus == TransferStatus.Completed)
+            if (e.Request.TransferStatus == TransferStatus.Completed && e.Request.StatusCode != 0)
             {
                 Uploading = false;
+                using (IsolatedStorageFile iso = IsolatedStorageFile.GetUserStoreForApplication())
+                {
+                    if(iso.FileExists(TRANSFER_FOLDER+"/resp.json"))
+                    {
+                        IsolatedStorageFileStream fs = new IsolatedStorageFileStream(TRANSFER_FOLDER + "/resp.json", System.IO.FileMode.Open, iso);
+                        //byte[] buffer = new byte[fs.Length];
+                        //fs.Read(buffer, 0, (int)fs.Length);
+                        StreamReader str = new StreamReader(fs);
+                        string resp = str.ReadToEnd();
+                        fs.Close();
+                        JsonObject jobj = (JsonObject)SimpleJson.DeserializeObject(resp);
+                        BackgroundTransferService.Remove(BTR);
+                        
+                    }
+                }
             }
             Debug.WriteLine(e.Request.TransferStatus);
         }
 
         public void Upload()
         {
+            string upload_uri = FILEPICKER_BASEURL + "/api/store/S3?key=" + FILEPICKER_APIKEY;
+            BTR = new BackgroundTransferRequest(new Uri(upload_uri));
+            BTR.TransferStatusChanged += BTR_TransferStatusChanged;
+            BTR.TransferProgressChanged += BTR_TransferProgressChanged;
+            BTR.Method = "POST";
+
             using (IsolatedStorageFile iso = IsolatedStorageFile.GetUserStoreForApplication())
             {
                 if (!iso.DirectoryExists(TRANSFER_FOLDER))
@@ -67,6 +90,8 @@ namespace carXapp2
             if (!Uploading)
             {
                 Uploading = true;
+                if (BackgroundTransferService.Requests.Contains(BTR))
+                    BackgroundTransferService.Remove(BTR);
                 BackgroundTransferService.Add(BTR);
             }
         }

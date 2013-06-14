@@ -74,5 +74,18 @@ namespace carXapp2
             string msg = "user=" + SimpleJson.SerializeObject(user);
             base.PUT(req_url, msg);
         }
+
+        public void AddBackup(string filename, string download_url, string userid)
+        {
+            DateTime login = DateTime.Now;
+            JsonObject user = new JsonObject();
+            user.Add("filename", filename);
+            user.Add("download_url", download_url);
+            user.Add("iduser", userid);
+            user.Add("created", login.ToShortDateString());
+            string req_url = HEROKU_BASEURL + "/backup";
+            string msg = "info=" + SimpleJson.SerializeObject(user);
+            base.POST(req_url, msg);
+        }
     }
 }
