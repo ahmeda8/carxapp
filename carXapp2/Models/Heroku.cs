@@ -6,6 +6,7 @@ using System.IO.IsolatedStorage;
 using System.Net;
 using System.IO;
 using SimpleJson;
+using System.Globalization;
 
 namespace carXapp2
 {
@@ -34,22 +35,19 @@ namespace carXapp2
             StreamReader strm = new StreamReader(wrsp.GetResponseStream());
             string response = strm.ReadToEnd();
             JsonObject jobj = (JsonObject)SimpleJson.DeserializeObject(response,typeof(JsonObject));
-            if (jobj != null)
+            if (jobj != null && jobj.ContainsKey("id"))
             {
                 string email, userid;
-                //JsonArray jarr = (JsonArray)jobj["rows"];
-                //jobj = (JsonObject)jarr[0];
                 userid = jobj["id"].ToString();
                 IsolatedStorageSettings.ApplicationSettings["userid"] = userid;
                 IsolatedStorageSettings.ApplicationSettings.Save();
                 IsolatedStorageSettings.ApplicationSettings.TryGetValue("email",out email);
-                UpdateUser(email, userid);
             }
         }
 
         public void AddUser(string fbid, string email, string firstName, string lastName)
         {
-            string created = DateTime.Now.ToShortDateString();
+            string created = DateTime.Now.ToString(CultureInfo.CurrentCulture.DateTimeFormat.UniversalSortableDateTimePattern);
             string lastLogin = created;
             JsonObject user = new JsonObject();
             user.Add("fbid", fbid);
@@ -69,7 +67,7 @@ namespace carXapp2
             JsonObject user = new JsonObject();
             user.Add("id", id);
             user.Add("email", email);
-            user.Add("logintime", login.ToShortDateString());
+            user.Add("logintime", login.ToString(CultureInfo.CurrentCulture.DateTimeFormat.UniversalSortableDateTimePattern)); 
             string req_url = HEROKU_BASEURL + "/user";
             string msg = "user=" + SimpleJson.SerializeObject(user);
             base.PUT(req_url, msg);
@@ -82,7 +80,7 @@ namespace carXapp2
             user.Add("filename", filename);
             user.Add("download_url", download_url);
             user.Add("iduser", userid);
-            user.Add("created", login.ToShortDateString());
+            user.Add("created", login.ToString(CultureInfo.CurrentCulture.DateTimeFormat.UniversalSortableDateTimePattern));
             string req_url = HEROKU_BASEURL + "/backup";
             string msg = "info=" + SimpleJson.SerializeObject(user);
             base.POST(req_url, msg);

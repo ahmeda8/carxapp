@@ -19,6 +19,7 @@ namespace carXapp2
         private const string FILEPICKER_APIKEY = "AQ4LQWd28TyS1wZtDX9Rjz";
         private const string TRANSFER_FOLDER = "/shared/transfers";
         private bool Uploading = false;
+        private Heroku _heroku;
 
         public static Filepicker_io GetInstance()
         {
@@ -36,6 +37,7 @@ namespace carXapp2
             //BTR.TransferStatusChanged += BTR_TransferStatusChanged;
             //BTR.TransferProgressChanged += BTR_TransferProgressChanged;
             //BTR.Method = "POST";
+            _heroku = new Heroku();
         }
 
 
@@ -47,24 +49,31 @@ namespace carXapp2
 
         void BTR_TransferStatusChanged(object sender, BackgroundTransferEventArgs e)
         {
-            if (e.Request.TransferStatus == TransferStatus.Completed && e.Request.StatusCode != 0)
+            if (e.Request.TransferStatus == TransferStatus.Completed )
             {
                 Uploading = false;
-                using (IsolatedStorageFile iso = IsolatedStorageFile.GetUserStoreForApplication())
+                if (e.Request.StatusCode == 200)
                 {
-                    if(iso.FileExists(TRANSFER_FOLDER+"/resp.json"))
+                    using (IsolatedStorageFile iso = IsolatedStorageFile.GetUserStoreForApplication())
                     {
-                        IsolatedStorageFileStream fs = new IsolatedStorageFileStream(TRANSFER_FOLDER + "/resp.json", System.IO.FileMode.Open, iso);
-                        //byte[] buffer = new byte[fs.Length];
-                        //fs.Read(buffer, 0, (int)fs.Length);
-                        StreamReader str = new StreamReader(fs);
-                        string resp = str.ReadToEnd();
-                        fs.Close();
-                        JsonObject jobj = (JsonObject)SimpleJson.DeserializeObject(resp);
-                        BackgroundTransferService.Remove(BTR);
-                        
+                        if (iso.FileExists(TRANSFER_FOLDER + "/resp.json"))
+                        {
+                            IsolatedStorageFileStream fs = new IsolatedStorageFileStream(TRANSFER_FOLDER + "/resp.json", System.IO.FileMode.Open, iso);
+                            //byte[] buffer = new byte[fs.Length];
+                            //fs.Read(buffer, 0, (int)fs.Length);
+                            StreamReader str = new StreamReader(fs);
+                            string resp = str.ReadToEnd();
+                            fs.Close();
+                            JsonObject jobj = (JsonObject)SimpleJson.DeserializeObject(resp);
+                            string userid;
+                            IsolatedStorageSettings.ApplicationSettings.TryGetValue("userid",out userid);
+                            if(userid != null)
+                                _heroku.AddBackup(jobj["key"].ToString(),jobj["url"].ToString(), userid);
+                            iso.DeleteFile(TRANSFER_FOLDER + "/resp.json");
+                        }
                     }
                 }
+                BackgroundTransferService.Remove(e.Request);
             }
             Debug.WriteLine(e.Request.TransferStatus);
         }

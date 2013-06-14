@@ -87,6 +87,10 @@ namespace carXapp2.Pages
             {
                 IsolatedStorageSettings.ApplicationSettings.Remove("fbid");
                 IsolatedStorageSettings.ApplicationSettings.Remove("fbAccessToken");
+                IsolatedStorageSettings.ApplicationSettings.Remove("userid");
+                IsolatedStorageSettings.ApplicationSettings.Remove("firstname");
+                IsolatedStorageSettings.ApplicationSettings.Remove("lastname");
+                IsolatedStorageSettings.ApplicationSettings.Remove("email");
                 IsolatedStorageSettings.ApplicationSettings.Save();
                 fbBtn.Content = "Facebook Login";
                 tFbName.Text =  "Not logged in";
@@ -101,8 +105,12 @@ namespace carXapp2.Pages
 
         private void btnBackup_click(object sender, RoutedEventArgs e)
         {
-            fioInstance.Upload();
-
+            string userid;
+            IsolatedStorageSettings.ApplicationSettings.TryGetValue("userid", out userid);
+            if (userid != null)
+                fioInstance.Upload();
+            else
+                MessageBox.Show("Please login first");
         }
 
         private void btnRestore_click(object sender, RoutedEventArgs e)

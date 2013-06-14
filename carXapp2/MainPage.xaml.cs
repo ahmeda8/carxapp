@@ -8,6 +8,7 @@ using System.ComponentModel;
 using System.Windows.Controls;
 using Microsoft.Advertising;
 using Microsoft.Phone.Tasks;
+using System.IO.IsolatedStorage;
 
 namespace carXapp2
 {
@@ -15,6 +16,7 @@ namespace carXapp2
     {
 
         public ObservableCollection<CarListItem> CurrentCarList;
+        private Heroku _heroku;
         // Constructor
         public MainPage()
         {
@@ -58,6 +60,16 @@ namespace carXapp2
 
             listBox1.ItemsSource = CurrentCarList;
             ErrorLogging.Analytics(this.GetType().ToString(), "Mainpage", e.NavigationMode.ToString(), string.Empty);
+
+            string userid,email;
+            IsolatedStorageSettings.ApplicationSettings.TryGetValue("userid", out userid);
+            IsolatedStorageSettings.ApplicationSettings.TryGetValue("email", out email);
+            if (userid != null && email != null)
+            {
+                _heroku = new Heroku();
+                _heroku.UpdateUser(email, userid);
+            }
+                
             base.OnNavigatedTo(e);
         }
 
