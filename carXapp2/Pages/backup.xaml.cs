@@ -71,7 +71,10 @@ namespace carXapp2.Pages
                     //IsolatedStorageSettings.ApplicationSettings["email"] = (string)result["email"];
                     IsolatedStorageSettings.ApplicationSettings["firstname"] = (string)result["first_name"];
                     IsolatedStorageSettings.ApplicationSettings["lastname"] = (string)result["last_name"];
-                    heroku.AddUser((string)result["id"], "sss@ss.com", (string)result["first_name"], (string)result["last_name"]);
+                    IsolatedStorageSettings.ApplicationSettings["email"] = (string)result["email"];
+                    IsolatedStorageSettings.ApplicationSettings["fbid"] = (string)result["id"];
+                    IsolatedStorageSettings.ApplicationSettings.Save();
+                    heroku.AddUser((string)result["id"], (string)result["email"], (string)result["first_name"], (string)result["last_name"]);
                 });
             };
 

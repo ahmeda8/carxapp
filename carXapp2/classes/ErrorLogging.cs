@@ -93,5 +93,10 @@ namespace carXapp2
         {
            
         }
+
+        public override void PUT_Method_CallBack(IAsyncResult res)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

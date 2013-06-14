@@ -10,8 +10,11 @@ namespace carXapp2
         public string Response { get; set; }
         public abstract void GET_Method_CallBack(IAsyncResult res);
         public abstract void POST_Method_CallBack(IAsyncResult res);
+        public abstract void PUT_Method_CallBack(IAsyncResult res);
         private HttpWebRequest POST_REQUEST;
+        private HttpWebRequest PUT_REQUEST;
         private HttpWebRequest GET_REQUEST;
+
         protected void POST(string URL, string post_message)
         {
             POST_REQUEST = (HttpWebRequest)HttpWebRequest.Create(URL);
@@ -25,6 +28,21 @@ namespace carXapp2
                 post_stream.Close();
                 POST_REQUEST.BeginGetResponse(new AsyncCallback(POST_Method_CallBack),POST_REQUEST);
             }, POST_REQUEST);
+        }
+
+        protected void PUT(string URL, string put_message_body)
+        {
+            PUT_REQUEST = (HttpWebRequest)HttpWebRequest.Create(URL);
+            PUT_REQUEST.Method = "PUT";
+            PUT_REQUEST.ContentType = "application/x-www-form-urlencoded";
+            PUT_REQUEST.BeginGetRequestStream(result =>
+            {
+                Stream post_stream = PUT_REQUEST.EndGetRequestStream(result);
+                byte[] ba = Encoding.UTF8.GetBytes(put_message_body);
+                post_stream.Write(ba, 0, ba.Length);
+                post_stream.Close();
+                PUT_REQUEST.BeginGetResponse(new AsyncCallback(PUT_Method_CallBack), PUT_REQUEST);
+            }, PUT_REQUEST);
         }
 
         protected void GET(string URL)
@@ -51,6 +69,8 @@ namespace carXapp2
                 POST_REQUEST.Abort();
             if(GET_REQUEST !=null)
                 GET_REQUEST.Abort();
+            if (PUT_REQUEST != null)
+                PUT_REQUEST.Abort();
         }
     }
 }
