@@ -16,7 +16,13 @@ namespace carXapp2
 
         public override void GET_Method_CallBack(IAsyncResult res)
         {
-            throw new NotImplementedException();
+            HttpWebRequest wr = (HttpWebRequest)res.AsyncState;
+            HttpWebResponse wrsp = (HttpWebResponse)wr.EndGetResponse(res);
+            StreamReader strm = new StreamReader(wrsp.GetResponseStream());
+            string response = strm.ReadToEnd();
+            IsolatedStorageSettings.ApplicationSettings["backups"] = response;
+            IsolatedStorageSettings.ApplicationSettings.Save();
+            //JsonObject jobj = (JsonObject)SimpleJson.DeserializeObject(response);
         }
 
         public override void PUT_Method_CallBack(IAsyncResult res)
@@ -84,6 +90,12 @@ namespace carXapp2
             string req_url = HEROKU_BASEURL + "/backup";
             string msg = "info=" + SimpleJson.SerializeObject(user);
             base.POST(req_url, msg);
+        }
+
+        public void GetBackups(string userid)
+        {
+            string req_url = HEROKU_BASEURL + "/user/backups/" + userid;
+            GET(req_url);
         }
     }
 }

@@ -6,13 +6,12 @@
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:facebook="clr-namespace:Facebook.WP7.Controls;assembly=Facebook.WP7.Controls"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d"
-    shell:SystemTray.IsVisible="True">
+    shell:SystemTray.IsVisible="True" d:DesignHeight="768" d:DesignWidth="480">
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
@@ -35,7 +34,7 @@
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
+                <!--<RowDefinition Height="auto"/>-->
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"/>
@@ -44,8 +43,34 @@
             <TextBlock x:Name="tFbName"  Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Text="Not logged in" VerticalAlignment="Center" TextWrapping="Wrap"/>
             <Image x:Name="picProfile" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Right" Width="80" Height="80" Margin="10 0 15 0"/>
         	<Button x:Name="fbBtn" Grid.Column="1" Grid.Row="1" Content="Facebook Login" Style="{StaticResource FacebookLoginButton}" Click="fblogin_click"/>
-            <Button Grid.Column="1" Grid.Row="2" x:Name="btnBackup" Content="backup" Click="btnBackup_click"/>
-            <Button Grid.Column="1" Grid.Row="3" x:Name="btnRestore" Content="restore" Click="btnRestore_click"/>
+            <!--<Button Grid.Column="1" Grid.Row="2" x:Name="btnBackup" Content="backup" Click="btnBackup_click"/>
+            <Button Grid.Column="1" Grid.Row="3" x:Name="btnRestore" Content="restore" Click="btnRestore_click"/>-->
+            <ListBox Grid.Row="2" Grid.Column="0"
+                x:Name="BackupslistBox"
+                Margin="10,0,0,0"
+                Foreground="{StaticResource PhoneAccentBrush}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid x:Name="listGrid" Background="{StaticResource ListBoxBandColor}" Margin="0,0,0,10" Width="470">
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock x:Name="tCreated" Grid.Row="0" Grid.Column="1" Padding="5,0,0,0" Text="{Binding Created}" FontSize="30" Foreground="{StaticResource ListBoxTextColor}"/>
+                            <!--<TextBlock x:Name="tMo" Grid.Row="0" Grid.Column="2" Padding="5,0,0,0" Text="{Binding Model}" FontSize="30" Foreground="{StaticResource ListBoxTextColor}" />
+                            <TextBlock x:Name="tYr" Grid.Row="0" Grid.Column="0" Padding="5,0,0,0" Text="{Binding Year}" FontSize="30" Foreground="{StaticResource ListBoxTextColor}" />
+                            <TextBlock x:Name="tLic" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Padding="5,0,0,0 " Text="{Binding Lic}" FontSize="20" Foreground="{StaticResource ListBoxTextColor}"/>-->
+                            <Button Style="{StaticResource RoundEditButton}" HorizontalAlignment="Right" Margin="0 0 15 0" Grid.Row="0" Grid.RowSpan="2" Grid.Column="3" Height="72" Width="72" Click="backupRestoreBtn_Click" Tag="{Binding ID}" />
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
         </Grid>
     </Grid>
 

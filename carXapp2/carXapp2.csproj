@@ -130,6 +130,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SimpleJson.cs" />
+    <Compile Include="ViewModels\BackupsListItem.cs" />
     <Compile Include="ViewModels\CarListItem.cs" />
     <Compile Include="ViewModels\FuelListItem.cs" />
     <Compile Include="ViewModels\FuelRecord.cs" />
