@@ -11,6 +11,7 @@ using System.IO.IsolatedStorage;
 using System.Windows.Media.Imaging;
 using Facebook;
 using carXapp2;
+using System.ComponentModel;
 
 namespace carXapp2.Pages
 {
@@ -20,12 +21,25 @@ namespace carXapp2.Pages
         private string accessToken;
         private Filepicker_io fioInstance;
         private Heroku heroku;
-
+        private BackgroundWorker BackupWorker;
         public backup()
         {
             InitializeComponent();
             fioInstance = Filepicker_io.GetInstance();
             heroku = new Heroku();
+            BackupWorker = new BackgroundWorker();
+            BackupWorker.DoWork += new DoWorkEventHandler(BackupWorker_DoWork);
+            //BackupWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(BackupWorker_RunWorkerCompleted);
+        }
+
+        void BackupWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        void BackupWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            fioInstance.Upload();
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -108,7 +122,7 @@ namespace carXapp2.Pages
             string userid;
             IsolatedStorageSettings.ApplicationSettings.TryGetValue("userid", out userid);
             if (userid != null)
-                fioInstance.Upload();
+                BackupWorker.RunWorkerAsync();
             else
                 MessageBox.Show("Please login first");
         }

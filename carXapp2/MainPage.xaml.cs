@@ -17,11 +17,57 @@ namespace carXapp2
 
         public ObservableCollection<CarListItem> CurrentCarList;
         private Heroku _heroku;
+        private BackgroundWorker DataLoader;
         // Constructor
         public MainPage()
         {
             InitializeComponent();
             //this.DataContext = App.ViewModel;
+            DataLoader = new BackgroundWorker();
+            DataLoader.DoWork += new DoWorkEventHandler(DataLoader_DoWork);
+            DataLoader.RunWorkerCompleted += new RunWorkerCompletedEventHandler(DataLoader_RunWorkerCompleted);
+        }
+
+        void DataLoader_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            Dispatcher.BeginInvoke(() => {
+                listBox1.ItemsSource = CurrentCarList;
+                });
+            
+        }
+
+        void DataLoader_DoWork(object sender, DoWorkEventArgs e)
+        {
+            //CurrentCarList = new ObservableCollection<CarListItem>();
+            CurrentCarList = (ObservableCollection<CarListItem>)e.Argument;
+            var carsInDb = from carInfo cInfo in App.ViewModel.Database.carInfo
+                           select cInfo;
+            var carsindbarray = carsInDb.ToArray();
+            CarListItem cl;
+            foreach (carInfo c in carsindbarray)
+            {
+                cl = new CarListItem
+                {
+                    Year = c.CarYear,
+                    Make = c.CarMake,
+                    Model = c.CarModel,
+                    Lic = c.CarLic,
+                    ID = c.CarID
+                };
+                CurrentCarList.Add(cl);
+            }
+
+            //listBox1.ItemsSource = CurrentCarList;
+            //ErrorLogging.Analytics(this.GetType().ToString(), "Mainpage", e.NavigationMode.ToString(), string.Empty);
+
+            string userid, email;
+            IsolatedStorageSettings.ApplicationSettings.TryGetValue("userid", out userid);
+            IsolatedStorageSettings.ApplicationSettings.TryGetValue("email", out email);
+            if (userid != null && email != null)
+            {
+                _heroku = new Heroku();
+                _heroku.UpdateUser(email, userid);
+            }
         }
 
        private void addClick(object sender, EventArgs e)
@@ -41,6 +87,7 @@ namespace carXapp2
             listBox1.SelectedIndex = -1;
             NavigationService.RemoveBackEntry();
             NavigationService.RemoveBackEntry();
+            /*
             CurrentCarList = new ObservableCollection<CarListItem>();
             var carsInDb = from carInfo cInfo in App.ViewModel.Database.carInfo
                            select cInfo;
@@ -69,7 +116,8 @@ namespace carXapp2
                 _heroku = new Heroku();
                 _heroku.UpdateUser(email, userid);
             }
-                
+            */
+            DataLoader.RunWorkerAsync(new ObservableCollection<CarListItem>());
             base.OnNavigatedTo(e);
         }
 
