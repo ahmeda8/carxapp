@@ -20,6 +20,7 @@ namespace carXapp2.Pages
     {
         private string id,profilePicUrl;
         private string accessToken;
+        int backupCount = 0;
         private ObservableCollection<BackupsListItem> BackupsList;
         private Filepicker_io fioInstance;
         private Heroku heroku;
@@ -53,6 +54,7 @@ namespace carXapp2.Pages
                     picProfile.Source = new BitmapImage(new Uri(profilePicUrl));
                 }
                 BackupslistBox.ItemsSource = BackupsList;
+                txtbackupCount.Text = backupCount.ToString();
             });
         }
 
@@ -76,8 +78,10 @@ namespace carXapp2.Pages
                 JsonArray jarr = (JsonArray)SimpleJson.DeserializeObject(backups);
                 BackupsList = (ObservableCollection<BackupsListItem>)e.Argument;
                 BackupsListItem item;
+                backupCount = 0;
                 foreach (JsonObject jobj in jarr)
                 {
+                    backupCount++;
                     item = new BackupsListItem();
                     item.Created = DateTime.Parse(jobj["created"].ToString());
                     BackupsList.Add(item);
@@ -149,9 +153,13 @@ namespace carXapp2.Pages
                 IsolatedStorageSettings.ApplicationSettings.Remove("firstname");
                 IsolatedStorageSettings.ApplicationSettings.Remove("lastname");
                 IsolatedStorageSettings.ApplicationSettings.Remove("email");
+                IsolatedStorageSettings.ApplicationSettings.Remove("backups");
+                BackupsList.Clear();
                 IsolatedStorageSettings.ApplicationSettings.Save();
                 fbBtn.Content = "Facebook Login";
                 tFbName.Text =  "Not logged in";
+                txtbackupCount.Text = "0";
+                backupCount = 0;
                 id = null;
                 accessToken = null;
             }
@@ -173,6 +181,7 @@ namespace carXapp2.Pages
 
         private void btnRefresh_click(object sender, EventArgs e)
         {
+            BackupsList.Clear();
             DataLoader.RunWorkerAsync(new ObservableCollection<BackupsListItem>());
         }
 
