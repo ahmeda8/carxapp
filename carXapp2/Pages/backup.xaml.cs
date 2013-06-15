@@ -25,6 +25,7 @@ namespace carXapp2.Pages
         private Heroku heroku;
         private BackgroundWorker BackupWorker;
         private BackgroundWorker DataLoader;
+
         public backup()
         {
             InitializeComponent();
@@ -160,7 +161,7 @@ namespace carXapp2.Pages
             }
         }
 
-        private void btnBackup_click(object sender, RoutedEventArgs e)
+        private void btnBackup_click(object sender, EventArgs e)
         {
             string userid;
             IsolatedStorageSettings.ApplicationSettings.TryGetValue("userid", out userid);
