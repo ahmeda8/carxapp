@@ -47,8 +47,10 @@ namespace carXapp2.Pages
             Dispatcher.BeginInvoke(() =>
             {
                 if (id != null)
+                {
                     fbBtn.Content = "Logout";
-                picProfile.Source = new BitmapImage(new Uri(profilePicUrl));
+                    picProfile.Source = new BitmapImage(new Uri(profilePicUrl));
+                }
                 BackupslistBox.ItemsSource = BackupsList;
             });
         }
@@ -166,6 +168,11 @@ namespace carXapp2.Pages
                 BackupWorker.RunWorkerAsync();
             else
                 MessageBox.Show("Please login first");
+        }
+
+        private void btnRefresh_click(object sender, EventArgs e)
+        {
+            DataLoader.RunWorkerAsync(new ObservableCollection<BackupsListItem>());
         }
 
         private void backupRestoreBtn_Click(object sender, RoutedEventArgs e)

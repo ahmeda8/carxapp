@@ -33,19 +33,17 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
                 <!--<RowDefinition Height="auto"/>-->
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <TextBlock x:Name="tFbName"  Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Text="Not logged in" VerticalAlignment="Center" TextWrapping="Wrap"/>
-            <Image x:Name="picProfile" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Right" Width="80" Height="80" Margin="10 0 15 0"/>
-        	<Button x:Name="fbBtn" Grid.Column="1" Grid.Row="1" Content="Facebook Login" Style="{StaticResource FacebookLoginButton}" Click="fblogin_click"/>
-            <!--<Button Grid.Column="1" Grid.Row="2" x:Name="btnBackup" Content="backup" Click="btnBackup_click"/>
-            <Button Grid.Column="1" Grid.Row="3" x:Name="btnRestore" Content="restore" Click="btnRestore_click"/>-->
-            <ListBox Grid.Row="2" Grid.Column="0"
+            <TextBlock  Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" x:Name="tFbName" Text="Not logged in" VerticalAlignment="Center" TextWrapping="Wrap"/>
+            <Image      Grid.Column="1" Grid.Row="0" x:Name="picProfile"  HorizontalAlignment="Right" Width="80" Height="80" Margin="10 0 15 0"/>
+            <Button     Grid.Column="1" Grid.Row="1" x:Name="fbBtn" Content="Facebook Login" Style="{StaticResource FacebookLoginButton}" Click="fblogin_click"/>
+            <ListBox    Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2"
                 x:Name="BackupslistBox"
                 Margin="10,0,0,0"
                 Foreground="{StaticResource PhoneAccentBrush}">
@@ -73,5 +71,12 @@
             </ListBox>
         </Grid>
     </Grid>
-
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True" Opacity="{StaticResource MenuOpacity}" Mode="Minimized">
+            <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem Text="refresh" Click="btnRefresh_click"/>
+                <shell:ApplicationBarMenuItem Text="take backup" Click="btnBackup_click"/>
+            </shell:ApplicationBar.MenuItems>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
 </phone:PhoneApplicationPage>
