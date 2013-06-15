@@ -32,6 +32,7 @@ namespace carXapp2.Pages
             InitializeComponent();
             fioInstance = Filepicker_io.GetInstance();
             heroku = new Heroku();
+            BackupsList = new ObservableCollection<BackupsListItem>();
             BackupWorker = new BackgroundWorker();
             BackupWorker.DoWork += new DoWorkEventHandler(BackupWorker_DoWork);
             //BackupWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(BackupWorker_RunWorkerCompleted);
@@ -186,6 +187,11 @@ namespace carXapp2.Pages
         }
 
         private void backupRestoreBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void backupDeleteBtn_Click(object sender, RoutedEventArgs e)
         {
 
         }

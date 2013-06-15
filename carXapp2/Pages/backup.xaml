@@ -16,7 +16,7 @@
         <shell:ApplicationBar Mode="Minimized" Opacity="{StaticResource MenuOpacity}">
             <shell:ApplicationBar.MenuItems>
                 <shell:ApplicationBarMenuItem IsEnabled="True" Text="refresh" Click="btnRefresh_click"/>
-                <shell:ApplicationBarMenuItem IsEnabled="True" Text="take backup" Click="btnBackup_click"/>
+                <shell:ApplicationBarMenuItem IsEnabled="True" Text="+ new backup" Click="btnBackup_click"/>
             </shell:ApplicationBar.MenuItems>
 
         </shell:ApplicationBar>
@@ -63,22 +63,18 @@
                 Foreground="{StaticResource PhoneAccentBrush}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <Grid x:Name="listGrid" Background="{StaticResource ListBoxBandColor}" Margin="0,0,0,10" Width="470">
+                        <Grid x:Name="listGrid" Background="{StaticResource ListBoxBandColor}" Margin="0,0,0,10">
                             <Grid.RowDefinitions>
-                                <RowDefinition />
-                                <RowDefinition />
+                                <RowDefinition Height="auto"/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="300" />
+                                <ColumnDefinition Width="80"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <TextBlock x:Name="tCreated" Grid.Row="0" Grid.Column="1" Padding="5,0,0,0" Text="{Binding Created}" FontSize="30" Foreground="{StaticResource ListBoxTextColor}"/>
-                            <!--<TextBlock x:Name="tMo" Grid.Row="0" Grid.Column="2" Padding="5,0,0,0" Text="{Binding Model}" FontSize="30" Foreground="{StaticResource ListBoxTextColor}" />
-                            <TextBlock x:Name="tYr" Grid.Row="0" Grid.Column="0" Padding="5,0,0,0" Text="{Binding Year}" FontSize="30" Foreground="{StaticResource ListBoxTextColor}" />
-                            <TextBlock x:Name="tLic" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Padding="5,0,0,0 " Text="{Binding Lic}" FontSize="20" Foreground="{StaticResource ListBoxTextColor}"/>-->
-                            <Button Style="{StaticResource RoundEditButton}" HorizontalAlignment="Right" Margin="0 0 15 0" Grid.Row="0" Grid.RowSpan="2" Grid.Column="3" Height="72" Width="72" Click="backupRestoreBtn_Click" Tag="{Binding ID}" />
+                            <TextBlock x:Name="tCreated" Grid.Row="0" Grid.Column="0" Padding="5,0,0,0" Text="{Binding Created}" FontSize="30" Foreground="{StaticResource ListBoxTextColor}"/>
+                            <Button Style="{StaticResource RoundDownloadButton}" HorizontalAlignment="Right"   Grid.Row="0"  Grid.Column="1" Height="72" Width="72" Click="backupRestoreBtn_Click" Tag="{Binding ID}" />
+                            <Button Style="{StaticResource RoundDeleteButton}" HorizontalAlignment="Right" Grid.Row="0"  Grid.Column="2" Height="72" Width="72" Click="backupDeleteBtn_Click" Tag="{Binding ID}" />
                         </Grid>
                     </DataTemplate>
                 </ListBox.ItemTemplate>

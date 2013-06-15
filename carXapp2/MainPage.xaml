@@ -17,13 +17,13 @@
     toolkit:TiltEffect.IsTiltEnabled="True">
     
     <phone:PhoneApplicationPage.ApplicationBar>
-        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True" Opacity="{StaticResource MenuOpacity}">
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True" Opacity="{StaticResource MenuOpacity}" Mode="Minimized">
         	<shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem Text="+ new vehicle" Click="addClick"/>
+                <shell:ApplicationBarMenuItem Text="backup / restore" Click="BackupClick"/>
         		<shell:ApplicationBarMenuItem Text="settings" Click="menuSettings_click"/>
         		<shell:ApplicationBarMenuItem Text="about" Click="about_click"/>
         	</shell:ApplicationBar.MenuItems>
-        	<shell:ApplicationBarIconButton IconUri="/icons/appbar.new.rest.png" Text="add" Click="addClick"/>
-            <shell:ApplicationBarIconButton IconUri="/icons/appbar.save.rest.png" Text="backup" Click="BackupClick"/>
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
 
@@ -37,7 +37,7 @@
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
             <TextBlock x:Name="ApplicationTitle" Text="{StaticResource AppName}" Style="{StaticResource PhoneTextNormalStyle}" Foreground="{StaticResource AppNameColor}"/>
-            <TextBlock x:Name="PageTitle" Text="cars" Margin="110 0 0 0" HorizontalAlignment="Left" Foreground="{StaticResource PageNameColor}" FontSize="48"/>
+            <TextBlock x:Name="PageTitle" Text="rides" Margin="110 0 0 0" HorizontalAlignment="Left" Foreground="{StaticResource PageNameColor}" FontSize="48"/>
             <Image Height="50" Source="icons/car.png" Width="100" Margin="0 -50 0 0" HorizontalAlignment="Left"/>
             <Border BorderThickness="0,0,0,1"  Background="{StaticResource BorderColor}" BorderBrush="{StaticResource BorderColor}"></Border>
         </StackPanel>
