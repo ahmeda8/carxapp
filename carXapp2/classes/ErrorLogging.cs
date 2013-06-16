@@ -98,5 +98,10 @@ namespace carXapp2
         {
             throw new NotImplementedException();
         }
+
+        public override void DELETE_Method_CallBack(IAsyncResult res)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

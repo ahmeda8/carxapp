@@ -57,11 +57,12 @@ namespace carXapp2.Pages
                 BackupslistBox.ItemsSource = BackupsList;
                 txtbackupCount.Text = backupCount.ToString();
             });
+            ToggleProgressBar(false);
         }
 
         void DataLoader_DoWork(object sender, DoWorkEventArgs e)
         {
-            
+            ToggleProgressBar(true);
             IsolatedStorageSettings.ApplicationSettings.TryGetValue("fbid", out id);
             IsolatedStorageSettings.ApplicationSettings.TryGetValue("fbAccessToken", out accessToken);
             string userid;
@@ -85,6 +86,8 @@ namespace carXapp2.Pages
                     backupCount++;
                     item = new BackupsListItem();
                     item.Created = DateTime.Parse(jobj["created"].ToString());
+                    item.ID = int.Parse(jobj["id"].ToString());
+                    item.DownloadUrl = (string)jobj["download_url"];
                     BackupsList.Add(item);
                 }
             }
@@ -92,11 +95,13 @@ namespace carXapp2.Pages
 
         void BackupWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
+            ToggleProgressBar(false);
         }
 
         void BackupWorker_DoWork(object sender, DoWorkEventArgs e)
         {
+            ToggleProgressBar(true);
             fioInstance.Upload();
         }
 
@@ -188,12 +193,35 @@ namespace carXapp2.Pages
 
         private void backupRestoreBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            Button btn = sender as Button;
+            int ID = int.Parse(btn.Tag.ToString());
+            var query = from c in BackupsList
+                        where c.ID == ID
+                        select c;
+            var data = query.First();
+            fioInstance.Download(data.DownloadUrl);
+                        
         }
 
         private void backupDeleteBtn_Click(object sender, RoutedEventArgs e)
         {
+            Button btn = sender as Button;
+            int ID = int.Parse(btn.Tag.ToString());
+            var query = from c in BackupsList
+                        where c.ID == ID
+                        select c;
+            var data = query.First();
+            //fioInstance.Delete(data.DownloadUrl);
+            heroku.DeleteBackup(data.ID, data.DownloadUrl);
+        }
 
+        private void ToggleProgressBar(bool val)
+        {
+            Dispatcher.BeginInvoke(() => {
+                progressIndicator.IsIndeterminate = val;
+                progressIndicator.IsVisible = val;
+            });
+            
         }
     }
 }

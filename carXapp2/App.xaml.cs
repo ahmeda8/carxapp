@@ -24,6 +24,7 @@ namespace carXapp2
         public static Data ViewModel
         {
             get { return _viewModel; }
+            set { _viewModel = value; }
         }
 
         /// <summary>

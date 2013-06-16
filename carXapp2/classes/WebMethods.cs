@@ -11,9 +11,11 @@ namespace carXapp2
         public abstract void GET_Method_CallBack(IAsyncResult res);
         public abstract void POST_Method_CallBack(IAsyncResult res);
         public abstract void PUT_Method_CallBack(IAsyncResult res);
+        public abstract void DELETE_Method_CallBack(IAsyncResult res);
         private HttpWebRequest POST_REQUEST;
         private HttpWebRequest PUT_REQUEST;
         private HttpWebRequest GET_REQUEST;
+        private HttpWebRequest DELETE_REQUEST;
 
         protected void POST(string URL, string post_message)
         {
@@ -45,6 +47,21 @@ namespace carXapp2
             }, PUT_REQUEST);
         }
 
+        protected void DELETE(string URL, string put_message_body)
+        {
+            DELETE_REQUEST = (HttpWebRequest)HttpWebRequest.Create(URL);
+            DELETE_REQUEST.Method = "DELETE";
+            DELETE_REQUEST.ContentType = "application/x-www-form-urlencoded";
+            DELETE_REQUEST.BeginGetRequestStream(result =>
+            {
+                Stream post_stream = DELETE_REQUEST.EndGetRequestStream(result);
+                byte[] ba = Encoding.UTF8.GetBytes(put_message_body);
+                post_stream.Write(ba, 0, ba.Length);
+                post_stream.Close();
+                DELETE_REQUEST.BeginGetResponse(new AsyncCallback(DELETE_Method_CallBack), DELETE_REQUEST);
+            }, DELETE_REQUEST);
+        }
+
         protected void GET(string URL)
         {
             GET_REQUEST = (HttpWebRequest)HttpWebRequest.CreateHttp(URL);
@@ -71,6 +88,8 @@ namespace carXapp2
                 GET_REQUEST.Abort();
             if (PUT_REQUEST != null)
                 PUT_REQUEST.Abort();
+            if (DELETE_REQUEST != null)
+                DELETE_REQUEST.Abort();
         }
     }
 }

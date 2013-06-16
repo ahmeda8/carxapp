@@ -21,7 +21,9 @@
 
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
-
+    <shell:SystemTray.ProgressIndicator>
+        <shell:ProgressIndicator IsIndeterminate="False" IsVisible="False" x:Name="progressIndicator"/>
+    </shell:SystemTray.ProgressIndicator>
 
 
     <!--LayoutRoot is the root grid where all page content is placed-->
