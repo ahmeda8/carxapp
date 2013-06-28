@@ -58,11 +58,10 @@
                 x:Name="listBox1"
                 SelectionChanged="listBox1_SelectionChanged"
                 ItemsSource="{Binding Cars}"
-                Margin="10,0,0,0"
                 Foreground="{StaticResource PhoneAccentBrush}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <Grid x:Name="listGrid" Background="{StaticResource ListBoxBandColor}" Margin="0,0,0,10" Width="470">
+                        <Grid x:Name="listGrid" Background="{StaticResource ListBoxBandColor}" Width="480">
                             <Grid.RowDefinitions>
                                 <RowDefinition />
                                 <RowDefinition />

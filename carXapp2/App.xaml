@@ -123,7 +123,7 @@
                                 </VisualStateGroup>
                             </VisualStateManager.VisualStateGroups>
                             <Border x:Name="ButtonBackground" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" CornerRadius="30" Margin="{StaticResource PhoneTouchTargetOverhang}">
-                                <Image x:Name="ContentContainer" Source="/carXapp2;component/icons/appbar.delete.rest.png" />
+                                <Image x:Name="ContentContainer" Source="/carXapp2;component/icons/btn.delete.rest.png" />
                             </Border>
                         </Grid>
                     </ControlTemplate>

@@ -42,7 +42,7 @@
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+        <Grid x:Name="ContentPanel" Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
@@ -54,23 +54,20 @@
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <TextBlock  Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" x:Name="tFbName" Text="Not logged in" VerticalAlignment="Center" TextWrapping="Wrap"/>
+            <TextBlock  Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" x:Name="tFbName" Text="Not logged in" VerticalAlignment="Center" TextWrapping="Wrap"  Margin="10 0 0 0"/>
             <Image      Grid.Column="1" Grid.Row="0" x:Name="picProfile"  HorizontalAlignment="Right" Width="80" Height="80" Margin="10 0 15 0"/>
             <Button     Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" x:Name="fbBtn" Content="Facebook Login" Style="{StaticResource FacebookLoginButton}" Click="fblogin_click"/>
-            <TextBlock  Grid.Column="0" Grid.Row="2" Text="Available backups" VerticalAlignment="Center" TextWrapping="Wrap"/>
+            <TextBlock  Grid.Column="0" Grid.Row="2" Text="Available backups" VerticalAlignment="Center" TextWrapping="Wrap"  Margin="10 0 0 0"/>
             <TextBlock  Grid.Column="1" Grid.Row="2" Text="0" x:Name="txtbackupCount" VerticalAlignment="Center" Margin="10 0 0 0" TextWrapping="Wrap"/>
-            <ListBox    Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2"
-                x:Name="BackupslistBox"
-                Margin="10,0,0,0"
-                Foreground="{StaticResource PhoneAccentBrush}">
+            <ListBox    Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" x:Name="BackupslistBox" Foreground="{StaticResource PhoneAccentBrush}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <Grid x:Name="listGrid" Background="{StaticResource ListBoxBandColor}" Margin="0,0,0,10">
+                        <Grid x:Name="listGrid" Background="{StaticResource ListBoxBandColor}" Width="480">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="auto"/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="300" />
+                                <ColumnDefinition Width="320" />
                                 <ColumnDefinition Width="80"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>

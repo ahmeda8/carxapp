@@ -54,7 +54,6 @@ namespace carXapp2.Pages
                     fbBtn.Content = "Logout";
                     picProfile.Source = new BitmapImage(new Uri(profilePicUrl));
                 }
-                BackupslistBox.ItemsSource = BackupsList;
                 txtbackupCount.Text = backupCount.ToString();
             });
             ToggleProgressBar(false);
@@ -71,14 +70,20 @@ namespace carXapp2.Pages
             {
                 profilePicUrl = GetUserProfilePicture(id, accessToken);
                 GraphApiSample(accessToken);
-                heroku.GetBackups(userid);
+                heroku.GetBackups(userid, LoadBackupsCallback);
             }
-            string backups;
-            IsolatedStorageSettings.ApplicationSettings.TryGetValue("backups",out backups);
+            //string backups;
+            //IsolatedStorageSettings.ApplicationSettings.TryGetValue("backups",out backups);
+            
+        }
+
+        private void LoadBackupsCallback(IAsyncResult res)
+        {
+            string backups = (string)res.AsyncState;
             if (backups != null)
             {
                 JsonArray jarr = (JsonArray)SimpleJson.DeserializeObject(backups);
-                BackupsList = (ObservableCollection<BackupsListItem>)e.Argument;
+                BackupsList = new ObservableCollection<BackupsListItem>();//(ObservableCollection<BackupsListItem>)e.Argument;
                 BackupsListItem item;
                 backupCount = 0;
                 foreach (JsonObject jobj in jarr)
@@ -90,9 +95,11 @@ namespace carXapp2.Pages
                     item.DownloadUrl = (string)jobj["download_url"];
                     BackupsList.Add(item);
                 }
+                Dispatcher.BeginInvoke(() => {
+                    BackupslistBox.ItemsSource = BackupsList;
+                    });
             }
         }
-
         void BackupWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             //throw new NotImplementedException();

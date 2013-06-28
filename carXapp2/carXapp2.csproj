@@ -53,6 +53,9 @@
     <Reference Include="AmCharts.Windows.QuickCharts.WP">
       <HintPath>Shared Library\AmCharts.Windows.QuickCharts.WP.dll</HintPath>
     </Reference>
+    <Reference Include="AWSSDK">
+      <HintPath>..\packages\AWSSDK.1.5.23.2\lib\AWSSDK.dll</HintPath>
+    </Reference>
     <Reference Include="Facebook">
       <HintPath>..\packages\Facebook.5.4.1.0\lib\sl3-wp\Facebook.dll</HintPath>
     </Reference>
@@ -84,6 +87,7 @@
     <Compile Include="classes\Reminders.cs" />
     <Compile Include="classes\Settings.cs" />
     <Compile Include="classes\WebMethods.cs" />
+    <Compile Include="Models\AsyncCallbackEvent.cs" />
     <Compile Include="Models\CarsModel.cs" />
     <Compile Include="Models\Filepicker_io.cs" />
     <Compile Include="Models\FuelsModel.cs" />
@@ -206,9 +210,9 @@
     <Content Include="Background.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Resource Include="icons\appbar.delete.rest.png">
+    <Content Include="icons\appbar.delete.rest.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
+    </Content>
     <Resource Include="icons\appbar.edit.rest.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
@@ -227,6 +231,9 @@
     <Resource Include="icons\fuel.png" />
     <Resource Include="icons\screwdriver.png" />
     <Resource Include="icons\download.png" />
+    <Resource Include="icons\btn.delete.rest.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Content Include="SplashScreenImage.jpg" />
     <Content Include="Toolkit.Content\ApplicationBar.Cancel.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Check.png" />

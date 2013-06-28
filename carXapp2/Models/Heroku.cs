@@ -13,7 +13,7 @@ namespace carXapp2
     class Heroku : WebMethod
     {
         private const string HEROKU_BASEURL = "http://driverdashserver.herokuapp.com";
-
+        private AsyncCallback GetBackupCallBack;
         public override void GET_Method_CallBack(IAsyncResult res)
         {
             HttpWebRequest wr = (HttpWebRequest)res.AsyncState;
@@ -22,6 +22,8 @@ namespace carXapp2
             string response = strm.ReadToEnd();
             IsolatedStorageSettings.ApplicationSettings["backups"] = response;
             IsolatedStorageSettings.ApplicationSettings.Save();
+            
+            GetBackupCallBack.Invoke(new AsyncCallbackEvent(response));
             //JsonObject jobj = (JsonObject)SimpleJson.DeserializeObject(response);
         }
 
@@ -92,9 +94,10 @@ namespace carXapp2
             base.POST(req_url, msg);
         }
 
-        public void GetBackups(string userid)
+        public void GetBackups(string userid,AsyncCallback Callback)
         {
             string req_url = HEROKU_BASEURL + "/user/backups/" + userid;
+            GetBackupCallBack = Callback;
             GET(req_url);
         }
 

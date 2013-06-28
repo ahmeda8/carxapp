@@ -116,8 +116,8 @@
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
                             <Image Source="/carXapp2;component/icons/screwdriver.png" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="1" Grid.RowSpan="2" Height="100" HorizontalAlignment="Center" />
-                            <TextBlock Grid.Column="1" Grid.Row="0" x:Name="tMaintParts" Text="25.45" FontFamily="Segoe WP Light" Foreground="{StaticResource SpecialTextColor}"/>
-                            <TextBlock Grid.Column="1" Grid.Row="1" x:Name="tMaintLabor"  Text="454.55" FontFamily="Segoe WP Light" Foreground="{StaticResource SpecialTextColor}"/>
+                            <TextBlock Grid.Column="1" Grid.Row="0" x:Name="tMaintParts" Text="25.45" FontFamily="Segoe WP Light" Foreground="{StaticResource SpecialTextColor}" VerticalAlignment="Bottom"/>
+                            <TextBlock Grid.Column="1" Grid.Row="1" x:Name="tMaintLabor"  Text="454.55" FontFamily="Segoe WP Light" Foreground="{StaticResource SpecialTextColor}" VerticalAlignment="Top"/>
                             <TextBlock Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" FontSize="80" x:Name="tMaintCS" FontFamily="Segoe WP Light" Foreground="{StaticResource SpecialTextColor}"/>
                             <TextBlock Text="maint" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="1" FontSize="40" Margin="0 0 10 0" VerticalAlignment="Bottom" HorizontalAlignment="Right" FontFamily="Segoe WP Light" Foreground="{StaticResource SpecialTextColor2}" />
                         </Grid>
@@ -125,7 +125,7 @@
                 </ScrollViewer>
             </controls:PivotItem>
 
-            <!--Pivot item two-->
+            <!--Pivot item fuel-->
             <controls:PivotItem >
                 <controls:PivotItem.Header>
                     <Border BorderBrush="{StaticResource BorderColor}" BorderThickness="0 0 0 2">
@@ -157,35 +157,29 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
-                        <ListBox Grid.Row="0" Grid.Column="0"
-                            x:Name="listBoxFuel"
-                            Margin="10,5,0,0" >
+                        <ListBox Grid.Row="0" Grid.Column="0" x:Name="listBoxFuel" >
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
-                                    <Grid Background="{StaticResource ListBoxBandColor}" Margin="0,0,0,10" Width="470" ShowGridLines="False" >
+                                    <Grid Background="{StaticResource ListBoxBandColor}" Width="480" ShowGridLines="False" >
                                         <Grid.RowDefinitions>
-                                            <RowDefinition />
-                                            <RowDefinition />
+                                            <RowDefinition Height="auto" />
+                                            <RowDefinition Height="auto" />
                                         </Grid.RowDefinitions>
                                         <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="250" />
+                                            <ColumnDefinition Width="70" />
+                                            <ColumnDefinition Width="70" />
                                             <ColumnDefinition Width="72" />
-                                            <ColumnDefinition Width="72" />
-                                            <ColumnDefinition Width="32" />
-                                            <ColumnDefinition Width="72" />
-                                            <ColumnDefinition Width="72" />
-                                            <ColumnDefinition Width="72" />
-                                            <ColumnDefinition Width="*" />
                                         </Grid.ColumnDefinitions>
-                                        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" FontSize="30" Foreground="{StaticResource ListBoxTextColor}" HorizontalAlignment="Left" x:Name="tDate"   Text="{Binding Date}" />
-                                        <TextBlock Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="4" FontSize="30" Foreground="{StaticResource ListBoxTextColor}" HorizontalAlignment="Right" x:Name="tMPG"   Text="{Binding MPG}" Margin="0 0 10 0" />
-                                        <!--<TextBlock Grid.Row="0" Grid.Column="4" Grid.ColumnSpan="2" FontSize="30" Foreground="{StaticResource ListBoxTextColor}" HorizontalAlignment="Right" Text="{Binding MpgUnit}"/>-->
-                                        <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1" FontSize="20" Foreground="{StaticResource ListBoxTextColor}" HorizontalAlignment="Left" Text="Driven:"    />
-                                        <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="1" FontSize="20" Foreground="{StaticResource ListBoxTextColor}" HorizontalAlignment="Left" x:Name="tMiles"  Text="{Binding MilesDriven}"  />
-                                        <TextBlock Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="1" FontSize="20" Foreground="{StaticResource ListBoxTextColor}" HorizontalAlignment="Right" Text="{Binding CurrencyUnit}" />
-                                        <TextBlock Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="1" FontSize="20" Foreground="{StaticResource ListBoxTextColor}" HorizontalAlignment="Left" x:Name="tCost"  Padding="5,0,0,0" Text="{Binding Cost}"   />
-                                        <TextBlock Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="1" FontSize="20" Foreground="{StaticResource ListBoxTextColor}" HorizontalAlignment="Right" Text="{Binding VolumeUnit}"   />
-                                        <TextBlock Grid.Row="1" Grid.Column="5" Grid.ColumnSpan="1" FontSize="20" Foreground="{StaticResource ListBoxTextColor}" HorizontalAlignment="Left" x:Name="tfill"  Padding="5,0,0,0" Text="{Binding Fill}"   />
-                                        <Button    Grid.Row="0" Grid.Column="6" Grid.ColumnSpan="1" Grid.RowSpan="2" HorizontalAlignment="Right" Margin="0 0 15 0" Width="72" Height="72" Style="{StaticResource RoundEditButton}" Tag="{Binding FuelID}" Click="EditFuelBtn_Click"/>
+                                        <TextBlock Grid.Row="0" Grid.Column="0" FontSize="30" Foreground="{StaticResource ListBoxTextColor}" x:Name="tDate" Text="{Binding Date}" Padding="5,0,0,0" />
+                                        <TextBlock Grid.Row="1" Grid.Column="0" FontSize="20" Foreground="{StaticResource ListBoxTextColor}" x:Name="tMPG" Text="{Binding MPG}" Padding="5,0,0,0" />
+                                        <TextBlock Grid.Row="0" Grid.Column="1" FontSize="20" Foreground="{StaticResource ListBoxTextColor}" Text="Driven" VerticalAlignment="Bottom" />
+                                        <TextBlock Grid.Row="0" Grid.Column="2" FontSize="20" Foreground="{StaticResource ListBoxTextColor}" x:Name="tMiles" Text="{Binding MilesDriven}" VerticalAlignment="Bottom" />
+                                        <!--<TextBlock Grid.Row="1" Grid.Column="1" FontSize="20" Foreground="{StaticResource ListBoxTextColor}" Text="{Binding CurrencyUnit}" />-->
+                                        <!--<TextBlock Grid.Row="1" Grid.Column="2" FontSize="20" Foreground="{StaticResource ListBoxTextColor}" x:Name="tCost"  Padding="5,0,0,0" Text="{Binding Cost}"   />-->
+                                        <TextBlock Grid.Row="1" Grid.Column="1" FontSize="20" Foreground="{StaticResource ListBoxTextColor}" Text="{Binding VolumeUnit}" />
+                                        <TextBlock Grid.Row="1" Grid.Column="2" FontSize="20" Foreground="{StaticResource ListBoxTextColor}" x:Name="tfill" Text="{Binding Fill}" />
+                                        <Button    Grid.Row="0" Grid.Column="3" Grid.RowSpan="2" Width="72" Height="72" Style="{StaticResource RoundEditButton}" Tag="{Binding FuelID}" Click="EditFuelBtn_Click"/>
                                     </Grid>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
@@ -193,7 +187,7 @@
                     </Grid>
                 </Grid>
             </controls:PivotItem>
-            <!--Pivot item two-->
+            <!--Pivot item maint-->
             <controls:PivotItem >
                 <controls:PivotItem.Header>
                     <Border BorderBrush="{StaticResource BorderColor}" BorderThickness="0 0 0 2">
@@ -225,12 +219,10 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <ListBox Grid.Row="0" Grid.Column="0"
-                            x:Name="listBoxMaint"
-                            Margin="10,5,0,0" >
+                        <ListBox Grid.Row="0" Grid.Column="0" x:Name="listBoxMaint" >
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
-                                    <Grid Background="{StaticResource ListBoxBandColor}" Margin="0,0,0,10" Width="470" ShowGridLines="False" >
+                                    <Grid Background="{StaticResource ListBoxBandColor}" Width="480" ShowGridLines="False" >
                                         <Grid.RowDefinitions>
                                             <RowDefinition />
                                             <RowDefinition />
