@@ -61,7 +61,7 @@
                 Foreground="{StaticResource PhoneAccentBrush}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <Grid x:Name="listGrid" Background="{StaticResource ListBoxBandColor}" Width="480">
+                        <Grid x:Name="listGrid" Background="{StaticResource ListBoxBandColor}" Width="480" Margin="0,0,0,10">
                             <Grid.RowDefinitions>
                                 <RowDefinition />
                                 <RowDefinition />

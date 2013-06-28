@@ -159,7 +159,7 @@
                         <ListBox Grid.Row="0" Grid.Column="0" x:Name="listBoxFuel" >
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
-                                    <Grid Background="{StaticResource ListBoxBandColor}" Width="480" ShowGridLines="False" >
+                                    <Grid Background="{StaticResource ListBoxBandColor}" Width="480" ShowGridLines="False" Margin="0,0,0,10">
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="auto" />
                                             <RowDefinition Height="auto" />
@@ -221,22 +221,21 @@
                         <ListBox Grid.Row="0" Grid.Column="0" x:Name="listBoxMaint" >
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
-                                    <Grid Background="{StaticResource ListBoxBandColor}" Width="480" ShowGridLines="False" >
+                                    <Grid Background="{StaticResource ListBoxBandColor}" Width="480" ShowGridLines="False" Margin="0,0,0,10">
                                         <Grid.RowDefinitions>
-                                            <RowDefinition />
-                                            <RowDefinition />
+                                            <RowDefinition Height="auto" />
+                                            <RowDefinition Height="auto"/>
                                         </Grid.RowDefinitions>
                                         <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="220" />
                                             <ColumnDefinition Width="150" />
-                                            <ColumnDefinition Width="*" />
-                                            <ColumnDefinition Width="80" />
-                                            <ColumnDefinition Width="80" />
+                                            <ColumnDefinition Width="auto" />
                                         </Grid.ColumnDefinitions>
-                                        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="1" FontSize="30" Foreground="{StaticResource ListBoxTextColor}" HorizontalAlignment="Left" Text="{Binding Date}" />
-                                        <TextBlock Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" FontSize="30" Foreground="{StaticResource ListBoxTextColor}" HorizontalAlignment="Right" Text="{Binding Partname}" />
-                                        <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="1" FontSize="20" Foreground="{StaticResource ListBoxTextColor}" HorizontalAlignment="Right" Text="{Binding CurrencyUnit}"    />
-                                        <TextBlock Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="1" FontSize="20" Foreground="{StaticResource ListBoxTextColor}" HorizontalAlignment="Left" Text="{Binding Cost}"  />
-                                        <Button    Grid.Row="0" Grid.Column="6" Grid.ColumnSpan="1" Grid.RowSpan="2" HorizontalAlignment="Right" Margin="0 0 15 0" Width="72" Height="72" Style="{StaticResource RoundEditButton}" Tag="{Binding MaintID}" Click="EditMaintBtn_Click"/>
+                                        <TextBlock Grid.Row="0" Grid.Column="0" FontSize="30" Foreground="{StaticResource ListBoxTextColor}" Text="{Binding Date}" Padding="5,0,0,0"/>
+                                        <TextBlock Grid.Row="0" Grid.Column="1" FontSize="30" Foreground="{StaticResource ListBoxTextColor}" Text="{Binding Partname}" VerticalAlignment="Bottom" />
+                                        <TextBlock Grid.Row="1" Grid.Column="0" FontSize="20" Foreground="{StaticResource ListBoxTextColor}" Text="{Binding CurrencyUnit}" HorizontalAlignment="Right" />
+                                        <TextBlock Grid.Row="1" Grid.Column="1" FontSize="20" Foreground="{StaticResource ListBoxTextColor}" Text="{Binding Cost}" Padding="5,0,0,0" />
+                                        <Button    Grid.Row="0" Grid.Column="3" Grid.RowSpan="2" HorizontalAlignment="Right" Margin="0 0 15 0" Width="72" Height="72" Style="{StaticResource RoundEditButton}" Tag="{Binding MaintID}" Click="EditMaintBtn_Click"/>
                                     </Grid>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
