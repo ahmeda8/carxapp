@@ -74,9 +74,9 @@ namespace carXapp2
 
             _viewModel = new Data(DBConnectionString);
             if (!IsolatedStorageSettings.ApplicationSettings.Contains("distance"))
-                IsolatedStorageSettings.ApplicationSettings.Add("distance", "Miles");
+                IsolatedStorageSettings.ApplicationSettings.Add("distance", "miles");
             if (!IsolatedStorageSettings.ApplicationSettings.Contains("volume"))
-                IsolatedStorageSettings.ApplicationSettings.Add("volume", "Gals");
+                IsolatedStorageSettings.ApplicationSettings.Add("volume", "gal");
             if (!IsolatedStorageSettings.ApplicationSettings.Contains("average"))
                 IsolatedStorageSettings.ApplicationSettings.Add("average", "MPG");
             if (!IsolatedStorageSettings.ApplicationSettings.Contains("currency"))

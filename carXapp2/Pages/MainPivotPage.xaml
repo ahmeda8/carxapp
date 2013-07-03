@@ -17,7 +17,7 @@
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent" >
         <!--Pivot Control-->
-        <controls:Pivot  Background="{StaticResource UniversalImgBackground}">
+        <controls:Pivot  Background="{StaticResource UniversalBackground}">
             <controls:Pivot.Title>
                 <TextBlock Text="{StaticResource AppName}" Foreground="{StaticResource AppNameColor}"/>
             </controls:Pivot.Title>
@@ -172,7 +172,7 @@
                                         </Grid.ColumnDefinitions>
                                         <TextBlock Grid.Row="0" Grid.Column="0" FontSize="30" Foreground="{StaticResource ListBoxTextColor}" x:Name="tDate" Text="{Binding Date}" Padding="5,0,0,0" />
                                         <TextBlock Grid.Row="1" Grid.Column="0" FontSize="20" Foreground="{StaticResource ListBoxTextColor}" x:Name="tMPG" Text="{Binding MPG}" Padding="5,0,0,0" />
-                                        <TextBlock Grid.Row="0" Grid.Column="1" FontSize="20" Foreground="{StaticResource ListBoxTextColor}" Text="Driven" VerticalAlignment="Bottom" />
+                                        <TextBlock Grid.Row="0" Grid.Column="1" FontSize="20" Foreground="{StaticResource ListBoxTextColor}" Text="trip" VerticalAlignment="Bottom" />
                                         <TextBlock Grid.Row="0" Grid.Column="2" FontSize="20" Foreground="{StaticResource ListBoxTextColor}" x:Name="tMiles" Text="{Binding MilesDriven}" VerticalAlignment="Bottom" />
                                         <!--<TextBlock Grid.Row="1" Grid.Column="1" FontSize="20" Foreground="{StaticResource ListBoxTextColor}" Text="{Binding CurrencyUnit}" />-->
                                         <!--<TextBlock Grid.Row="1" Grid.Column="2" FontSize="20" Foreground="{StaticResource ListBoxTextColor}" x:Name="tCost"  Padding="5,0,0,0" Text="{Binding Cost}"   />-->

@@ -45,11 +45,11 @@ namespace carXapp2.Pages
             IsolatedStorageSettings.ApplicationSettings.TryGetValue("currency", out currency);
             IsolatedStorageSettings.ApplicationSettings.TryGetValue("avgmethod", out avgmethod);
 
-            stMpgUnits.Text = distance + "/" + volume;
+            stMpgUnits.Text = distance.ToLower() + "/" + volume.ToLower();
 
             FuelsModel fm = new FuelsModel(this.carID);
             listBoxFuel.ItemsSource = fm.GetRecords();
-            fuelOverallMpg.Text = fm.OverallFuelConsumption().ToString("F2") + " "+distance + "/" + volume;
+            fuelOverallMpg.Text = fm.OverallFuelConsumption().ToString("F2") + " "+distance.ToLower() + "/" + volume.ToLower();
             /*
             tFuelCS.Text = fm.totalCost.ToString("F2");
             tFCPD.Text = (fm.totalCost / fm.GetTotalTimeSpan().Days).ToString();
@@ -60,10 +60,10 @@ namespace carXapp2.Pages
             */
             //tFuelCS.Text = fm.totalCost.ToString("F2");
             stMpg.Text = fm.OverallFuelConsumption().ToString("F2");
-            stCostpd.Text = currency+(fm.totalCost / fm.GetTotalTimeSpan().Days).ToString()+" /day";
-            stCostpm.Text = currency+(fm.totalCost / fm.GetTotalTimeSpan().Days * 30).ToString()+" /month";
-            stMilepd.Text = (fm.totalMiles / fm.GetTotalTimeSpan().Days).ToString()+ " "+distance+"/day";
-            stMilepm.Text = (fm.totalMiles / fm.GetTotalTimeSpan().Days * 30).ToString() + " " + distance + "/month";
+            stCostpd.Text = currency + (fm.totalCost / fm.GetTotalTimeSpan().Days).ToString("F2") + " /day";
+            stCostpm.Text = currency + (fm.totalCost / fm.GetTotalTimeSpan().Days * 30).ToString("F2") + " /month";
+            stMilepd.Text = (fm.totalMiles / fm.GetTotalTimeSpan().Days).ToString("F2")+ " "+distance+"/day";
+            stMilepm.Text = (fm.totalMiles / fm.GetTotalTimeSpan().Days * 30).ToString("F2") + " " + distance + "/month";
             tFuelC.Text = currency+(fm.totalCost).ToString("F2");
 
             MaintsModel mm = new MaintsModel(this.carID);

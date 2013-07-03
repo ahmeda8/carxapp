@@ -12,18 +12,18 @@
     <!--Application Resources-->
     <Application.Resources>
         <clr:String x:Key="AppName">driverDASH</clr:String>
-        <clr:Double x:Key="MenuOpacity">0.70</clr:Double>
-        <SolidColorBrush x:Key="UniversalBackground">#FF373838</SolidColorBrush>
+        <clr:Double x:Key="MenuOpacity">0.80</clr:Double>
+        <SolidColorBrush x:Key="UniversalBackground">Transparent</SolidColorBrush>
         <SolidColorBrush x:Key="PageNameColor">#d4837d</SolidColorBrush>
         <SolidColorBrush x:Key="BorderColor">#0090CC</SolidColorBrush>
         <SolidColorBrush x:Key="AppNameColor">orange</SolidColorBrush>
-        <SolidColorBrush x:Key="SpecialTextColor">#ded4b9</SolidColorBrush>
+        <SolidColorBrush x:Key="SpecialTextColor">#5F7278</SolidColorBrush>
         <SolidColorBrush x:Key="SpecialTextColor2">#d4837d</SolidColorBrush>
         <SolidColorBrush x:Key="ListBoxBandColor">#AEAEAE</SolidColorBrush>
         <SolidColorBrush x:Key="ListBoxTextColor">#1A1A1A</SolidColorBrush>
         <SolidColorBrush x:Key="FacebookBlueColor">#3b579d</SolidColorBrush>
         
-        <ImageBrush x:Key="UniversalImgBackground" ImageSource="icons/t-black-grain.jpg"/>
+        <!--<ImageBrush x:Key="UniversalBackground" ImageSource="icons/t-black-grain.jpg"/>-->
         
         <Style x:Key="RoundEditButton" TargetType="Button">
         	<Setter Property="Background" Value="Transparent"/>
