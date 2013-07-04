@@ -32,7 +32,6 @@ namespace carXapp2.Pages
             InitializeComponent();
             fioInstance = Filepicker_io.GetInstance();
             heroku = new Heroku();
-            BackupsList = new ObservableCollection<BackupsListItem>();
             BackupWorker = new BackgroundWorker();
             BackupWorker.DoWork += new DoWorkEventHandler(BackupWorker_DoWork);
             //BackupWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(BackupWorker_RunWorkerCompleted);
@@ -106,16 +105,23 @@ namespace carXapp2.Pages
             ToggleProgressBar(false);
         }
 
+        void UploadCallback(IAsyncResult res)
+        {
+            ToggleProgressBar(false);
+            if(!DataLoader.IsBusy)
+                DataLoader.RunWorkerAsync();
+        }
         void BackupWorker_DoWork(object sender, DoWorkEventArgs e)
         {
             ToggleProgressBar(true);
-            fioInstance.Upload();
+            fioInstance.Upload(UploadCallback);
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            DataLoader.RunWorkerAsync(new ObservableCollection<BackupsListItem>());
             base.OnNavigatedTo(e);
+            if (!DataLoader.IsBusy)
+                DataLoader.RunWorkerAsync();       
         }
 
         private string GetUserProfilePicture(string _userId,string _accessToken)
@@ -166,7 +172,7 @@ namespace carXapp2.Pages
                 IsolatedStorageSettings.ApplicationSettings.Remove("firstname");
                 IsolatedStorageSettings.ApplicationSettings.Remove("lastname");
                 IsolatedStorageSettings.ApplicationSettings.Remove("email");
-                IsolatedStorageSettings.ApplicationSettings.Remove("backups");
+                //IsolatedStorageSettings.ApplicationSettings.Remove("backups");
                 BackupsList.Clear();
                 IsolatedStorageSettings.ApplicationSettings.Save();
                 fbBtn.Content = "Facebook Login";
@@ -187,7 +193,9 @@ namespace carXapp2.Pages
             string userid;
             IsolatedStorageSettings.ApplicationSettings.TryGetValue("userid", out userid);
             if (userid != null)
+            {
                 BackupWorker.RunWorkerAsync();
+            }
             else
                 MessageBox.Show("Please login first");
         }
@@ -195,7 +203,8 @@ namespace carXapp2.Pages
         private void btnRefresh_click(object sender, EventArgs e)
         {
             BackupsList.Clear();
-            DataLoader.RunWorkerAsync(new ObservableCollection<BackupsListItem>());
+            if (!DataLoader.IsBusy)
+                DataLoader.RunWorkerAsync();
         }
 
         private void backupRestoreBtn_Click(object sender, RoutedEventArgs e)

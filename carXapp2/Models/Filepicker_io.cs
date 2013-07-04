@@ -25,6 +25,7 @@ namespace carXapp2
         private bool Uploading = false;
         private bool Downloading = false;
         private Heroku _heroku;
+        private AsyncCallback _uploadCallback;
 
         public static Filepicker_io GetInstance()
         {
@@ -75,6 +76,7 @@ namespace carXapp2
                             if(userid != null)
                                 _heroku.AddBackup(jobj["key"].ToString(),jobj["url"].ToString(), userid);
                             iso.DeleteFile(SAVE_RESPONSE_LOCATION);
+                            _uploadCallback.Invoke(new AsyncCallbackEvent("success"));
                         }
                     }
                 }
@@ -83,7 +85,7 @@ namespace carXapp2
             Debug.WriteLine(e.Request.TransferStatus);
         }
 
-        public void Upload()
+        public void Upload(AsyncCallback UploadCallback)
         {
             string upload_uri = FILEPICKER_BASEURL + "/api/store/S3?key=" + FILEPICKER_APIKEY;
             BTR = new BackgroundTransferRequest(new Uri(upload_uri));
@@ -107,6 +109,7 @@ namespace carXapp2
                 if (BackgroundTransferService.Requests.Contains(BTR))
                     BackgroundTransferService.Remove(BTR);
                 BackgroundTransferService.Add(BTR);
+                _uploadCallback = UploadCallback;
             }
         }
 
