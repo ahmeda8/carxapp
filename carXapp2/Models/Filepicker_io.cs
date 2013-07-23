@@ -26,6 +26,9 @@ namespace carXapp2
         private bool Downloading = false;
         private Heroku _heroku;
         private AsyncCallback _uploadCallback;
+        private AsyncCallback _downloadProgressChangeCallback;
+        private AsyncCallback _uplaodProgressChangeCallback;
+
 
         public static Filepicker_io GetInstance()
         {
@@ -51,6 +54,8 @@ namespace carXapp2
         {
             Debug.WriteLine("Sent"+e.Request.BytesSent);
             Debug.WriteLine("Received" + e.Request.BytesReceived);
+            double tranferredData = e.Request.BytesSent / e.Request.TotalBytesToSend;
+            _uplaodProgressChangeCallback(new AsyncCallbackEvent(tranferredData));
         }
 
         void BTR_TransferStatusChanged(object sender, BackgroundTransferEventArgs e)
@@ -85,7 +90,7 @@ namespace carXapp2
             Debug.WriteLine(e.Request.TransferStatus);
         }
 
-        public void Upload(AsyncCallback UploadCallback)
+        public void Upload(AsyncCallback UploadCallback,AsyncCallback uploadProgressCallback)
         {
             string upload_uri = FILEPICKER_BASEURL + "/api/store/S3?key=" + FILEPICKER_APIKEY;
             BTR = new BackgroundTransferRequest(new Uri(upload_uri));
@@ -106,10 +111,14 @@ namespace carXapp2
             if (!Uploading)
             {
                 Uploading = true;
-                if (BackgroundTransferService.Requests.Contains(BTR))
-                    BackgroundTransferService.Remove(BTR);
+                foreach (BackgroundTransferRequest req in BackgroundTransferService.Requests)
+                {
+                    if (req.UploadLocation == BTR.UploadLocation)
+                        BackgroundTransferService.Remove(req);
+                }
                 BackgroundTransferService.Add(BTR);
                 _uploadCallback = UploadCallback;
+                _uplaodProgressChangeCallback = uploadProgressCallback;
             }
         }
 
@@ -127,8 +136,9 @@ namespace carXapp2
             }, wr);
         }
 
-        public void Download(string url)
+        public void Download(string url,AsyncCallback DownloadCallback)
         {
+            url = url.Replace("https", "http");
             BTR_Download = new BackgroundTransferRequest(new Uri(url));
             using (IsolatedStorageFile iso = IsolatedStorageFile.GetUserStoreForApplication())
             {
@@ -139,13 +149,23 @@ namespace carXapp2
             }
             BTR_Download.DownloadLocation = new Uri(DOWNLOAD_LOCATION,UriKind.Relative);
             BTR_Download.TransferStatusChanged += BTR_Download_TransferStatusChanged;
+            BTR_Download.TransferProgressChanged += BTR_Download_TransferProgressChanged;
             if (!Downloading)
             {
-                if (BackgroundTransferService.Requests.Contains(BTR_Download))
-                    BackgroundTransferService.Remove(BTR_Download);
+                foreach (BackgroundTransferRequest req in BackgroundTransferService.Requests)
+                {
+                    if(req.DownloadLocation == BTR_Download.DownloadLocation)
+                        BackgroundTransferService.Remove(req);
+                }
                 BackgroundTransferService.Add(BTR_Download);
                 Downloading = true;
+                _downloadProgressChangeCallback = DownloadCallback;
             }
+        }
+
+        void BTR_Download_TransferProgressChanged(object sender, BackgroundTransferEventArgs e)
+        {
+            _downloadProgressChangeCallback(new AsyncCallbackEvent(e.Request.BytesReceived/e.Request.TotalBytesToReceive));
         }
 
         void BTR_Download_TransferStatusChanged(object sender, BackgroundTransferEventArgs e)
@@ -163,13 +183,13 @@ namespace carXapp2
                         }
                     }
                     string DBConnectionString = "Data Source=isostore:/cars.sdf";
+                    App.ViewModel.Database.Dispose();
                     /*
                     App.ViewModel.Database.Refresh(System.Data.Linq.RefreshMode.OverwriteCurrentValues,App.ViewModel.Database.carInfo);
                     App.ViewModel.Database.Refresh(System.Data.Linq.RefreshMode.OverwriteCurrentValues, App.ViewModel.Database.fuelInfo);
                     App.ViewModel.Database.Refresh(System.Data.Linq.RefreshMode.OverwriteCurrentValues, App.ViewModel.Database.maintInfo);
                     App.ViewModel.Database.Refresh(System.Data.Linq.RefreshMode.OverwriteCurrentValues, App.ViewModel.Database.settingsInfo);
                      */
-                    App.ViewModel = null;
                     App.ViewModel = new Data(DBConnectionString);
                 }
                 BackgroundTransferService.Remove(e.Request);

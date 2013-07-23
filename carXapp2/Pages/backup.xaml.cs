@@ -26,6 +26,7 @@ namespace carXapp2.Pages
         private Heroku heroku;
         private BackgroundWorker BackupWorker;
         private BackgroundWorker DataLoader;
+        private ProgressIndicator pgIndicator;
 
         public backup()
         {
@@ -39,6 +40,9 @@ namespace carXapp2.Pages
             DataLoader = new BackgroundWorker();
             DataLoader.DoWork += new DoWorkEventHandler(DataLoader_DoWork);
             DataLoader.RunWorkerCompleted += new RunWorkerCompletedEventHandler(DataLoader_RunWorkerCompleted);
+            pgIndicator = new ProgressIndicator();
+            SystemTray.SetProgressIndicator(this, pgIndicator);
+            
         }
 
         void DataLoader_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -53,7 +57,7 @@ namespace carXapp2.Pages
                     fbBtn.Content = "Logout";
                     picProfile.Source = new BitmapImage(new Uri(profilePicUrl));
                 }
-                txtbackupCount.Text = backupCount.ToString();
+                
             });
             ToggleProgressBar(false);
         }
@@ -96,6 +100,7 @@ namespace carXapp2.Pages
                 }
                 Dispatcher.BeginInvoke(() => {
                     BackupslistBox.ItemsSource = BackupsList;
+                    txtbackupCount.Text = backupCount.ToString();
                     });
             }
         }
@@ -111,10 +116,17 @@ namespace carXapp2.Pages
             if(!DataLoader.IsBusy)
                 DataLoader.RunWorkerAsync();
         }
+
+        void UploadProgressChangeCallback(IAsyncResult res)
+        {
+            double val = (double)res.AsyncState;
+            ToggleProgressBar(true, val, "Creating Backup...");
+        }
+
         void BackupWorker_DoWork(object sender, DoWorkEventArgs e)
         {
-            ToggleProgressBar(true);
-            fioInstance.Upload(UploadCallback);
+            //ToggleProgressBar(true);
+            fioInstance.Upload(UploadCallback,UploadProgressChangeCallback);
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -207,6 +219,14 @@ namespace carXapp2.Pages
                 DataLoader.RunWorkerAsync();
         }
 
+        void DownloadProgressCallback(IAsyncResult res)
+        {
+            double val = double.Parse(res.AsyncState.ToString());
+            if (val < 0.9d)
+                ToggleProgressBar(true, val, "Restoring..");
+            else
+                ToggleProgressBar(false);
+        }
         private void backupRestoreBtn_Click(object sender, RoutedEventArgs e)
         {
             Button btn = sender as Button;
@@ -215,7 +235,8 @@ namespace carXapp2.Pages
                         where c.ID == ID
                         select c;
             var data = query.First();
-            fioInstance.Download(data.DownloadUrl);
+            fioInstance.Download(data.DownloadUrl,DownloadProgressCallback);
+            //fioInstance.Download("http://www.filepicker.io/api/file/D8B4MwmlSquottkDmM7b", DownloadProgressCallback);
                         
         }
 
@@ -234,10 +255,21 @@ namespace carXapp2.Pages
         private void ToggleProgressBar(bool val)
         {
             Dispatcher.BeginInvoke(() => {
-                progressIndicator.IsIndeterminate = val;
-                progressIndicator.IsVisible = val;
+                pgIndicator.IsIndeterminate = val;
+                pgIndicator.IsVisible = val;
             });
             
+        }
+
+        private void ToggleProgressBar(bool visible,double val,string text)
+        {
+            Dispatcher.BeginInvoke(() =>
+            {
+                pgIndicator.IsVisible = visible;
+                pgIndicator.Value = val;
+                pgIndicator.Text = text;
+                pgIndicator.IsIndeterminate = false;
+            });
         }
     }
 }

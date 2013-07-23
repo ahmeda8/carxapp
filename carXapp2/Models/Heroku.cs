@@ -103,21 +103,28 @@ namespace carXapp2
 
         public void DeleteBackup(int id, string url)
         {
-            JsonObject jobj = new JsonObject();
+            /*JsonObject jobj = new JsonObject();
             jobj.Add("id",id);
             jobj.Add("url",url+"?key="+Filepicker_io.FILEPICKER_APIKEY);
-            string msg = "info=" + SimpleJson.SerializeObject(jobj);
-            string req_url = HEROKU_BASEURL + "/backup";
-            DELETE(req_url, msg);
+            string msg = "info=" + SimpleJson.SerializeObject(jobj);*/
+            string req_url = HEROKU_BASEURL + "/backup/"+id;
+            DELETE(req_url,"");
         }
 
         public override void DELETE_Method_CallBack(IAsyncResult res)
         {
-            HttpWebRequest wr = (HttpWebRequest)res.AsyncState;
-            HttpWebResponse wrsp = (HttpWebResponse)wr.EndGetResponse(res);
-            StreamReader strm = new StreamReader(wrsp.GetResponseStream());
-            string response = strm.ReadToEnd();
-            JsonObject jobj = (JsonObject)SimpleJson.DeserializeObject(response, typeof(JsonObject));
+            try
+            {
+                HttpWebRequest wr = (HttpWebRequest)res.AsyncState;
+                HttpWebResponse wrsp = (HttpWebResponse)wr.EndGetResponse(res);
+                StreamReader strm = new StreamReader(wrsp.GetResponseStream());
+                string response = strm.ReadToEnd();
+                JsonObject jobj = (JsonObject)SimpleJson.DeserializeObject(response, typeof(JsonObject));
+            }
+            catch (Exception e)
+            {
+                System.Diagnostics.Debug.WriteLine(e.Message);
+            }
         }
     }
 }

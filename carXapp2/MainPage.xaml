@@ -19,7 +19,7 @@
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True" Opacity="{StaticResource MenuOpacity}" Mode="Minimized">
         	<shell:ApplicationBar.MenuItems>
-                <shell:ApplicationBarMenuItem Text="+ new vehicle" Click="addClick"/>
+                <shell:ApplicationBarMenuItem Text="+ vehicle" Click="addClick"/>
                 <shell:ApplicationBarMenuItem Text="backup / restore" Click="BackupClick"/>
         		<shell:ApplicationBarMenuItem Text="settings" Click="menuSettings_click"/>
         		<shell:ApplicationBarMenuItem Text="about" Click="about_click"/>
