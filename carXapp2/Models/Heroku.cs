@@ -20,8 +20,6 @@ namespace carXapp2
             HttpWebResponse wrsp = (HttpWebResponse)wr.EndGetResponse(res);
             StreamReader strm = new StreamReader(wrsp.GetResponseStream());
             string response = strm.ReadToEnd();
-            IsolatedStorageSettings.ApplicationSettings["backups"] = response;
-            IsolatedStorageSettings.ApplicationSettings.Save();
             
             GetBackupCallBack.Invoke(new AsyncCallbackEvent(response));
             //JsonObject jobj = (JsonObject)SimpleJson.DeserializeObject(response);

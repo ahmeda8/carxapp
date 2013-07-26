@@ -165,7 +165,8 @@ namespace carXapp2
 
         void BTR_Download_TransferProgressChanged(object sender, BackgroundTransferEventArgs e)
         {
-            _downloadProgressChangeCallback(new AsyncCallbackEvent(e.Request.BytesReceived/e.Request.TotalBytesToReceive));
+            double val = (double)(e.Request.BytesReceived / e.Request.TotalBytesToReceive);
+            _downloadProgressChangeCallback(new AsyncCallbackEvent(val));
         }
 
         void BTR_Download_TransferStatusChanged(object sender, BackgroundTransferEventArgs e)

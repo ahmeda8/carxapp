@@ -64,18 +64,7 @@ namespace carXapp2
 
         protected void GET(string URL)
         {
-            GET_REQUEST = (HttpWebRequest)HttpWebRequest.CreateHttp(URL);
-            GET_REQUEST.UserAgent = "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:14.0) Gecko/20100101 Firefox/14.0.1";
-            GET_REQUEST.Accept = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";
-            GET_REQUEST.Headers[HttpRequestHeader.AcceptLanguage] = "en-us,en;q=0.5";
-            GET_REQUEST.Headers[HttpRequestHeader.Connection] = "keep-alive";
-            GET_REQUEST.Headers["Accept-Location"] = "*";
-            GET_REQUEST.Headers[HttpRequestHeader.Referer] = "http://www.bing.com/";
-            if (this.GetType().ToString() == "Resources.youtube_org")
-            {
-               GET_REQUEST.Headers[HttpRequestHeader.Host] = "www.youtube-mp3.org";
-               GET_REQUEST.Headers[HttpRequestHeader.Referer] = "http://www.youtube-mp3.org/";
-            }
+            GET_REQUEST = (HttpWebRequest)HttpWebRequest.CreateHttp(URL);            
             GET_REQUEST.BeginGetResponse(new AsyncCallback(GET_Method_CallBack), GET_REQUEST);
         }
 

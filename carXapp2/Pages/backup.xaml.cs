@@ -222,7 +222,7 @@ namespace carXapp2.Pages
         void DownloadProgressCallback(IAsyncResult res)
         {
             double val = double.Parse(res.AsyncState.ToString());
-            if (val < 0.9d)
+            if (val < 0.99d)
                 ToggleProgressBar(true, val, "Restoring..");
             else
                 ToggleProgressBar(false);
